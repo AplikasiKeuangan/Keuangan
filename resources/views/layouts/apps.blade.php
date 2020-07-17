@@ -27,7 +27,27 @@
   <link rel="stylesheet" href="{{ asset('template/plugins/summernote/summernote-bs4.min.css')}}">
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
-@yield('content')
+
+<div class="wrapper">
+
+    @include('layouts/navbar')
+
+    @include('layouts/sider')
+  
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+      @yield('content')
+    </div>
+    <!-- /.content-wrapper -->
+    
+    <footer class="main-footer">
+      <strong>Copyright &copy; 2014-2020 <a href="//">AdminLTE.io</a>.</strong>
+      All rights reserved.
+      <div class="float-right d-none d-sm-inline-block">
+        <b>Version</b> 3.1.0-pre
+      </div>
+    </footer>
+</div>
 <!-- ./wrapper -->
 
 <!-- jQuery -->
