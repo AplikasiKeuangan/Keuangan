@@ -19,3 +19,8 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/test', 'HomeController@test')->name('test');
+
+// jurusan
+Route::get('/jurusan', 'JurusanController@index');
+Route::post('/jurusan/tambah','JurusanController@store')->name('tambah');
+
