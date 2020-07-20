@@ -73,6 +73,7 @@
             <a href="#" class="dropdown-item dropdown-footer">See All Messages</a>
          </div>
       </li>
+       
       <!-- Notifications Dropdown Menu -->
       <li class="nav-item dropdown">
          <a class="nav-link" data-toggle="dropdown" href="#">
@@ -101,6 +102,16 @@
          </div>
       </li>
       
+      <!--Power Menu -->
+      <li class="nav-item dropdown">
+         <a class="nav-link" data-toggle="dropdown"  href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+            <i class="fas fa-power-off"></i>
+            <span class="badge badge-danger navbar-badge"></span>
+         </a>
+         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+			@csrf
+         </form>
+      </li>
    </ul>
 </nav>
 <!-- /.navbar -->
