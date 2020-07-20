@@ -23,4 +23,8 @@ Route::get('/test', 'HomeController@test')->name('test');
 // jurusan
 Route::get('/jurusan', 'JurusanController@index');
 Route::post('/jurusan/tambah','JurusanController@store')->name('tambah');
+Route::get('/jurusan/daftar_jurusan','JurusanController@daftar_jurusan')->name('daftar_jurusan');
+Route::get('/jurusan/daftar_jurusan/hapus/{id}','JurusanController@destroy')->name('hapus_jurusan');
+Route::get('/jurusan/daftar_jurusan/edit/{id}','JurusanController@edit')->name('edit');
+Route::put('/jurusan/daftar_jurusan/update/{id}','JurusanController@update')->name('update');
 

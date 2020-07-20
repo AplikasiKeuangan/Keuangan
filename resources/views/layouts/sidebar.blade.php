@@ -19,17 +19,6 @@
       </div>
     </div>
 
-    <!-- SidebarSearch Form -->
-    <div class="form-inline">
-      <div class="input-group" data-widget="sidebar-search">
-        <input class="form-control form-control-sidebar" type="search" placeholder="Search" aria-label="Search">
-        <div class="input-group-append">
-          <button class="btn btn-sidebar">
-            <i class="fas fa-search fa-fw"></i>
-          </button>
-        </div>
-      </div>
-    </div>
 
     <!-- Sidebar Menu -->
     <nav class="mt-2">
@@ -57,9 +46,9 @@
         <li class="nav-header">Keuangan</li>
         <li class="nav-item has-treeview">
           <a href="#" class="nav-link">
-            <i class="nav-icon fas fa-copy"></i>
+            <i class="nav-icon fas fa-money-bill-alt"></i>
             <p>
-              Layout Options
+              Keuangan Sekolah
               <i class="fas fa-angle-left right"></i>
               <span class="badge badge-info right">6</span>
             </p>
@@ -109,6 +98,7 @@
             </li>
           </ul>
         </li>
+        <li class="nav-header"> Akademik</li>
         <li class="nav-item has-treeview">
           <a href="#" class="nav-link">
             <i class="nav-icon fas fa-user-graduate"></i>
@@ -144,13 +134,13 @@
           </a>
           <ul class="nav nav-treeview">
             <li class="nav-item">
-              <a href="pages/layout/top-nav.html" class="nav-link">
+            <a href="/jurusan" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
                 <p>Tambah Jurusan</p>
               </a>
             </li>
             <li class="nav-item">
-              <a href="pages/layout/top-nav-sidebar.html" class="nav-link">
+              <a href="/jurusan/daftar_jurusan" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
                 <p>Daftar Jurusan</p>
               </a>
