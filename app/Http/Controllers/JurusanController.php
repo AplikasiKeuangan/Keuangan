@@ -51,10 +51,10 @@ class JurusanController extends Controller
         $data=$request->all();
         Jurusan::create($data);
         // toast('Data tersimpan!','success');
-        alert()->success('Jurusan Ditambahkan!');
+        alert()->success('Jurusan Berhasil Ditambahkan!');
 
 
-        return redirect('/jurusan/daftar_jurusan')->with('message','Jurusan Ditambahkan!');
+        return redirect('/jurusan/daftar_jurusan');
     }
 
     /**
@@ -100,6 +100,7 @@ class JurusanController extends Controller
             $input_data['status']=0;
         }
         $update_jurusan->update($input_data);
+        alert()->success('Jurusan Berhasil Diedit!');
     	return redirect('/jurusan/daftar_jurusan');
     }
 
@@ -114,6 +115,9 @@ class JurusanController extends Controller
         $jurusan = Jurusan::find($id);
         $jurusan->delete();
 
-        return back();
+        if ($jurusan) {
+            alert()->success('Jurusan Berhasil Dihapus!');
+            return back();
+        }
     }
 }
