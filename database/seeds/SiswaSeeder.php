@@ -2,13 +2,8 @@
 
 use Illuminate\Database\Seeder;
 
-class DatabaseSeeder extends Seeder
+class SiswaSeeder extends Seeder
 {
-    /**
-     * Seed the application's database.
-     *
-     * @return void
-     */
     public function run()
     {
         DB::table('siswas')->insert([
@@ -17,7 +12,7 @@ class DatabaseSeeder extends Seeder
             'nama_panggilan' => 'Azim',
             'jenis_kelamin' => 'Laki-laki',
             'tempat_lahir' => 'Mungka',
-            'tanggal_lahir' => '2002-06-28',
+            'tanggal_lahir' => Carbon::now()->format('Y-m-d'),
             'agama' => 'Islam',
             'kewarganegaraan' => 'WNI',
             'anak_ke' => '3',

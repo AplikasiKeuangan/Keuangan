@@ -24,3 +24,12 @@ Route::get('/test', 'HomeController@test')->name('test');
 Route::get('/jurusan', 'JurusanController@index');
 Route::post('/jurusan/tambah','JurusanController@store')->name('tambah');
 
+Route::prefix('admin')->name('admin-')->group(function () {
+    //siswa
+    Route::prefix('siswa')->name('siswa-')->group(function () {
+        Route::get('/', 'Admin\SiswaController@index')->name('index');
+        Route::get('/get-data', 'Admin\SiswaController@data')->name('data');
+        Route::get('/{nis}/{nama_lengkap}/detail', 'Admin\SiswaController@detail');
+        Route::post('/store', 'Admin\SiswaController@store')->name('store');
+    });
+});

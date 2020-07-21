@@ -16,11 +16,23 @@ class CreateSiswasTable extends Migration
         Schema::create('siswas', function (Blueprint $table) {
             $table->bigInteger('nis');
             $table->primary('nis');
-            $table->string('nama_siswa');
-            $table->bigInteger('id_kelas');
-            $table->bigInteger('id_jurusan');
-            $table->time('tgl_mulai_byr');
-            $table->time('tgl_berhenti_byr');
+            $table->string('nama_lengkap');
+            $table->string('nama_panggilan');
+            $table->string('jenis_kelamin');
+            $table->string('tempat_lahir');
+            $table->date('tanggal_lahir');
+            $table->string('agama');
+            $table->string('kewarganegaraan');
+            $table->string('anak_ke');
+            $table->string('jumlah_saudara');
+            $table->string('kondisi_siswa');
+            $table->string('status_siswa');
+            $table->text('bahasa_sehari_hari');
+            $table->text('alamat');
+            $table->string('telepon')->nullable();
+            $table->string('handphone')->nullable();
+            $table->string('email')->nullable();
+            $table->text('asal_sekolah');
         });
     }
 
