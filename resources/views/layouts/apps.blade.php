@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Keuangan Sekolah</title>
+  <title>An-Nahl</title>
 
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -27,7 +27,9 @@
   <link rel="stylesheet" href="{{ asset('template/plugins/summernote/summernote-bs4.min.css')}}">
   <!-- DataTables -->
   <link rel="stylesheet" href="{{ asset('template/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css')}}">
-<link rel="stylesheet" href="{{ asset('plugins/datatables-responsive/css/responsive.bootstrap4.min.css')}}">
+  <link rel="stylesheet" href="{{ asset('plugins/datatables-responsive/css/responsive.bootstrap4.min.css')}}">
+  <!-- Sweet Alert-->
+ 
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
 
@@ -92,6 +94,8 @@
 <script src="{{ asset ('template/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js')}}"></script>
 <script src="{{ asset ('template/plugins/datatables-responsive/js/dataTables.responsive.min.js')}}"></script>
 <script src="{{ asset ('template/plugins/datatables-responsive/js/responsive.bootstrap4.min.js')}}"></script>
+<!--SweetAlert-->
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script>
   $(function () {
     $("#example1").DataTable({
@@ -108,6 +112,23 @@
       "responsive": true,
     });
   });
+</script>
+<script>
+     
+     $('.delete-confirm').on('click', function (event) {
+         event.preventDefault();
+         const url = $(this).attr('href');
+         swal({
+             title: 'Apa Anda Yakin?',
+             text: 'Data yang dihapus tidak bisa dipulihkan!',
+             icon: 'warning',
+             buttons: ["Batal", "Ya!"],
+         }).then(function(value) {
+             if (value) {
+                 window.location.href = url;
+             }
+         });
+     });
 </script>
 </body>
 </html>

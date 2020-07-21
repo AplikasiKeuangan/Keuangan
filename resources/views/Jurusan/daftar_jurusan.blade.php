@@ -40,7 +40,7 @@
                             <td>{{($jurusan->status==0)?' Disabled':'Enable'}}</td>
                             <td><a href="/jurusan/daftar_jurusan/edit/{{$jurusan->id}}" class="btn btn-primary"><i class="fa fa-edit"></i> Edit</a>
                                 {{-- <a href="javascript:" rel="{{$jurusan->id}}" rel1="delete-jurusan" class="btn btn-danger deleteRecord"><i class="fa fa-eraser"></i> Delete</a></td> --}}
-                                <a href="/jurusan/daftar_jurusan/hapus/{{$jurusan['id']}}"class="btn btn-danger deleteRecord"><i class="fa fa-eraser"></i> Delete</a></td>
+                                <a href="/jurusan/daftar_jurusan/hapus/{{$jurusan->id}}"class="button delete-confirm"><i class="fa fa-eraser"></i> Delete</a></td>
                         </tr>
 
                     @endforeach
@@ -58,4 +58,5 @@
               </div>
               <!-- /.card-body -->
             </div>
+
 @endsection

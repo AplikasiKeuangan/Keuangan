@@ -20,13 +20,9 @@
 <section class="content">
   <div class="container-fluid">
     <div class="row">
-      <!-- left column -->
-      <div class="col-md-4">
-        <div class="card card-warning">
-        </div>
-      </div>
+    
       {{-- middle column --}}
-      <div class="col-md-4">
+      <div class="col-md-12">
         <!-- general form elements -->
         <div class="card card-primary">
           <div class="card-header">
@@ -58,11 +54,6 @@
               <button type="submit" class="btn btn-primary">Simpan</button>
             </div>
           </form>
-        </div>
-      </div>
-     {{-- right column --}}
-      <div class="col-md-4">
-        <div class="card card-warning">
         </div>
       </div>
     </div>
