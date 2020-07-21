@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+Use Alert;
 use App\Jurusan;
 use Illuminate\Http\Request;
 
@@ -49,6 +50,10 @@ class JurusanController extends Controller
         ]);
         $data=$request->all();
         Jurusan::create($data);
+        // toast('Data tersimpan!','success');
+        alert()->success('Jurusan Ditambahkan!');
+
+
         return redirect('/jurusan/daftar_jurusan')->with('message','Jurusan Ditambahkan!');
     }
 

@@ -104,7 +104,7 @@
       
       <!--Power Menu -->
       <li class="nav-item dropdown">
-         <a class="nav-link" data-toggle="dropdown"  href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+         <a class="nav-link logout-confirm" href="{{ route('logout') }}" onclick="event.preventDefault();">
             <i class="fas fa-power-off"></i>
             <span class="badge badge-danger navbar-badge"></span>
          </a>
