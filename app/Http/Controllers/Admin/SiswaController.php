@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Siswa;
+use DB;
+use Carbon\carbon;
 use DataTables;
 use Validator;
 
@@ -12,7 +14,8 @@ class SiswaController extends Controller
 {
     public function index()
     {
-        return view('Admin.Siswa.index');
+        $nis = $this->NIS();
+        return view('Admin.Siswa.index',compact('nis'));
     }
     public function data(Request $request)
     {
@@ -27,6 +30,24 @@ class SiswaController extends Controller
             return abort(403);
         }
     }
+
+    protected function NIS()
+    {
+        $kd="";
+        $query = DB::table('siswas')
+        ->select(DB::raw('MAX(RIGHT(kode,4)) as kd_max'))
+            ->whereDate('created_at',Carbon::today());
+        if ($query->count()>0) {
+            foreach ($query->get() as $key ) {
+            $tmp = ((int)$key->kd_max)+1;
+            $kd = sprintf("%04s", $tmp);
+            }
+        }else {
+        $kd = "0001";
+   }
+
+    return  "".date('dmy').$kd;
+  }
     public function detail($nis, $nama_lengkap)
     {
         $data_siswa = Siswa::where([['nis',$nis],['nama_lengkap',$nama_lengkap]])->first();
@@ -156,4 +177,5 @@ class SiswaController extends Controller
             return abort(404);
         }
     }
+
 }

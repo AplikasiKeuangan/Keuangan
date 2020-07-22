@@ -53,7 +53,7 @@
                                              <label for="hf-nis" class=" form-control-label">NIS</label>
                                           </div>
                                           <div class="col-12 col-md-9">
-                                             <input type="text" id="hf-nis" name="nis" placeholder="NIS" required="" class="form-control">
+                                          <input type="text" id="hf-nis" name="nis" placeholder="NIS" required="" value="{{$nis}}" class="form-control">
                                           </div>
                                     </div>
                                     <div class="row form-group">
@@ -219,6 +219,37 @@
                                              <input type="text" id="hf-asal-sekolah" name="asal_sekolah" placeholder="Asal Sekolah" required="" class="form-control">
                                           </div>
                                     </div>
+
+                                    <!-- Keterangan Pendidikan Saat Ini -->
+                                    <div class="row form-group">
+                                       <div class="col-12 col-md-12">
+                                          <label class="form-control ">Keterangan Pendidikan Saat Ini</label>
+                                       </div>
+                                    </div>
+                                    <div class="row form-group">
+                                          <div class="col col-md-3">
+                                             <label for="hf-kelas" class=" form-control-label">Kelas</label>
+                                          </div>
+                                          <div class="col-12 col-md-9">
+                                             <select class="select2" multiple="multiple" data-placeholder="Pilih Jurusan Dan Kelas" style="width: 100%;">
+                                                <option>Alabama</option>
+                                                <option>Alaska</option>
+                                                <option>California</option>
+                                                <option>Delaware</option>
+                                                <option>Tennessee</option>
+                                                <option>Texas</option>
+                                                <option>Washington</option>
+                                              </select>
+                                          </div>
+                                    </div>
+                                    {{-- <div class="row form-group">
+                                       <div class="col col-md-3">
+                                          <label for="hf-jurusan" class=" form-control-label">Jurusan</label>
+                                       </div>
+                                       <div class="col-12 col-md-9">
+                                          <input type="text" id="hf-jurusan" name="jurusan" placeholder="Jurusan" required="" class="form-control">
+                                       </div>
+                                       </div> --}}
                                  </form>
                               </div>
                         </div>
