@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+Use Alert;
 use App\Jurusan;
 use Illuminate\Http\Request;
 
@@ -49,7 +50,11 @@ class JurusanController extends Controller
         ]);
         $data=$request->all();
         Jurusan::create($data);
-        return redirect('/jurusan/daftar_jurusan')->with('message','Jurusan Ditambahkan!');
+        // toast('Data tersimpan!','success');
+        alert()->success('Jurusan Berhasil Ditambahkan!');
+
+
+        return redirect('/jurusan/daftar_jurusan');
     }
 
     /**
@@ -95,6 +100,7 @@ class JurusanController extends Controller
             $input_data['status']=0;
         }
         $update_jurusan->update($input_data);
+        alert()->success('Jurusan Berhasil Diedit!');
     	return redirect('/jurusan/daftar_jurusan');
     }
 
@@ -109,6 +115,9 @@ class JurusanController extends Controller
         $jurusan = Jurusan::find($id);
         $jurusan->delete();
 
-        return back();
+        if ($jurusan) {
+            alert()->success('Jurusan Berhasil Dihapus!');
+            return back();
+        }
     }
 }

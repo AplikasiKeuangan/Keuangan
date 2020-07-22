@@ -147,5 +147,40 @@
          });
      });
 </script>
+<script>
+     
+     $('.save-confirm').on('click', function (event) {
+         event.preventDefault();
+         const url = $(this).attr('href');
+         swal({
+             title: 'Apa Anda Yakin?',
+             text: 'Data yang dihapus tidak bisa dipulihkan!',
+             icon: 'success',
+             buttons: ["Batal", "Ya!"],
+         }).then(function(value) {
+             if (value) {
+                 window.location.href = url;
+             }
+         });
+     });
+</script>
+<script>
+     
+     $('.logout-confirm').on('click', function (event) {
+         event.preventDefault();
+         const url = $(this).attr('href');
+         swal({
+             title: 'Anda Yakin Ingin Keluar?',
+             icon: 'warning',
+             buttons: ["Batal", "Ya!"],
+         }).then(function(value) {
+             if (value) {
+              document.getElementById('logout-form').submit();
+             }
+         });
+     });
+</script>
+
+@include('sweetalert::alert')
 </body>
 </html>
