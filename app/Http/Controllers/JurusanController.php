@@ -14,7 +14,15 @@ class JurusanController extends Controller
      */
     public function index()
     {
-        return view('Jurusan.tambah_jurusan');
+        $menu_active=0;
+        return view('Jurusan.tambah_jurusan',compact('menu_active'));
+    }
+
+    public function daftar_jurusan()
+    {
+        $menu_active=0;
+        $jurusan=Jurusan::all();
+        return view('Jurusan.daftar_jurusan',compact('menu_active','jurusan'));
     }
 
     /**
@@ -36,12 +44,12 @@ class JurusanController extends Controller
     public function store(Request $request)
     {
         $this->validate($request,[
-            'nama_jurusan'=>'required|max:255|',
+            'nama_jurusan'=>'required|max:255|unique:jurusans,nama_jurusan',
             'deskripsi'=>'required',
         ]);
         $data=$request->all();
         Jurusan::create($data);
-        return redirect()->route('category.index')->with('message','Berhasil ditambahkan!');
+        return redirect('/jurusan/daftar_jurusan')->with('message','Jurusan Ditambahkan!');
     }
 
     /**
@@ -63,7 +71,8 @@ class JurusanController extends Controller
      */
     public function edit($id)
     {
-        //
+        $jurusan = Jurusan::findOrfail($id);
+        return view('Jurusan.edit_jurusan',compact('jurusan'));
     }
 
     /**
@@ -75,7 +84,18 @@ class JurusanController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $update_jurusan=Jurusan::findOrFail($id);
+        $this->validate($request,[
+            'nama_jurusan'=>'required|max:255|unique:jurusans,nama_jurusan,'.$update_jurusan->id,
+            'deskripsi'=>'required',
+        ]);
+        //dd($request->all());die();
+        $input_data=$request->all();
+        if(empty($input_data['status'])){
+            $input_data['status']=0;
+        }
+        $update_jurusan->update($input_data);
+    	return redirect('/jurusan/daftar_jurusan');
     }
 
     /**
@@ -86,6 +106,9 @@ class JurusanController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $jurusan = Jurusan::find($id);
+        $jurusan->delete();
+
+        return back();
     }
 }

@@ -19,6 +19,7 @@ class CreateJurusansTable extends Migration
             $table->string('nama_jurusan');
             $table->text('deskripsi')->nullable();
             $table->tinyInteger('status')->default(0);
+            $table->timestamps();
         });
     }
 
