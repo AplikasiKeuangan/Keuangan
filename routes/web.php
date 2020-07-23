@@ -39,4 +39,13 @@ Route::prefix('admin')->name('admin-')->middleware(['checkLoginStatus'])->group(
         Route::post('/{nis}/{nama_lengkap}/update', 'Admin\SiswaController@update')->name('update');
         Route::get('/{nis}/{nama_lengkap}/destroy', 'Admin\SiswaController@destroy')->name('destroy');
     });
+    //kas
+    Route::prefix('kas')->name('kas-')->group(function () {
+        Route::get('/', 'Admin\KasController@index')->name('index');
+        //tunai
+        Route::prefix('tunai')->name('tunai-')->group(function () {
+            Route::get('/', 'Admin\KasTunaiController@index')->name('index');
+            Route::get('/get-data', 'Admin\KasTunaiController@data')->name('data');
+        });
+    });
 });

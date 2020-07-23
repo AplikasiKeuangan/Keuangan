@@ -31,5 +31,12 @@ class DatabaseSeeder extends Seeder
             'email' => 'alazim@gmail.com',
             'asal_sekolah' => 'MTsN Lima Puluh Kota',
         ]);
+        DB::table('kas_tunais')->insert([
+            'tanggal' => '2020-07-23',
+            'no_bukti' => 0,
+            'uraian' => 'TT SS',
+            'debit' => '0',
+            'kredit' => '300000',
+        ]);
     }
 }
