@@ -19,6 +19,8 @@ class JurusanController extends Controller
         return view('Jurusan.tambah_jurusan',compact('menu_active'));
     }
 
+    
+
     public function daftar_jurusan()
     {
         $menu_active=0;
