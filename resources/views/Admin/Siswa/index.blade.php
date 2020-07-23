@@ -53,7 +53,7 @@
                                              <label for="hf-nis" class=" form-control-label">NIS</label>
                                           </div>
                                           <div class="col-12 col-md-9">
-                                             <input type="text" id="hf-nis" name="nis" placeholder="NIS" required="" class="form-control">
+                                          <input type="text" id="hf-nis" name="nis" placeholder="NIS" required="" value="{{$nis}}" class="form-control">
                                           </div>
                                     </div>
                                     <div class="row form-group">
@@ -219,6 +219,48 @@
                                              <input type="text" id="hf-asal-sekolah" name="asal_sekolah" placeholder="Asal Sekolah" required="" class="form-control">
                                           </div>
                                     </div>
+
+                                    <!-- Keterangan Pendidikan Saat Ini -->
+                                    <div class="row form-group">
+                                       <div class="col-12 col-md-12">
+                                          <label class="form-control ">Keterangan Pendidikan Saat Ini</label>
+                                       </div>
+                                    </div>
+                                    <div class="row form-group">
+                                          <div class="col col-md-3">
+                                             <label for="hf-kelas" class=" form-control-label">Kelas</label>
+                                          </div>
+                                          <div class="col-12 col-md-9">
+                                             <select class="form-control hf-kelas" name="kelas" data-placeholder="Pilih Jurusan Dan Kelas" style="width: 100%;">
+                                                @foreach ($kelas as $kelas)
+                                                   <option value="">Pilih Kelas...</option>
+                                                   <option value="{{$kelas->nama_kelas}}">{{$kelas->nama_kelas}}</option>
+                                                @endforeach
+                                             </select>
+                                          </div>
+                                    </div>
+                                    <div class="row form-group">
+                                       <div class="col col-md-3">
+                                          <label for="hf-jurusan" class=" form-control-label">Jurusan</label>
+                                       </div>
+                                       <div class="col-12 col-md-9">
+                                          <select id="hf-jurusan" name="jurusan"  required="" class="form-control">
+                                             @foreach ($jurusan as $jurusan)
+                                                <option value="">Pilih Jurusan...</option>
+                                                <option value="{{$jurusan->nama_jurusan}}" >{{$jurusan->nama_jurusan}}</option>
+                                             @endforeach
+                                          </select>
+                                       </div>
+                                 </div>
+                                 
+                                    <div class="row form-group">
+                                       <div class="col col-md-3">
+                                          <label for="hf-jurusan" class=" form-control-label">Jurusan</label>
+                                       </div>
+                                       <div class="col-12 col-md-9">
+                                          <input type="text" id="hf-jurusan" name="jurusan" placeholder="Jurusan" required="" class="form-control">
+                                       </div>
+                                       </div>
                                  </form>
                               </div>
                         </div>
@@ -262,6 +304,8 @@
                               <th>Handphone</th>
                               <th>Email</th>
                               <th>Asal Sekolah</th>
+                              <th>Kelas</th>
+                              <th>Jurusan</th>
                               <th style="text-align: right">Tindakan</th>
                            </tr>
                         </thead>
@@ -286,6 +330,8 @@
                               <th>Handphone</th>
                               <th>Email</th>
                               <th>Asal Sekolah</th>
+                              <th>Kelas</th>
+                              <th>Jurusan</th>
                               <th style="text-align: right">Tindakan</th>
                            </tr>
                         </tfoot>
@@ -337,6 +383,8 @@
                   { data: 'handphone', name: 'handphone' },
                   { data: 'email', name: 'email' },
                   { data: 'asal_sekolah', name: 'asal_sekolah' },
+                  { data: 'kelas',name:'kelas'},
+                  { data: 'jurusan',name:'jurusan'},
                   { data: 'action', className: 'dt-right', orderable: false, searchable: true }
                ],
          // "rowCallback": function( row, data ) {}

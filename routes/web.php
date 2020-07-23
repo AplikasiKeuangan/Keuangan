@@ -46,6 +46,8 @@ Route::prefix('admin')->name('admin-')->middleware(['checkLoginStatus'])->group(
         Route::prefix('tunai')->name('tunai-')->group(function () {
             Route::get('/', 'Admin\KasTunaiController@index')->name('index');
             Route::get('/get-data', 'Admin\KasTunaiController@data')->name('data');
+            Route::post('/store', 'Admin\KasTunaiController@store')->name('store');
+            Route::get('/{id_kas_tunai}/hapus', 'Admin\KasTunaiController@destroy')->name('hapus');
         });
     });
 });

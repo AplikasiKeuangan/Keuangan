@@ -219,13 +219,27 @@
                                        </div>
                                     </div>
                                     <div class="row form-group">
-                                          <div class="col col-md-3">
-                                             <label for="hf-asal-sekolah" class=" form-control-label">Asal Sekolah</label>
-                                          </div>
-                                          <div class="col-12 col-md-9">
-                                             <input type="text" id="hf-asal-sekolah" name="asal_sekolah" placeholder="Asal Sekolah" required="" class="form-control" value="{{ $data_siswa->asal_sekolah }}">
-                                          </div>
+                                       <div class="col col-md-3">
+                                          <label for="hf-asal-sekolah" class=" form-control-label">Asal Sekolah</label>
+                                       </div>
+                                       <div class="col-12 col-md-9">
+                                          <input type="text" id="hf-asal-sekolah" name="asal_sekolah" placeholder="Asal Sekolah" required="" class="form-control" value="{{ $data_siswa->asal_sekolah }}">
+                                       </div>
                                     </div>
+                                 </div>
+                                 <div class="row form-group">
+                                    <div class="col col-md-3">
+                                       <label for="hf-jurusan" class=" form-control-label">Jurusan</label>
+                                    </div>
+                                    <div class="col-12 col-md-9">
+                                       <select id="hf-jurusan" name="jurusan"  required="" class="form-control">
+                                          <option value="">Pilih Jurusan...</option>
+                                          @foreach ($jurusan as $jurusan)
+                                             <option value="{{$jurusan->nama_jurusan}}" {{$jurusan->nama_jurusan ? 'selected':''}}>{{$jurusan->nama_jurusan}}</option>
+                                          @endforeach
+                                       </select>
+                                    </div>
+                              </div>
                                  </form>
                               </div>
                         </div>

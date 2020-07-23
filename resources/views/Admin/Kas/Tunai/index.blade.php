@@ -41,182 +41,41 @@
                      <div class="col-md-12">
                         <div class="card">
                               <div class="card-body card-block">
-                                 <form method="post" id="form1" class="form-horizontal" action="{{ route('admin-siswa-store') }}" >
+                                 <form method="post" id="form1" class="form-horizontal" action="{{ route('admin-kas-tunai-store') }}" >
                                     @csrf
                                     <div class="row form-group">
-                                       <div class="col-12 col-md-12">
-                                          <label class="form-control ">Data Pribadi Siswa</label>
-                                       </div>
-                                    </div>
-                                    <div class="row form-group">
                                           <div class="col col-md-3">
-                                             <label for="hf-nis" class=" form-control-label">NIS</label>
+                                             <label for="hf-no-bukti" class=" form-control-label">No. Bukti</label>
                                           </div>
                                           <div class="col-12 col-md-9">
-                                             <input type="text" id="hf-nis" name="nis" placeholder="NIS" required="" class="form-control">
+                                             <input type="number" id="hf-no-bukti" name="no_bukti" placeholder="No. Bukti" required="" class="form-control">
                                           </div>
                                     </div>
                                     <div class="row form-group">
                                           <div class="col col-md-3">
-                                             <label for="hf-nama-lengkap" class=" form-control-label">Nama Lengkap</label>
+                                             <label for="hf-uraian" class=" form-control-label">Uraian</label>
                                           </div>
                                           <div class="col-12 col-md-9">
-                                             <input type="text" id="hf-nama-lengkap" name="nama_lengkap" placeholder="Nama Lengkap" required="" class="form-control">
+                                             <textarea id="hf-uraian" name="uraian" placeholder="Uraian" required="" class="form-control"></textarea>
                                           </div>
                                     </div>
                                     <div class="row form-group">
                                           <div class="col col-md-3">
-                                             <label for="hf-nama-panggilan" class=" form-control-label">Nama Panggilan</label>
+                                             <label for="hf-jenis" class=" form-control-label">Jenis</label>
                                           </div>
                                           <div class="col-12 col-md-9">
-                                             <input type="text" id="hf-nama-panggilan" name="nama_panggilan" placeholder="Nama panggilan" required="" class="form-control">
-                                          </div>
-                                    </div>
-                                    <div class="row form-group">
-                                          <div class="col col-md-3">
-                                             <label for="hf-jenis-kelamin" class=" form-control-label">Jenis Kelamin</label>
-                                          </div>
-                                          <div class="col-12 col-md-9">
-                                             <select type="text" id="hf-jenis-kelamin" name="jenis_kelamin" required="" class="form-control">
-                                                <option value="Laki-laki">Laki-laki</option>
-                                                <option value="Perempuan">Perempuan</option>
+                                             <select id="hf-jenis" name="jenis" placeholder="jenis" required="" class="form-control">
+                                                <option value="Debit">Penerimaan (Debit)</option>
+                                                <option value="Kredit">Pengeluaran (Kredit)</option>
                                              </select>
                                           </div>
                                     </div>
                                     <div class="row form-group">
                                           <div class="col col-md-3">
-                                             <label for="hf-tempat-lahir" class=" form-control-label">Tempat Lahir</label>
+                                             <label for="hf-nominal" class=" form-control-label">Nominal</label>
                                           </div>
                                           <div class="col-12 col-md-9">
-                                             <input type="text" id="hf-tempat-lahir" name="tempat_lahir" placeholder="Tempat Lahir" required="" class="form-control">
-                                          </div>
-                                    </div>
-                                    <div class="row form-group">
-                                          <div class="col col-md-3">
-                                             <label for="hf-tanggal-lahir" class=" form-control-label">Tanggal Lahir</label>
-                                          </div>
-                                          <div class="col-12 col-md-9">
-                                             <input type="date" id="hf-tanggal-lahir" name="tanggal_lahir" required="" class="form-control">
-                                          </div>
-                                    </div>
-                                    <div class="row form-group">
-                                          <div class="col col-md-3">
-                                             <label for="hf-agama" class=" form-control-label">Agama</label>
-                                          </div>
-                                          <div class="col-12 col-md-9">
-                                             <select id="hf-agama" name="agama" required="" class="form-control">
-                                                <option value="Islam">Islam</option>
-                                                <option value="Protestan">Protestan</option>
-                                                <option value="Khatolik">Khatolik</option>
-                                                <option value="Buddha">Budha</option>
-                                                <option value="Hindu">Hindu</option>
-                                                <option value="Kong Hu Cu">Kong Hu Cu</option>
-                                             </select>
-                                          </div>
-                                    </div>
-                                    <div class="row form-group">
-                                          <div class="col col-md-3">
-                                             <label for="hf-kewarganegaraan" class=" form-control-label">Kewarganegaraan</label>
-                                          </div>
-                                          <div class="col-12 col-md-9">
-                                             <select id="hf-kewarganegaraan" name="kewarganegaraan"  required="" class="form-control">
-                                                <option value="WNI">WNI</option>
-                                                <option value="WNA">WNA</option>
-                                             </select>
-                                          </div>
-                                    </div>
-                                    <div class="row form-group">
-                                          <div class="col col-md-3">
-                                             <label for="hf-anak-ke" class=" form-control-label">Anak Ke</label>
-                                          </div>
-                                          <div class="col-12 col-md-9">
-                                             <input type="number" id="hf-anak-ke" name="anak_ke" placeholder="Anak Ke" required="" class="form-control" min="0" max="99">
-                                          </div>
-                                    </div>
-                                    <div class="row form-group">
-                                          <div class="col col-md-3">
-                                             <label for="hf-jumlah-saudara" class=" form-control-label">Jumlah Saudara</label>
-                                          </div>
-                                          <div class="col-12 col-md-9">
-                                             <input type="number" id="hf-jumlah-saudara" name="jumlah_saudara" placeholder="Jumlah Saudara" required="" class="form-control" min="0" max="99">
-                                          </div>
-                                    </div>
-                                    <div class="row form-group">
-                                          <div class="col col-md-3">
-                                             <label for="hf-kondisi-siswa" class=" form-control-label">Kondisi Siswa</label>
-                                          </div>
-                                          <div class="col-12 col-md-9">
-                                             <input type="text" id="hf-kondisi-siswa" name="kondisi_siswa" placeholder="Kondisi Siswa" required="" class="form-control">
-                                          </div>
-                                    </div>
-                                    <div class="row form-group">
-                                          <div class="col col-md-3">
-                                             <label for="hf-status-siswa" class=" form-control-label">Status Siswa</label>
-                                          </div>
-                                          <div class="col-12 col-md-9">
-                                             <input type="text" id="hf-status-siswa" name="status_siswa" placeholder="Status Siswa" required="" class="form-control">
-                                          </div>
-                                    </div>
-                                    <div class="row form-group">
-                                          <div class="col col-md-3">
-                                             <label for="hf-bahasa-sehari-hari" class=" form-control-label">Bahasa Sehari-hari</label>
-                                          </div>
-                                          <div class="col-12 col-md-9">
-                                             <input type="text" id="hf-bahasa-sehari-hari" name="bahasa_sehari_hari" placeholder="Bahasa Sehari-hari" required="" class="form-control">
-                                          </div>
-                                    </div>
-
-                                    <!-- Keterangan Tempat Tinggal -->
-                                    <div class="row form-group">
-                                       <div class="col-12 col-md-12">
-                                          <label class="form-control ">Keterangan Tempat Tinggal</label>
-                                       </div>
-                                    </div>
-                                    <div class="row form-group">
-                                          <div class="col col-md-3">
-                                             <label for="hf-alamat" class=" form-control-label">Alamat</label>
-                                          </div>
-                                          <div class="col-12 col-md-9">
-                                             <textarea id="hf-alamat" name="alamat" placeholder="Alamat" required="" class="form-control"></textarea>
-                                          </div>
-                                    </div>
-                                    <div class="row form-group">
-                                          <div class="col col-md-3">
-                                             <label for="hf-telepon" class=" form-control-label">Telepon</label>
-                                          </div>
-                                          <div class="col-12 col-md-9">
-                                             <input type="text" id="hf-telepon" name="telepon" placeholder="Telepon" class="form-control">
-                                          </div>
-                                    </div>
-                                    <div class="row form-group">
-                                          <div class="col col-md-3">
-                                             <label for="hf-handphone" class=" form-control-label">Handphone</label>
-                                          </div>
-                                          <div class="col-12 col-md-9">
-                                             <input type="text" id="hf-handphone" name="handphone" placeholder="Handphone" class="form-control">
-                                          </div>
-                                    </div>
-                                    <div class="row form-group">
-                                          <div class="col col-md-3">
-                                             <label for="hf-email" class=" form-control-label">Email</label>
-                                          </div>
-                                          <div class="col-12 col-md-9">
-                                             <input type="email" id="hf-email" name="email" placeholder="Email"  class="form-control">
-                                          </div>
-                                    </div>
-
-                                    <!-- Keterangan Pendidikan Sebelumnya -->
-                                    <div class="row form-group">
-                                       <div class="col-12 col-md-12">
-                                          <label class="form-control ">Keterangan Pendidikan Sebelumnya</label>
-                                       </div>
-                                    </div>
-                                    <div class="row form-group">
-                                          <div class="col col-md-3">
-                                             <label for="hf-asal-sekolah" class=" form-control-label">Asal Sekolah</label>
-                                          </div>
-                                          <div class="col-12 col-md-9">
-                                             <input type="text" id="hf-asal-sekolah" name="asal_sekolah" placeholder="Asal Sekolah" required="" class="form-control">
+                                             <input type="number" id="hf-nominal" name="nominal" placeholder="Nominal" required="" class="form-control">
                                           </div>
                                     </div>
                                  </form>
@@ -247,8 +106,9 @@
                               <th>Tanggal</th>
                               <th>No. Bukti</th>
                               <th>Uraian</th>
-                              <th>Debit</th>
-                              <th>Kredit</th>
+                              <th>Penerimaan (Debit)</th>
+                              <th>Pegeluaran (Kredit)</th>
+                              <th>Saldo</th>
                               <th style="text-align: right">Tindakan</th>
                            </tr>
                         </thead>
@@ -258,8 +118,9 @@
                               <th>Tanggal</th>
                               <th>No. Bukti</th>
                               <th>Uraian</th>
-                              <th>Debit</th>
-                              <th>Kredit</th>
+                              <th>Penerimaan (Debit)</th>
+                              <th>Pegeluaran (Kredit)</th>
+                              <th>Saldo</th>
                               <th style="text-align: right">Tindakan</th>
                            </tr>
                         </tfoot>
@@ -291,12 +152,13 @@
          serverSide: true,
          ajax: '{!! route('admin-kas-tunai-data') !!}',
          columns: [
-                  { data: 'tanggal', name: 'tanggal' },
-                  { data: 'no_bukti', name: 'no_bukti' },
-                  { data: 'uraian', name: 'uraian' },
-                  { data: 'debit', name: 'debit', render: $.fn.dataTable.render.number( '.' ) },
-                  { data: 'kredit', name: 'kredit', render: $.fn.dataTable.render.number( '.' ) },
-                  { data: 'action', className: 'dt-right', orderable: false, searchable: true }
+                  { data: 'tanggal', name: 'tanggal', orderable: false },
+                  { data: 'no_bukti', name: 'no_bukti', orderable: false },
+                  { data: 'uraian', name: 'uraian', orderable: false },
+                  { data: 'debit', name: 'debit', render: $.fn.dataTable.render.number( '.' ), orderable: false },
+                  { data: 'kredit', name: 'kredit', render: $.fn.dataTable.render.number( '.' ), orderable: false },
+                  { data: 'saldo', name: 'saldo', render: $.fn.dataTable.render.number( '.' ), orderable: false },
+                  { data: 'action', className: 'dt-right', orderable: false, searchable: false }
                ],
          // "rowCallback": function( row, data ) {}
          "language": {

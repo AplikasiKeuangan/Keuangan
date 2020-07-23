@@ -19,6 +19,9 @@
   <link rel="stylesheet" href="{{ asset('template/plugins/jqvmap/jqvmap.min.css')}}">
   <!-- Theme style -->
   <link rel="stylesheet" href="{{ asset('template/dist/css/adminlte.min.css')}}">
+  <!-- Select2 -->
+  <link rel="stylesheet" href="{{asset('template/plugins/select2/css/select2.min.css')}}">
+  <link rel="stylesheet" href="{{asset('template/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css')}}">
   <!-- overlayScrollbars -->
   <link rel="stylesheet" href="{{ asset('template/plugins/overlayScrollbars/css/OverlayScrollbars.min.css')}}">
   <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
@@ -61,6 +64,8 @@
 <script>
     $.widget.bridge('uibutton', $.ui.button);
 </script>
+<!--Select-->
+<script src="{{asset('template/plugins/select2/js/select2.full.min.js')}}"></script>
 <!-- Bootstrap 4 -->
 <script src="{{ asset ('template/plugins/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
 <!-- ChartJS -->
@@ -163,6 +168,15 @@
              }
          });
      });
+</script>
+<script>
+  //Initialize Select2 Elements
+  $('.select2').select2()
+
+//Initialize Select2 Elements
+$('.select2bs4').select2({
+  theme: 'bootstrap4'
+})
 </script>
 <script>
      

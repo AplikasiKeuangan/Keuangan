@@ -97,8 +97,8 @@
             </li>
           </ul>
         </li>
-        <li class="nav-item has-treeview">
-          <a href="#" class="nav-link">
+        <li class="nav-item has-treeview {{ Route::currentRouteName() == 'admin-kas-tunai-index' ? 'menu-open':'' }}">
+          <a href="#" class="nav-link {{ Route::currentRouteName() == 'admin-kas-tunai-index' ? 'active':'' }}">
             <i class="nav-icon fas fa-money-bill-alt"></i>
             <p>
               Kas
@@ -113,7 +113,7 @@
               </a>
             </li>
             <li class="nav-item">
-              <a href="{{ route('admin-kas-tunai-index') }}" class="nav-link {{ Route::currentRouteName() == 'admin-siswa-index' ? 'active':'' }}">
+              <a href="{{ route('admin-kas-tunai-index') }}" class="nav-link {{ Route::currentRouteName() == 'admin-kas-tunai-index' ? 'active':'' }}">
                 <i class="far fa-circle nav-icon"></i>
                 <p>Kas Tunai</p>
               </a>

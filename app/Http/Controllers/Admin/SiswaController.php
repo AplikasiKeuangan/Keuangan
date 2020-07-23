@@ -5,6 +5,10 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Siswa;
+use App\Kelas;
+use App\Jurusan;
+use DB;
+use Carbon\carbon;
 use DataTables;
 use Validator;
 
@@ -12,7 +16,10 @@ class SiswaController extends Controller
 {
     public function index()
     {
-        return view('Admin.Siswa.index');
+        $nis = $this->nis();
+        $jurusan=Jurusan::all();
+        $kelas=Kelas::all();
+        return view('Admin.Siswa.index',compact('nis','jurusan','kelas'));
     }
     public function data(Request $request)
     {
@@ -27,6 +34,24 @@ class SiswaController extends Controller
             return abort(403);
         }
     }
+
+    protected function NIS()
+    {
+        $kd="";
+        $query = DB::table('siswas')
+        ->select(DB::raw('MAX(RIGHT(kode,4)) as kd_max'))
+            ->whereDate('created_at',Carbon::today());
+        if ($query->count()>0) {
+            foreach ($query->get() as $key ) {
+            $tmp = ((int)$key->kd_max)+1;
+            $kd = sprintf("%04s", $tmp);
+            }
+        }else {
+        $kd = "0001";
+   }
+
+    return  "".date('dmy').$kd;
+  }
     public function detail($nis, $nama_lengkap)
     {
         $data_siswa = Siswa::where([['nis',$nis],['nama_lengkap',$nama_lengkap]])->first();
@@ -55,6 +80,8 @@ class SiswaController extends Controller
                 'bahasa_sehari_hari' => 'required|max:255',
                 'alamat' => 'required|max:255',
                 'asal_sekolah' => 'required|max:255',
+                'kelas'=> 'required|max:255',
+                'jurusan'=> 'required|max:255',
             ]);
 
             if($validatedData == true){
@@ -78,6 +105,8 @@ class SiswaController extends Controller
                 $siswa->email = $request->email;
                 $siswa->alamat = $request->alamat;
                 $siswa->asal_sekolah = $request->asal_sekolah;
+                $siswa->kelas = $request->kelas;
+                $siswa->jurusan = $request->jurusan;
                 $siswa->save();
             }else{
                 return redirect()->route('admin-siswa-index')->with('danger', 'Gagal ditambahkan!');
@@ -89,8 +118,10 @@ class SiswaController extends Controller
     }
     public function edit($nis, $nama_lengkap){
         $data_siswa = Siswa::where([['nis',$nis],['nama_lengkap',$nama_lengkap]])->first();
+        $jurusan=Jurusan::all();
+        $kelas=Kelas::all();
         if($data_siswa){
-            return view('admin.siswa.edit', compact('data_siswa'));
+            return view('admin.siswa.edit', compact('data_siswa','jurusan','kelas'));
         }
         else{
             return abort(404);
@@ -113,6 +144,7 @@ class SiswaController extends Controller
                 'bahasa_sehari_hari' => 'required|max:255',
                 'alamat' => 'required|max:255',
                 'asal_sekolah' => 'required|max:255',
+                'jurusan' => 'required|max:255',
             ]);
 
             if($validatedData == false){
@@ -137,6 +169,7 @@ class SiswaController extends Controller
                 $siswa->email = $request->email;
                 $siswa->alamat = $request->alamat;
                 $siswa->asal_sekolah = $request->asal_sekolah;
+                $siswa->jurusan = $request->jurusan;
                 $siswa->update();
                 return redirect()->route('admin-siswa-index')->with('success', 'Berhasil diupdate!');
             }
@@ -156,4 +189,5 @@ class SiswaController extends Controller
             return abort(404);
         }
     }
+
 }
