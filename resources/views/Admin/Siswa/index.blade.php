@@ -233,7 +233,6 @@
                                           <div class="col-12 col-md-9">
                                              <select class="form-control hf-kelas" name="kelas" data-placeholder="Pilih Jurusan Dan Kelas" style="width: 100%;">
                                                 @foreach ($kelas as $kelas)
-                                                   <option value="">Pilih Kelas...</option>
                                                    <option value="{{$kelas->nama_kelas}}">{{$kelas->nama_kelas}}</option>
                                                 @endforeach
                                              </select>
@@ -246,21 +245,11 @@
                                        <div class="col-12 col-md-9">
                                           <select id="hf-jurusan" name="jurusan"  required="" class="form-control">
                                              @foreach ($jurusan as $jurusan)
-                                                <option value="">Pilih Jurusan...</option>
-                                                <option value="{{$jurusan->nama_jurusan}}" >{{$jurusan->nama_jurusan}}</option>
+                                             <option value="{{$jurusan->nama_jurusan}}" >{{$jurusan->nama_jurusan}}</option>
                                              @endforeach
                                           </select>
                                        </div>
                                  </div>
-                                 
-                                    <div class="row form-group">
-                                       <div class="col col-md-3">
-                                          <label for="hf-jurusan" class=" form-control-label">Jurusan</label>
-                                       </div>
-                                       <div class="col-12 col-md-9">
-                                          <input type="text" id="hf-jurusan" name="jurusan" placeholder="Jurusan" required="" class="form-control">
-                                       </div>
-                                       </div>
                                  </form>
                               </div>
                         </div>

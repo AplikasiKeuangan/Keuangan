@@ -20,13 +20,21 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/test', 'HomeController@test')->name('test');
 
-// jurusan
-Route::get('/jurusan', 'JurusanController@index');
-Route::post('/jurusan/tambah','JurusanController@store')->name('tambah');
-Route::get('/jurusan/daftar_jurusan','JurusanController@daftar_jurusan')->name('daftar_jurusan');
-Route::get('/jurusan/daftar_jurusan/hapus/{id}','JurusanController@destroy')->name('hapus_jurusan');
-Route::get('/jurusan/daftar_jurusan/edit/{id}','JurusanController@edit')->name('edit');
-Route::put('/jurusan/daftar_jurusan/update/{id}','JurusanController@update')->name('update');
+// Jurusan
+Route::get('/admin/jurusan', 'JurusanController@index');
+Route::post('/admin/jurusan/tambah','JurusanController@store')->name('tambah');
+Route::get('/admin/jurusan/daftar_jurusan','JurusanController@daftar_jurusan')->name('daftar_jurusan');
+Route::get('/admin/jurusan/daftar_jurusan/hapus/{id}','JurusanController@destroy')->name('hapus_jurusan');
+Route::get('/admin/jurusan/daftar_jurusan/edit/{id}','JurusanController@edit')->name('edit');
+Route::put('/admin/jurusan/daftar_jurusan/update/{id}','JurusanController@update')->name('update');
+
+// Kelas
+Route::get('/admin/kelas', 'KelasController@index');
+Route::post('/admin/kelas/tambah','KelasController@store')->name('tambah_kelas');
+Route::get('/admin/kelas/daftar_kelas','KelasController@daftar_kelas')->name('daftar_kelas');
+Route::get('/admin/kelas/daftar_kelas/hapus/{id}','KelasController@destroy')->name('hapus_kelas');
+Route::get('/admin/kelas/daftar_kelas/edit/{id}','KelasController@edit')->name('edit');
+Route::put('/admin/kelas/daftar_kelas/update/{id}','KelasController@update')->name('update');
 
 Route::prefix('admin')->name('admin-')->middleware(['checkLoginStatus'])->group(function () {
     //siswa

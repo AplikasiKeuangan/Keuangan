@@ -23,32 +23,29 @@
                 <table id="example1" class="table table-bordered table-striped">
                   <thead>
                   <tr>
-                    <th>Nama Jurusan</th>
-                    <th>Deskripsi</th>
+                    <th>Nama Kelas</th>
                     <th>Tanggal Buat</th>
                     <th>Status</th>
                     <th>Aksi</th>
                   </tr>
                   </thead>
                   <tbody>
-                    @foreach ($jurusan as $jurusan)
+                    @foreach ($kelas as $kelas)
                      
                         <tr>
-                            <td>{{$jurusan->nama_jurusan}}</td>
-                            <td>{{$jurusan->deskripsi}}</td>
-                            <td>{{$jurusan->created_at->diffForHumans()}}</td>
-                            <td>{{($jurusan->status==0)?' Disabled':'Enable'}}</td>
-                            <td><a href="/admin/jurusan/daftar_jurusan/edit/{{$jurusan->id}}" class="btn btn-primary"><i class="fa fa-edit"></i> Edit</a>
-                                {{-- <a href="javascript:" rel="{{$jurusan->id}}" rel1="delete-jurusan" class="btn btn-danger deleteRecord"><i class="fa fa-eraser"></i> Delete</a></td> --}}
-                                <a href="/admin/jurusan/daftar_jurusan/hapus/{{$jurusan->id}}"class="button delete-confirm btn btn-danger"><i class="fa fa-eraser"></i> Delete</a></td>
+                            <td>{{$kelas->nama_kelas}}</td>
+                            <td>{{$kelas->created_at->diffForHumans()}}</td>
+                            <td>{{($kelas->status==0)?' Disabled':'Enable'}}</td>
+                            <td><a href="/admin/kelas/daftar_kelas/edit/{{$kelas->id}}" class="btn btn-primary"><i class="fa fa-edit"></i> Edit</a>
+                                {{-- <a href="javascript:" rel="{{$kelas->id}}" rel1="delete-kelas" class="btn btn-danger deleteRecord"><i class="fa fa-eraser"></i> Delete</a></td> --}}
+                                <a href="/admin/kelas/daftar_kelas/hapus/{{$kelas->id}}"class="button delete-confirm btn btn-danger"><i class="fa fa-eraser"></i> Delete</a></td>
                         </tr>
 
                     @endforeach
                   </tbody>
                   <tfoot>
                   <tr>
-                    <th>Nama Jurusan</th>
-                    <th>Deskripsi</th>
+                    <th>Nama Kelas</th>
                     <th>Tanggal Buat</th>
                     <th>Status</th>
                     <th>Aksi</th>

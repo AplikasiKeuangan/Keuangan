@@ -62,19 +62,19 @@
             <li class="nav-item">
               <a href="pages/layout/top-nav-sidebar.html" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
-                <p>Top Navigation + Sidebar</p>
+                <p>Penerimaan</p>
               </a>
             </li>
             <li class="nav-item">
               <a href="pages/layout/boxed.html" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
-                <p>Boxed</p>
+                <p>Pengeluaran</p>
               </a>
             </li>
             <li class="nav-item">
               <a href="pages/layout/fixed-sidebar.html" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
-                <p>Fixed Sidebar</p>
+                <p>Hutang</p>
               </a>
             </li>
             <li class="nav-item">
@@ -86,13 +86,7 @@
             <li class="nav-item">
               <a href="pages/layout/fixed-footer.html" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
-                <p>Fixed Footer</p>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="pages/layout/collapsed-sidebar.html" class="nav-link">
-                <i class="far fa-circle nav-icon"></i>
-                <p>Collapsed Sidebar</p>
+                <p>Piutang</p>
               </a>
             </li>
           </ul>
@@ -140,15 +134,39 @@
           </a>
           <ul class="nav nav-treeview">
             <li class="nav-item">
-            <a href="/jurusan" class="nav-link">
+            <a href="/admin/jurusan" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
                 <p>Tambah Jurusan</p>
               </a>
             </li>
             <li class="nav-item">
-              <a href="/jurusan/daftar_jurusan" class="nav-link">
+              <a href="/admin/jurusan/daftar_jurusan" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
                 <p>Daftar Jurusan</p>
+              </a>
+            </li>
+          </ul>
+        </li>
+        <li class="nav-item has-treeview">
+          <a href="#" class="nav-link">
+            <i class="nav-icon fas fa-school"></i>
+            <p>
+              Kelas
+              <i class="fas fa-angle-left right"></i>
+              <span class="badge badge-info right">6</span>
+            </p>
+          </a>
+          <ul class="nav nav-treeview">
+            <li class="nav-item">
+            <a href="/admin/kelas" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Tambah Kelas</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="/admin/kelas/daftar_kelas" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Daftar Kelas</p>
               </a>
             </li>
           </ul>
