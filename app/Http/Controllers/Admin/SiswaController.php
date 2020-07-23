@@ -16,7 +16,7 @@ class SiswaController extends Controller
 {
     public function index()
     {
-        $nis = $this->NIS();
+        $nis = $this->nis();
         $jurusan=Jurusan::all();
         $kelas=Kelas::all();
         return view('Admin.Siswa.index',compact('nis','jurusan','kelas'));

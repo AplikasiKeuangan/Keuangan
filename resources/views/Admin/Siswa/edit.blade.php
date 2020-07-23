@@ -219,12 +219,12 @@
                                        </div>
                                     </div>
                                     <div class="row form-group">
-                                          <div class="col col-md-3">
-                                             <label for="hf-asal-sekolah" class=" form-control-label">Asal Sekolah</label>
-                                          </div>
-                                          <div class="col-12 col-md-9">
-                                             <input type="text" id="hf-asal-sekolah" name="asal_sekolah" placeholder="Asal Sekolah" required="" class="form-control" value="{{ $data_siswa->asal_sekolah }}">
-                                          </div>
+                                       <div class="col col-md-3">
+                                          <label for="hf-asal-sekolah" class=" form-control-label">Asal Sekolah</label>
+                                       </div>
+                                       <div class="col-12 col-md-9">
+                                          <input type="text" id="hf-asal-sekolah" name="asal_sekolah" placeholder="Asal Sekolah" required="" class="form-control" value="{{ $data_siswa->asal_sekolah }}">
+                                       </div>
                                     </div>
                                     <div class="row form-group">
                                        <div class="col col-md-3">

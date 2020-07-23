@@ -50,12 +50,11 @@
             <p>
               Keuangan Sekolah
               <i class="fas fa-angle-left right"></i>
-              <span class="badge badge-info right">6</span>
             </p>
           </a>
           <ul class="nav nav-treeview">
             <li class="nav-item">
-              <a href="pages/layout/top-nav.html" class="nav-link">
+              <a href="#" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
                 <p>Kas</p>
               </a>
@@ -88,6 +87,29 @@
               <a href="pages/layout/fixed-footer.html" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
                 <p>Piutang</p>
+              </a>
+            </li>
+          </ul>
+        </li>
+        <li class="nav-item has-treeview {{ Route::currentRouteName() == 'admin-kas-tunai-index' ? 'menu-open':'' }}">
+          <a href="#" class="nav-link {{ Route::currentRouteName() == 'admin-kas-tunai-index' ? 'active':'' }}">
+            <i class="nav-icon fas fa-money-bill-alt"></i>
+            <p>
+              Kas
+              <i class="fas fa-angle-left right"></i>
+            </p>
+          </a>
+          <ul class="nav nav-treeview">
+            <li class="nav-item">
+              <a href="#" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Kas Bank</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="{{ route('admin-kas-tunai-index') }}" class="nav-link {{ Route::currentRouteName() == 'admin-kas-tunai-index' ? 'active':'' }}">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Kas Tunai</p>
               </a>
             </li>
           </ul>
