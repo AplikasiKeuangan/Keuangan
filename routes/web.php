@@ -64,4 +64,25 @@ Route::prefix('admin')->name('admin-')->middleware(['checkLoginStatus'])->group(
             Route::get('/{id_kas_tunai}/hapus', 'Admin\KasTunaiController@destroy')->name('hapus');
         });
     });
+
+    Route::prefix('Data')->name('Data-')->group(function () {
+        Route::prefix('kategori')->name('kategori-')->group(function () {
+            Route::get('/', 'Admin\KategoriController@index')->name('index');
+            Route::get('/get-data', 'Admin\KategoriController@data')->name('data');
+            Route::post('/store', 'Admin\KategoriController@store')->name('store');
+            Route::get('/{id}/edit', 'Admin\KategoriController@edit')->name('edit');
+            Route::post('/{id}/update', 'Admin\KategoriController@update')->name('update');
+            Route::get('/{id_kas_tunai}/hapus', 'Admin\KategoriController@destroy')->name('hapus');
+        });
+    });
+    Route::prefix('Data')->name('Data-')->group(function () {
+        Route::prefix('keuangan')->name('keuangan-')->group(function () {
+            Route::get('/', 'Admin\KeuanganController@index')->name('index');
+            Route::get('/get-data', 'Admin\KeuanganController@data')->name('data');
+            Route::post('/store', 'Admin\KeuanganController@store')->name('store');
+            Route::get('/{id}/edit', 'Admin\KeuanganController@edit')->name('edit');
+            Route::post('/{id}/update', 'Admin\KeuanganController@update')->name('update');
+            Route::get('/{id_kas_tunai}/hapus', 'Admin\KeuanganController@destroy')->name('hapus');
+        });
+    });
 });

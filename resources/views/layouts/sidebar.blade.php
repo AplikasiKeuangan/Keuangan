@@ -52,35 +52,17 @@
               <i class="fas fa-angle-left right"></i>
             </p>
           </a>
-          <ul class="nav nav-treeview">
+          <ul class="nav nav-treeview ">
             <li class="nav-item">
-              <a href="#" class="nav-link">
+              <a href="{{ route('admin-Data-kategori-index') }}" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
-                <p>Kas</p>
+                <p>Kategori</p>
               </a>
             </li>
             <li class="nav-item">
-              <a href="pages/layout/top-nav-sidebar.html" class="nav-link">
+            <a href="{{route('admin-Data-keuangan-index')}}" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
-                <p>Penerimaan</p>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="pages/layout/boxed.html" class="nav-link">
-                <i class="far fa-circle nav-icon"></i>
-                <p>Pengeluaran</p>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="pages/layout/fixed-sidebar.html" class="nav-link">
-                <i class="far fa-circle nav-icon"></i>
-                <p>Hutang</p>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="pages/layout/fixed-topnav.html" class="nav-link">
-                <i class="far fa-circle nav-icon"></i>
-                <p>Fixed Navbar</p>
+                <p>Data Keuangan</p>
               </a>
             </li>
             <li class="nav-item">
