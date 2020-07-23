@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Kelas;
-
+use DB;
 class KelasController extends Controller
 {
     /**
@@ -73,7 +73,8 @@ class KelasController extends Controller
      */
     public function edit($id)
     {
-        //
+        $kelas = Kelas::findOrfail($id);
+        return view('Kelas.edit_kelas',compact('kelas'));
     }
 
     /**
@@ -85,7 +86,19 @@ class KelasController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $update_kelas=Kelas::findOrFail($id);
+        $this->validate($request,[
+            'nama_kelas'=>'required|max:255|unique:kelas,nama_kelas,'.$update_kelas->id,
+            
+        ]);
+        //dd($request->all());die();
+        $input_data=$request->all();
+        if(empty($input_data['status'])){
+            $input_data['status']=0;
+        }
+        $update_kelas->update($input_data);
+        alert()->success('Jurusan Berhasil Diedit!');
+    	return redirect('/admin/kelas/daftar_kelas');
     }
 
     /**
