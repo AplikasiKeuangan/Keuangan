@@ -57,25 +57,25 @@
             <li class="nav-item">
               <a href="pages/layout/top-nav.html" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
-                <p>Top Navigation</p>
+                <p>Kas</p>
               </a>
             </li>
             <li class="nav-item">
               <a href="pages/layout/top-nav-sidebar.html" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
-                <p>Top Navigation + Sidebar</p>
+                <p>Penerimaan</p>
               </a>
             </li>
             <li class="nav-item">
               <a href="pages/layout/boxed.html" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
-                <p>Boxed</p>
+                <p>Pengeluaran</p>
               </a>
             </li>
             <li class="nav-item">
               <a href="pages/layout/fixed-sidebar.html" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
-                <p>Fixed Sidebar</p>
+                <p>Hutang</p>
               </a>
             </li>
             <li class="nav-item">
@@ -87,13 +87,7 @@
             <li class="nav-item">
               <a href="pages/layout/fixed-footer.html" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
-                <p>Fixed Footer</p>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="pages/layout/collapsed-sidebar.html" class="nav-link">
-                <i class="far fa-circle nav-icon"></i>
-                <p>Collapsed Sidebar</p>
+                <p>Piutang</p>
               </a>
             </li>
           </ul>
