@@ -36,6 +36,12 @@ Route::get('/admin/kelas/daftar_kelas/hapus/{id}','KelasController@destroy')->na
 Route::get('/admin/kelas/daftar_kelas/edit/{id}','KelasController@edit')->name('edit');
 Route::put('/admin/kelas/daftar_kelas/update/{id}','KelasController@update')->name('update');
 
+
+Route::get('/admin/penerimaan/SPP','SPP@index')->name('index_SPP');
+
+
+
+
 Route::prefix('admin')->name('admin-')->middleware(['checkLoginStatus'])->group(function () {
     //siswa
     Route::prefix('siswa')->name('siswa-')->group(function () {
