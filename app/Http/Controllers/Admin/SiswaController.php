@@ -145,6 +145,7 @@ class SiswaController extends Controller
                 'alamat' => 'required|max:255',
                 'asal_sekolah' => 'required|max:255',
                 'jurusan' => 'required|max:255',
+                'kelas' => 'required|max:255',
             ]);
 
             if($validatedData == false){
@@ -170,6 +171,7 @@ class SiswaController extends Controller
                 $siswa->alamat = $request->alamat;
                 $siswa->asal_sekolah = $request->asal_sekolah;
                 $siswa->jurusan = $request->jurusan;
+                $siswa->kelas = $request->kelas;
                 $siswa->update();
                 return redirect()->route('admin-siswa-index')->with('success', 'Berhasil diupdate!');
             }
