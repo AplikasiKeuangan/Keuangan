@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Keuangan;
+use App\Kategori;
+use Carbon\Carbon;
 
 class KeuanganController extends Controller
 {
@@ -16,7 +18,8 @@ class KeuanganController extends Controller
     public function index()
     {
         $keuangan = Keuangan::all();
-        return view('admin.Penerimaan.Keuangan.index',compact('keuangan'));
+        $kategori = Kategori::all();
+        return view('admin.Penerimaan.Keuangan.index',compact('keuangan','kategori'));
     }
 
     /**
@@ -37,7 +40,22 @@ class KeuanganController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        try {
+            $keuangan = new Keuangan;
+            $keuangan->tanggal = $request->tanggal;
+            $keuangan->kategori = $request->kategori;
+            $keuangan->keterangan = $request->keterangan;
+
+            if ($request->jenis == 'penerimaan') {
+                $keuangan->pengeluaran = 0;
+                $keuangan->penerimaan = $request->nominal;
+            }
+           $keuangan->save();
+            return redirect('/admin/Data/keuangan/');
+        } catch (\Throwable $th) {
+            dd($keuangan);
+        }
+        
     }
 
     /**

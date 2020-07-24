@@ -41,7 +41,7 @@
                      <div class="col-md-12">
                         <div class="card">
                               <div class="card-body card-block">
-                                <form method="post" id="form1" class="form-horizontal" action="{{ route('admin-kas-tunai-store') }}" >
+                                <form method="post" id="form1" class="form-horizontal" action="{{ route('admin-Data-keuangan-store') }}" >
                                     @csrf
                                     <div class="row form-group">
                                         <div class="col col-md-3">
@@ -56,28 +56,42 @@
                                              <label for="hf-uraian" class=" form-control-label">Keterangan</label>
                                           </div>
                                           <div class="col-12 col-md-9">
-                                             <textarea id="hf-uraian" name="keterangan" placeholder="Uraian" required="" class="form-control"></textarea>
+                                             <textarea id="hf-uraian" name="keterangan" placeholder="Keterangan" required="" class="form-control"></textarea>
                                           </div>
                                     </div>
+                                    <div class="row form-group">
+                                       <div class="col col-md-3">
+                                          <label for="hf-kategori" class=" form-control-label">Kategori</label>
+                                       </div>
+                                       <div class="col-12 col-md-9">
+                                          <select id="hf-kategori" name="kategori" placeholder="kategori" required="" class="ops form-control">
+                                             @foreach ($kategori as $kategori)
+                                             <option class="ops @error('ops') is-invalid @enderror" value="{{$kategori->nama_kategori}}">{{$kategori->nama_kategori}}</option>  
+                                             @endforeach
+                                          </select>
+                                       </div>
+                                 </div>
                                     <div class="row form-group">
                                           <div class="col col-md-3">
                                              <label for="hf-jenis" class=" form-control-label">Jenis</label>
                                           </div>
                                           <div class="col-12 col-md-9">
-                                             <select id="hf-jenis" name="jenis" placeholder="jenis" required="" class="form-control">
-                                                <option value="Debit">Penerimaan (Debit)</option>
-                                                <option value="Kredit">Pengeluaran (Kredit)</option>
+                                             <select id="hf-jenis" name="jenis" placeholder="jenis" required="" class="ops form-control">
+                                                <option class="ops @error('ops') is-invalid @enderror" value="0">Pilih...</option>
+                                                <option class="ops @error('ops') is-invalid @enderror" value="penerimaan">Penerimaan (Debit)</option>
+                                                <option class="ops @error('ops') is-invalid @enderror" value="pengeluaran">Pengeluaran (Kredit)</option>
                                              </select>
                                           </div>
                                     </div>
-                                    <div class="row form-group">
-                                          <div class="col col-md-3">
-                                             <label for="hf-nominal" class=" form-control-label">Nominal</label>
-                                          </div>
-                                          <div class="col-12 col-md-9">
-                                             <input type="number" id="hf-nominal" name="nominal" placeholder="Nominal" required="" class="form-control">
-                                          </div>
-                                    </div>
+                                    
+                                    <div class="row form-group" style="display: none;" id="Nominal">
+                                       <div class="col col-md-3">
+                                          <label for="hf-nominal" class=" form-control-label">Nominal</label>
+                                       </div>
+                                       <div class="col-12 col-md-9">
+                                          <input type="number" id="hf-nominal" name="nominal" placeholder="Nominal" class="form-control">
+                                       </div>
+                                 </div>
                                  </form>
                               </div>
                         </div>
@@ -98,40 +112,80 @@
       <div class="card">
               
         <!-- /.card-header -->
-        {{-- <div class="card-body">
+        <div class="card-body">
           <table id="example1" class="table table-bordered table-striped">
             <thead>
             <tr>
               <th>No</th>
               <th>Tanggal Buat</th>
-              <th>Nama Jurusan</th>
+              <th>Tanggal</th>
+              <th>Deskripsi</th>
+              <th style="text-align:right ">Penerimaan</th>
+              <th style="text-align:right ">Pengeluaran</th>
               <th>Tindakan</th>
             </tr>
             </thead>
             <tbody>
-              @foreach ($kategori as $kategori)
+              @foreach ($keuangan as $keuangan)
                
                 <tr>
-                    <td>{{$kategori->id}}</td>
-                    <td>{{$kategori->created_at->diffForHumans()}}</td>
-                    <td>{{$kategori->nama_kategori}}</td>
-                    <td align="center"><a href="/admin/Data/kategori/{{$kategori->id}}/edit" class="btn btn-primary"><i class="fa fa-edit"></i></a>
+                    <td>{{$keuangan->id}}</td>
+                    <td>{{$keuangan->created_at->diffForHumans()}}</td>
+                    <td>{{$keuangan->tanggal}}</td>
+                    <td>{{$keuangan->keterangan}}</td>
+                     @if ($keuangan->penerimaan == null)
+                        <td style="text-align:right ">-</td>
+                     @else
+                     <td style="text-align:right">{{ number_format($keuangan->penerimaan,2) }}</td>
+                    @endif
+                    @if ($keuangan->pengeluaran == null)
+                        <td style="text-align:right ">-</td>
+                     @else
+                     <td style="text-align:right">{{ number_format($keuangan->pengeluaran,2) }}</td>
+                    @endif
+                   
+                    
+                    <td align="center"><a href="/admin/Data/keuangan/{{$keuangan->id}}/edit" class="btn btn-primary"><i class="fa fa-edit"></i></a>
                          
-                          <a href="/admin/Data/kategori/{{$kategori->id}}/hapus"class="button delete-confirm btn btn-danger"><i class="fa fa-eraser"></i></a></td>
+                          <a href="/admin/Data/keuangan/{{$keuangan->id}}/hapus"class="button delete-confirm btn btn-danger"><i class="fa fa-eraser"></i></a></td>
                 </tr>
 
               @endforeach
             </tbody>
             <tfoot>
             <tr>
-                <th>No</th>
-                <th>Tanggal Buat</th>
-                <th>Nama Jurusan</th>
-                <th>Tindakan</th>
+               <th>No</th>
+              <th>Tanggal Buat</th>
+              <th>Tanggal</th>
+              <th>Deskripsi</th>
+              <th style="text-align:right ">Penerimaan</th>
+              <th style="text-align:right ">Pengeluaran</th>
+              <th>Tindakan</th>
             </tr>
             </tfoot>
           </table>
-        </div> --}}
+        </div>
         <!-- /.card-body -->
       </div>
+      <script>
+         $(document).ready(function(){
+          $('.ops').on('change', function() {
+          if ( this.value == 'penerimaan')
+          {
+             
+              $("#Nominal").show();
+          }
+          else if ( this.value == 'pengeluaran')
+          {
+            
+              $("#Nominal").show();
+          }
+          else
+          {
+              
+              $("#Nominal").hide();
+          }
+          });
+      });
+     </script>
 @endsection

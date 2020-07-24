@@ -15,10 +15,10 @@ class CreateKeuangansTable extends Migration
     {
         Schema::create('keuangans', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->date('tanggal')->nullable();
+            $table->date('tanggal');
             $table->string('keterangan')->nullable();
-            $table->string('penerimaan')->nullable();
-            $table->string('pengeluaran')->nullable();
+            $table->bigInteger('penerimaan')->nullable();
+            $table->bigInteger('pengeluaran')->nullable();
             $table->string('kategori_id')->nullable();
             $table->timestamps();
         });
