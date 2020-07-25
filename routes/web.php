@@ -17,7 +17,7 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/admin', 'HomeController@index')->name('home');
 Route::get('/test', 'HomeController@test')->name('test');
 
 // Jurusan
@@ -56,6 +56,13 @@ Route::prefix('admin')->name('admin-')->middleware(['checkLoginStatus'])->group(
             Route::get('/get-data', 'Admin\KasTunaiController@data')->name('data');
             Route::post('/store', 'Admin\KasTunaiController@store')->name('store');
             Route::get('/{id_kas_tunai}/hapus', 'Admin\KasTunaiController@destroy')->name('hapus');
+        });
+        //bank
+        Route::prefix('bank')->name('bank-')->group(function () {
+            Route::get('/', 'Admin\KasBankController@index')->name('index');
+            Route::get('/get-data', 'Admin\KasBankController@data')->name('data');
+            Route::post('/store', 'Admin\KasBankController@store')->name('store');
+            Route::get('/{id_kas_bank}/hapus', 'Admin\KasBankController@destroy')->name('hapus');
         });
     });
 });

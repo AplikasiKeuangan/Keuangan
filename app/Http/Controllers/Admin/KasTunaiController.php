@@ -11,19 +11,36 @@ use Carbon\Carbon;
 class KasTunaiController extends Controller
 {
     public function index(){
-        return view('admin.kas.tunai.index');
+        $kasTunai = KasTunai::get();
+        $totaldebit = $kasTunai->sum('debit');
+        $totalkredit = $kasTunai->sum('kredit');
+        
+        $totalsaldo = $kasTunai->sum('debit') - $kasTunai->sum('kredit');
+        return view('admin.kas.tunai.index', compact('totaldebit','totalkredit','totalsaldo'));
     }
     public function data(Request $request)
     {
         if ($request->ajax()) {
             $kastunai  = KasTunai::get();
             return DataTables::of($kastunai)
+                ->addColumn('debit', function($kastunai){
+                    if($kastunai->debit == 0){
+                        return "-";
+                    }
+                    return $kastunai->debit;
+                })
+                ->addColumn('kredit', function($kastunai){
+                    if($kastunai->kredit == 0){
+                        return "-";
+                    }
+                    return $kastunai->kredit;
+                })
                 ->addColumn('saldo', function($kastunai){
                     return KasTunai::where('id_kas_tunai', "<=", $kastunai->id_kas_tunai)->sum('debit') - KasTunai::where('id_kas_tunai', "<=", $kastunai->id_kas_tunai)->sum('kredit');
                 })
                 ->addColumn('action', function($kastunai){
                     if($kastunai->id_kas_tunai == KasTunai::orderBy('id_kas_tunai','DESC')->first()->id_kas_tunai){
-                        return '<a data-admin="/admin/kas/tunai/'.$kastunai->id_kas_tunai.'/hapus" class="btn btn-danger admin-remove" href="/admin/kas/tunai/'.$kastunai->id_kas_tunai.'/hapus" onclick="adminDelete()"><i class="fa fa-eraser"></i> Delete</a>';
+                        return '<a data-admin="/admin/kas/tunai/'.$kastunai->id_kas_tunai.'/hapus" class="btn btn-danger admin-remove" onclick="adminDelete()" href="#"><i class="fa fa-eraser"></i> Delete</a>';
                     }
                     return '';
                 })

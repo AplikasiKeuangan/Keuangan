@@ -1,6 +1,6 @@
 @extends('layouts.apps')
 
-@section('judul',' - Kas Tunai')
+@section('judul',' - Kas Bank')
 @section('head')
    <!-- Bootstrap CSS -->
    <link rel="stylesheet" href="//cdn.datatables.net/1.10.7/css/jquery.dataTables.min.css">
@@ -10,11 +10,11 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Kas Tunai</h1>
+            <h1>Kas Bank</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item active">Kas Tunai</li>
+              <li class="breadcrumb-item active">Kas Bank</li>
             </ol>
           </div>
           <div class="col-sm-12">
@@ -41,7 +41,7 @@
                      <div class="col-md-12">
                         <div class="card">
                               <div class="card-body card-block">
-                                 <form method="post" id="form1" class="form-horizontal" action="{{ route('admin-kas-tunai-store') }}" >
+                                 <form method="post" id="form1" class="form-horizontal" action="{{ route('admin-kas-bank-store') }}" >
                                     @csrf
                                     <div class="row form-group">
                                           <div class="col col-md-3">
@@ -49,6 +49,14 @@
                                           </div>
                                           <div class="col-12 col-md-9">
                                              <input type="number" id="hf-no-bukti" name="no_bukti" placeholder="No. Bukti" required="" class="form-control">
+                                          </div>
+                                    </div>
+                                    <div class="row form-group">
+                                          <div class="col col-md-3">
+                                             <label for="hf-no-rekening" class=" form-control-label">No. Rekening</label>
+                                          </div>
+                                          <div class="col-12 col-md-9">
+                                             <input type="number" id="hf-no-rekening" name="no_rekening" placeholder="No. Rekening" required="" class="form-control">
                                           </div>
                                     </div>
                                     <div class="row form-group">
@@ -100,11 +108,12 @@
             <div class="col-12">
                <div class="card">
                   <div class="card-body">
-                     <table id="datatables-kas-tunai" class="table table-bordered table-hover">
+                     <table id="datatables-kas-bank" class="table table-bordered table-hover">
                         <thead>
                            <tr>
                               <th>Tanggal</th>
                               <th>No. Bukti</th>
+                              <th>No. Rekening</th>
                               <th>Uraian</th>
                               <th>Penerimaan (Debit)</th>
                               <th>Pengeluaran (Kredit)</th>
@@ -117,6 +126,7 @@
                            <tr>
                               <th>Tanggal</th>
                               <th>No. Bukti</th>
+                              <th>No. Rekening</th>
                               <th>Uraian</th>
                               <th>Penerimaan (Debit)</th>
                               <th>Pengeluaran (Kredit)</th>
@@ -126,7 +136,7 @@
                         </tfoot>
                         <tbaru>
                            <tr>
-                              <th colspan="3">Saldo Akhir:</th>
+                              <th colspan="4">Saldo Akhir:</th>
                               <th style="text-align: right">{{ number_format($totaldebit,2) }}</th>
                               <th style="text-align: right">{{ number_format($totalkredit,2) }}</th>
                               <th style="text-align: right">{{ number_format($totalsaldo,2) }}</th>
@@ -154,15 +164,16 @@
 <script>
    $(function () {
       //$('#example1').DataTable()
-      var table = $('#datatables-kas-tunai').DataTable({
+      var table = $('#datatables-kas-bank').DataTable({
          responsive: true,
          autoWidth: false,
          processing : true,
          serverSide: true,
-         ajax: '{!! route('admin-kas-tunai-data') !!}',
+         ajax: '{!! route('admin-kas-bank-data') !!}',
          columns: [
                   { data: 'tanggal', name: 'tanggal', orderable: false },
                   { data: 'no_bukti', name: 'no_bukti', orderable: false },
+                  { data: 'no_rekening', name: 'no_rekening', orderable: false },
                   { data: 'uraian', name: 'uraian', orderable: false },
                   { data: 'debit', name: 'debit', className: 'dt-right', render: $.fn.dataTable.render.number( ',','.',2 ), orderable: false },
                   { data: 'kredit', name: 'kredit', className: 'dt-right', render: $.fn.dataTable.render.number( ',','.',2 ), orderable: false },
