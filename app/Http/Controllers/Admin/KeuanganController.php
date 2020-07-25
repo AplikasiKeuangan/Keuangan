@@ -18,7 +18,7 @@ class KeuanganController extends Controller
     public function index()
     {
         $keuangan = Keuangan::all();
-        $kategori = Kategori::all();
+        $kategori=Kategori::pluck('id')->all();
         return view('admin.Penerimaan.Keuangan.index',compact('keuangan','kategori'));
     }
 
@@ -43,17 +43,23 @@ class KeuanganController extends Controller
         try {
             $keuangan = new Keuangan;
             $keuangan->tanggal = $request->tanggal;
-            $keuangan->kategori = $request->kategori;
+            $keuangan->kategori_id = $request->kategori;
             $keuangan->keterangan = $request->keterangan;
 
             if ($request->jenis == 'penerimaan') {
                 $keuangan->pengeluaran = 0;
                 $keuangan->penerimaan = $request->nominal;
+            }else if($request->jenis == 'pengeluaran'){
+                $keuangan->penerimaan = 0;
+                $keuangan->pengeluaran = $request->nominal;
+            }else{
+                return redirect(route('admin-Data-keuangan-index'))->with('error','Data Gagal Ditambah');
             }
            $keuangan->save();
-            return redirect('/admin/Data/keuangan/');
+            return redirect('/admin/Data/keuangan/')->with('success','Data Berhasil Ditambahkan');
         } catch (\Throwable $th) {
-            dd($keuangan);
+            return back()->with('warning','Terjadi Kesalahan');
+
         }
         
     }

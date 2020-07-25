@@ -10,8 +10,5 @@ class Kategori extends Model
     protected $primaryKey='id';
     protected $fillable=['nama_kategori'];
 
-    public function keuangan()
-    {
-        return $this->belongsTo('App\Kategori');
-    }
+   
 }
