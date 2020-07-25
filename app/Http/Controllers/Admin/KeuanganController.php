@@ -83,7 +83,9 @@ class KeuanganController extends Controller
      */
     public function edit($id)
     {
-        //
+        $keuangan = Keuangan::findOrfail($id);
+        $kategori=Kategori::pluck('id')->all();
+        return view('admin.Penerimaan.Keuangan.edit_keuangan',compact('kategori','keuangan'));
     }
 
     /**
@@ -106,6 +108,14 @@ class KeuanganController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $keuangan = Keuangan::findOrfail($id);
+        $keuangan->delete();
+
+        if ($keuangan) {
+            alert()->success('Data Berhasil Dihapus!');
+        }else{
+            alert()->error('Data Gagal Dihapus!');
+        }
+        return back();
     }
 }

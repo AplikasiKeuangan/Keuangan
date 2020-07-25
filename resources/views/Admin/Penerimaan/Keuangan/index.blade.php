@@ -65,20 +65,19 @@
                                        </div>
                                        <div class="col-12 col-md-9">
                                           <select id="hf-kategori" name="kategori" placeholder="kategori" required="" class="ops form-control">
-                                            @foreach($kategori as $key=>$value)
-                                              
-                                                <?php
-                                                   if($key!=0){
-                                                      $sub_categories=DB::table('kategoris')->select('id','nama_kategori')->get();
-                                                      if(count($sub_categories)>0){
-                                                            foreach ($sub_categories as $sub_category){
-                                                              
-                                                               echo '<option value="'.$sub_category->id.'">&nbsp;&nbsp;'.$sub_category->nama_kategori.'</option>';
-                                                            }
+                                             @foreach($kategori as $key=>$value)
+                                             
+                                                   <?php
+                                                      if($key!=0){
+                                                         $sub_categories=DB::table('kategoris')->select('id','nama_kategori')->get();
+                                                         if(count($sub_categories)>0){
+                                                               foreach ($sub_categories as $sub_category){
+                                                                  echo '<option value="'.$sub_category->id.'">&nbsp;&nbsp;'.$sub_category->nama_kategori.'</option>';
+                                                               }
+                                                         }
                                                       }
-                                                   }
-                                                ?>
-                                          @endforeach
+                                                   ?>
+                                             @endforeach
                                           </select>
                                        </div>
                                  </div>
