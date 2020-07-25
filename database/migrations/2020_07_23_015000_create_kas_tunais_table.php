@@ -20,6 +20,7 @@ class CreateKasTunaisTable extends Migration
             $table->text('uraian');
             $table->bigInteger('debit')->nullable();
             $table->bigInteger('kredit')->nullable();
+            
         });
     }
 
