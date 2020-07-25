@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateKasTunaisTable extends Migration
+class CreateKasBanksTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,14 @@ class CreateKasTunaisTable extends Migration
      */
     public function up()
     {
-        Schema::create('kas_tunais', function (Blueprint $table) {
-            $table->bigIncrements('id_kas_tunai');
+        Schema::create('kas_banks', function (Blueprint $table) {
+            $table->bigIncrements('id_kas_bank');
             $table->date('tanggal');
             $table->string('no_bukti')->nullable();
+            $table->string('no_rekening')->nullable();
             $table->text('uraian');
             $table->bigInteger('debit')->nullable();
             $table->bigInteger('kredit')->nullable();
-            
         });
     }
 
@@ -31,6 +31,6 @@ class CreateKasTunaisTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('kas_tunais');
+        Schema::dropIfExists('kas_banks');
     }
 }

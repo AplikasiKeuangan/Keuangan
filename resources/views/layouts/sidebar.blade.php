@@ -25,21 +25,11 @@
       <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
         <!-- Add icons to the links using the .nav-icon class
                  with font-awesome or any other icon font library -->
-        <li class="nav-item has-treeview menu-open">
-          <a href="#" class="nav-link active">
+        <li class="nav-item has-treeview">
+          <a href="{{ route('home') }}" class="nav-link {{ Route::currentRouteName() == 'home' ? 'active':'' }}">
             <i class="nav-icon fas fa-tachometer-alt"></i>
             <p>
               Dashboard
-             
-            </p>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a href="pages/widgets.html" class="nav-link">
-            <i class="nav-icon fas fa-th"></i>
-            <p>
-              Widgets
-              <span class="right badge badge-danger">New</span>
             </p>
           </a>
         </li>
@@ -73,8 +63,8 @@
             </li>
           </ul>
         </li>
-        <li class="nav-item has-treeview {{ Route::currentRouteName() == 'admin-kas-tunai-index' ? 'menu-open':'' }}">
-          <a href="#" class="nav-link {{ Route::currentRouteName() == 'admin-kas-tunai-index' ? 'active':'' }}">
+        <li class="nav-item has-treeview {{ Route::currentRouteName() == 'admin-kas-tunai-index' || Route::currentRouteName() == 'admin-kas-bank-index' ? 'menu-open':'' }}">
+          <a href="#" class="nav-link {{ Route::currentRouteName() == 'admin-kas-tunai-index' || Route::currentRouteName() == 'admin-kas-bank-index' ? 'active':'' }}">
             <i class="nav-icon fas fa-money-bill-alt"></i>
             <p>
               Kas
@@ -83,7 +73,7 @@
           </a>
           <ul class="nav nav-treeview">
             <li class="nav-item">
-              <a href="#" class="nav-link">
+              <a href="{{ route('admin-kas-bank-index') }}" class="nav-link {{ Route::currentRouteName() == 'admin-kas-bank-index' ? 'active':'' }}">
                 <i class="far fa-circle nav-icon"></i>
                 <p>Kas Bank</p>
               </a>
