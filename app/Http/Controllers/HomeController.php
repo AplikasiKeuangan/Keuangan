@@ -32,6 +32,31 @@ class HomeController extends Controller
         $nama_bulans = [];
         $bulans = [];
         $tahuns = [];
+        date_default_timezone_set("Asia/Jakarta");
+
+        $greeting = time();
+        $hour = date("G",$greeting);
+
+        if ($hour>=0 && $hour<=11)
+        {
+        $ucapan = ("Selamat Pagi");
+        }
+        elseif ($hour >=12 && $hour<=14)
+        {
+         $ucapan = ("Selamat Siang ");
+        }
+        elseif ($hour >=15 && $hour<=17)
+        {
+         $ucapan = ("Selamat Sore ");
+        }
+        elseif ($hour >=17 && $hour<=18)
+        {
+         $ucapan = ("Selamat Petang ");
+        }
+        elseif ($hour >=19 && $hour<=23)
+        {
+         $ucapan = ("Selamat Malam ");
+        };
         for ($i=0; $i < $timeNow->format('d') ; $i++) {
             $haris[] = $timeNow->format('d') - $i;
         }
@@ -107,10 +132,15 @@ class HomeController extends Controller
         for ($i=0; $i < count($haris) ; $i++) { 
             $jumlah_kredit_bank_per_haris[] = KasBank::whereDay('tanggal',$haris[$i])->whereMonth('tanggal',$timeNow->format('m'))->whereYear('tanggal',$timeNow->format('Y'))->get()->sum('kredit');
         }
-        return view('home', compact('haris','nama_bulans','jumlah_debit_per_bulans','jumlah_kredit_per_bulans','jumlah_debit_per_haris','jumlah_kredit_per_haris','jumlah_debit_bank_per_bulans','jumlah_kredit_bank_per_bulans','jumlah_debit_bank_per_haris','jumlah_kredit_bank_per_haris'));
+        return view('home', compact('haris','nama_bulans','jumlah_debit_per_bulans','jumlah_kredit_per_bulans','jumlah_debit_per_haris','jumlah_kredit_per_haris','jumlah_debit_bank_per_bulans','jumlah_kredit_bank_per_bulans','jumlah_debit_bank_per_haris','jumlah_kredit_bank_per_haris','ucapan'));
     }
     public function test()
     {
         return view('layouts.apps');
+    }
+    public function greeting()
+    {
+        
+
     }
 }
