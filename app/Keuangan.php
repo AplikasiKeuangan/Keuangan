@@ -13,5 +13,6 @@ class Keuangan extends Model
     public function kategori()
     {
         return $this->belongsTo(Kategori::class,'kategori_id','id');
+        // return $this->hasOne('App\Kategori');
     }
 }

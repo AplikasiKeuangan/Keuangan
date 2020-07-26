@@ -28,7 +28,11 @@
               <!-- small box -->
               <div class="small-box bg-success">
                 <div class="inner">
-                  <h3>150</h3>
+                  @if ($totalpenerimaan == null)
+                      <h3>Rp.-</h3>
+                  @else
+                      <h3>Rp.{{ number_format($totalpenerimaan,2) }}</h3>
+                  @endif
   
                   <p>Penerimaan (Debit)</p>
                 </div>
@@ -43,7 +47,7 @@
               <!-- small box -->
               <div class="small-box bg-warning">
                 <div class="inner">
-                  <h3>44</h3>
+                  <h3>Rp.-</h3>
   
                   <p>Pengeluaran (Kredit)</p>
                 </div>

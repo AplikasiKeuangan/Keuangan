@@ -72,12 +72,12 @@
                                           <label for="hf-kategori" class=" form-control-label">Kategori</label>
                                        </div>
                                        <div class="col-12 col-md-9">
-                                          <select id="hf-kategori" name="kategori" placeholder="kategori" required="" class="ops form-control">
+                                          <select id="hf-kategori" name="kategori" placeholder="kategori"  class="ops form-control">
                                              @foreach($kategori as $key=>$value)
                                                    
                                                    <?php
                                                    if($key!=0){
-                                                      $sub_categories=DB::table('kategoris')->select('id','nama_kategori')->get();
+                                                      $sub_categories=DB::table('kategoris')->select('id','nama_kategori')->where('id',$key)->get();
                                                       if(count($sub_categories)>0){
                                                          foreach ($sub_categories as $sub_category){?>
                                                                <option value="{{$sub_category->id}}"{{$edit_category->id==$sub_category->id?' selected':''}}>&nbsp;&nbsp;{{$sub_category->nama_kategori}}</option>
@@ -94,24 +94,20 @@
                                              <label for="hf-jenis" class=" form-control-label">Jenis</label>
                                           </div>
                                           <div class="col-12 col-md-9">
-                                             <select id="hf-jenis" name="jenis" placeholder="jenis" required="" class="ops form-control">
-                                                <option class="ops @error('ops') is-invalid @enderror" value="0">Pilih...</option>
-                                                <option class="ops @error('ops') is-invalid @enderror" value="penerimaan">Penerimaan (Debit)</option>
+                                             <select id="hf-jenis" name="jenis" placeholder="jenis" class="ops form-control">
+                                                <option value="0">Pilih...</option>
+                                                <option value="penerimaan">Penerimaan (Debit)</option>
                                              </select>
                                           </div>
                                     </div>
                                     
-                                    <div class="row form-group" style="display: none;" id="Nominal">
+                                    <div class="row form-group" id="Nominal">
                                        <div class="col col-md-3">
                                           <label for="hf-nominal" class=" form-control-label">Nominal</label>
                                        </div>
                                        <div class="col-12 col-md-9">
-                                           @if ($keuangan->pengeluaran != null && $keuangan->penerimaan == null)
-                                                <input type="number" id="hf-nominal" name="nominal" placeholder="Nominal" value="{{$keuangan->pengeluaran}}" class="form-control">
-                                            @elseif($keuangan->penerimaan != null && $keuangan->pengeluaran == null)
+                                          
                                                 <input type="number" id="hf-nominal" name="nominal" placeholder="Nominal" value="{{$keuangan->penerimaan}}" class="form-control">
-                                           @endif
-                                         
                                        </div>
                                  </div>
                                     <div class="modal-footer">
@@ -130,27 +126,7 @@
             </div>
          </div>
       </div>
-      <script>
-        $(document).ready(function(){
-         $('.ops').on('change', function() {
-         if ( this.value == 'penerimaan')
-         {
-            
-             $("#Nominal").show();
-         }
-         else if ( this.value == 'pengeluaran')
-         {
-           
-             $("#Nominal").show();
-         }
-         else
-         {
-             
-             $("#Nominal").hide();
-         }
-         });
-     });
-    </script>
+      
    </section>
 @endsection
 

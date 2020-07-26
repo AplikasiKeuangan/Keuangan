@@ -24,7 +24,10 @@ class KeuanganController extends Controller
 
     public function index1()
     {
-        return view('admin.Penerimaan.index');
+        $penerimaan = Keuangan::all();
+        $totalpenerimaan = $penerimaan->sum('penerimaan');
+        return view('admin.Penerimaan.index',compact('totalpenerimaan'));
+
     }
 
     /**
@@ -50,13 +53,12 @@ class KeuanganController extends Controller
             $keuangan->tanggal = $request->tanggal;
             $keuangan->kategori_id = $request->kategori;
             $keuangan->keterangan = $request->keterangan;
+           
 
             if ($request->jenis == 'penerimaan') {
                 $keuangan->pengeluaran = 0;
                 $keuangan->penerimaan = $request->nominal;
-            }else if($request->jenis == 'pengeluaran'){
-                $keuangan->penerimaan = 0;
-                $keuangan->pengeluaran = $request->nominal;
+            
             }else{
                 return redirect(route('admin-Data-keuangan-index'))->with('error','Data Gagal Ditambah');
             }

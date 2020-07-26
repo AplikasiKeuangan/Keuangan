@@ -15,7 +15,9 @@ class KategoriController extends Controller
     public function index()
     {
         $kategori=Kategori::all();
-        return view('admin.kategori.index',compact('kategori'));
+        $plucked=Kategori::where('parent_id',0)->pluck('nama_kategori','id');
+        $cate_levels= $plucked->all();
+        return view('admin.kategori.index',compact('kategori','cate_levels'));
     }
 
     /**
@@ -24,15 +26,18 @@ class KategoriController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function data(Request $request)
-    {
-       
-        return view('Admin.kategori.index');
-    }
+   
 
-    public function create()
-    {
-        //
+    
+    public function checkCateName(Request $request){
+        $data=$request->all();
+        $category_name=$data['nama_kategori'];
+        $ch_cate_name_atDB=Kategori::select('nama_kategori')->where('nama_kategori',$category_nama_kategori)->first();
+        if($category_name==$ch_cate_name_atDB['nama_kategori']){
+            echo "true"; die();
+        }else {
+            echo "false"; die();
+        }
     }
 
     /**
