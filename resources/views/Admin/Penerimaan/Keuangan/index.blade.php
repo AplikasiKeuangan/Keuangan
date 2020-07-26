@@ -140,9 +140,11 @@
             </thead>
             <tbody>
               @foreach ($keuangan as $keuangan)
-               
+               @php
+                   $i++
+               @endphp
                 <tr>
-                    <td>{{$keuangan->id}}</td>
+                    <td>{{$i}}</td>
                     <td>{{$keuangan->created_at->diffForHumans()}}</td>
                     <td>{{$keuangan->tanggal}}</td>
                     <td>{{$keuangan->keterangan}}</td>

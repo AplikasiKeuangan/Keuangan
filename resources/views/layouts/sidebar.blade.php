@@ -34,8 +34,8 @@
           </a>
         </li>
         <li class="nav-header">Keuangan</li>
-        <li class="nav-item has-treeview">
-          <a href="#" class="nav-link">
+        <li class="nav-item has-treeview {{ Route::currentRouteName() == 'admin-Data-kategori-index' || Route::currentRouteName() == 'admin-Data-keuangan-index1' ? 'menu-open':'' }}">
+          <a href="#" class="nav-link {{ Route::currentRouteName() == 'admin-Data-kategori-index' || Route::currentRouteName() == 'admin-Data-keuangan-index1' ? 'active':'' }}">
             <i class="nav-icon fas fa-money-bill-alt"></i>
             <p>
               Keuangan Sekolah
@@ -44,13 +44,13 @@
           </a>
           <ul class="nav nav-treeview ">
             <li class="nav-item">
-              <a href="{{ route('admin-Data-kategori-index') }}" class="nav-link">
+              <a href="{{ route('admin-Data-kategori-index') }}" class="nav-link {{ Route::currentRouteName() == 'admin-Data-kategori-index' ? 'active':'' }}">
                 <i class="far fa-circle nav-icon"></i>
                 <p>Kategori</p>
               </a>
             </li>
             <li class="nav-item">
-            <a href="{{route('admin-Data-keuangan-index1')}}" class="nav-link">
+            <a href="{{route('admin-Data-keuangan-index1')}}" class="nav-link {{ Route::currentRouteName() == 'admin-Data-keuangan-index1' ? 'active':'' }}">
                 <i class="far fa-circle nav-icon"></i>
                 <p>Data Keuangan</p>
               </a>
