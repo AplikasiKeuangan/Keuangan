@@ -22,6 +22,11 @@ class KeuanganController extends Controller
         return view('admin.Penerimaan.Keuangan.index',compact('keuangan','kategori'));
     }
 
+    public function index1()
+    {
+        return view('admin.Penerimaan.index');
+    }
+
     /**
      * Show the form for creating a new resource.
      *

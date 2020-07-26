@@ -20,7 +20,7 @@ Auth::routes();
 Route::get('/admin', 'HomeController@index')->name('home');
 Route::get('/test', 'HomeController@test')->name('test');
 
-// Jurusan
+// Nama Kelas
 Route::get('/admin/nama_kelas', 'Nama_KelasController@index');
 Route::post('/admin/nama_kelas/tambah','Nama_KelasController@store')->name('tambah');
 Route::get('/admin/nama_kelas/daftar_nama_kelas','Nama_KelasController@daftar_nama_kelas')->name('daftar_nama_kelas');
@@ -84,6 +84,7 @@ Route::prefix('admin')->name('admin-')->middleware(['checkLoginStatus'])->group(
     });
     Route::prefix('Data')->name('Data-')->group(function () {
         Route::prefix('keuangan')->name('keuangan-')->group(function () {
+            Route::get('/menu', 'Admin\KeuanganController@index1')->name('index1');
             Route::get('/', 'Admin\KeuanganController@index')->name('index');
             Route::get('/get-data', 'Admin\KeuanganController@data')->name('data');
             Route::post('/store', 'Admin\KeuanganController@store')->name('store');

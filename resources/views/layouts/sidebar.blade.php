@@ -50,7 +50,7 @@
               </a>
             </li>
             <li class="nav-item">
-            <a href="{{route('admin-Data-keuangan-index')}}" class="nav-link">
+            <a href="{{route('admin-Data-keuangan-index1')}}" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
                 <p>Data Keuangan</p>
               </a>
