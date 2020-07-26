@@ -240,12 +240,12 @@
                                     </div>
                                     <div class="row form-group">
                                        <div class="col col-md-3">
-                                          <label for="hf-jurusan" class=" form-control-label">Jurusan</label>
+                                          <label for="hf-nama-kelas" class=" form-control-label">Nama Kelas</label>
                                        </div>
                                        <div class="col-12 col-md-9">
-                                          <select id="hf-jurusan" name="jurusan"  required="" class="form-control">
-                                             @foreach ($jurusan as $jurusan)
-                                                <option value="{{$jurusan->nama_jurusan}}" {{$jurusan->nama_jurusan ? 'selected':''}}>{{$jurusan->nama_jurusan}}</option>
+                                          <select id="hf-nama_kelas" name="nama_kelas"  required="" class="form-control">
+                                             @foreach ($nama_kelas as $nama_kelas)
+                                                <option value="{{$nama_kelas->nama_kelas}}" {{$nama_kelas->nama_kelas ? 'selected':''}}>{{$nama_kelas->nama_kelas}}</option>
                                              @endforeach
                                           </select>
                                        </div>

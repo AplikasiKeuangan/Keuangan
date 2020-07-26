@@ -231,7 +231,7 @@
                                              <label for="hf-kelas" class=" form-control-label">Kelas</label>
                                           </div>
                                           <div class="col-12 col-md-9">
-                                             <select class="form-control hf-kelas" name="kelas" data-placeholder="Pilih Jurusan Dan Kelas" style="width: 100%;">
+                                             <select class="form-control hf-kelas" name="kelas" data-placeholder="Pilih Kelas" style="width: 100%;">
                                                 @foreach ($kelas as $kelas)
                                                    <option value="{{$kelas->nama_kelas}}">{{$kelas->nama_kelas}}</option>
                                                 @endforeach
@@ -240,12 +240,12 @@
                                     </div>
                                     <div class="row form-group">
                                        <div class="col col-md-3">
-                                          <label for="hf-jurusan" class=" form-control-label">Jurusan</label>
+                                          <label for="hf-nama-kelas" class=" form-control-label">Nama Kelas</label>
                                        </div>
                                        <div class="col-12 col-md-9">
-                                          <select id="hf-jurusan" name="jurusan"  required="" class="form-control">
-                                             @foreach ($jurusan as $jurusan)
-                                             <option value="{{$jurusan->nama_jurusan}}" >{{$jurusan->nama_jurusan}}</option>
+                                          <select id="hf-nama-kelas" name="nama_kelas"  required="" class="form-control">
+                                             @foreach ($nama_kelas as $nama_kelas)
+                                             <option value="{{$nama_kelas->nama_kelas}}" >{{$nama_kelas->nama_kelas}}</option>
                                              @endforeach
                                           </select>
                                        </div>
@@ -294,7 +294,7 @@
                               <th>Email</th>
                               <th>Asal Sekolah</th>
                               <th>Kelas</th>
-                              <th>Jurusan</th>
+                              <th>Nama Kelas</th>
                               <th style="text-align: right">Tindakan</th>
                            </tr>
                         </thead>
@@ -320,7 +320,7 @@
                               <th>Email</th>
                               <th>Asal Sekolah</th>
                               <th>Kelas</th>
-                              <th>Jurusan</th>
+                              <th>Nama Kelas</th>
                               <th style="text-align: right">Tindakan</th>
                            </tr>
                         </tfoot>
@@ -373,7 +373,7 @@
                   { data: 'email', name: 'email' },
                   { data: 'asal_sekolah', name: 'asal_sekolah' },
                   { data: 'kelas',name:'kelas'},
-                  { data: 'jurusan',name:'jurusan'},
+                  { data: 'nama_kelas',name:'nama_kelas'},
                   { data: 'action', className: 'dt-right', orderable: false, searchable: true }
                ],
          // "rowCallback": function( row, data ) {}

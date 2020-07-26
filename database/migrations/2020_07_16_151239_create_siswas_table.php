@@ -33,7 +33,7 @@ class CreateSiswasTable extends Migration
             $table->string('handphone')->nullable();
             $table->string('email')->nullable();
             $table->text('asal_sekolah');
-            $table->string('jurusan')->nullable();
+            $table->string('nama_kelas')->nullable();
             $table->string('kelas')->nullable();
             $table->timestamps();
         });

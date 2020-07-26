@@ -1,6 +1,6 @@
 @extends('layouts.apps')
 
-@section('judul',' - Data Keuangan')
+@section('judul',' - Data Keuangan Debit')
 @section('head')
    <!-- Bootstrap CSS -->
    <link rel="stylesheet" href="//cdn.datatables.net/1.10.7/css/jquery.dataTables.min.css">
@@ -10,11 +10,11 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Data Keuangan</h1>
+            <h1>Data Keuangan Debit</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item active">Data Keuangan</li>
+              <li class="breadcrumb-item active">Data Keuangan Debit</li>
             </ol>
           </div>
           <div class="col-sm-12">
@@ -89,7 +89,6 @@
                                              <select id="hf-jenis" name="jenis" placeholder="jenis" required="" class="ops form-control">
                                                 <option class="ops @error('ops') is-invalid @enderror" value="0">Pilih...</option>
                                                 <option class="ops @error('ops') is-invalid @enderror" value="penerimaan">Penerimaan (Debit)</option>
-                                                <option class="ops @error('ops') is-invalid @enderror" value="pengeluaran">Pengeluaran (Kredit)</option>
                                              </select>
                                           </div>
                                     </div>
@@ -130,8 +129,9 @@
               <th>Tanggal Buat</th>
               <th>Tanggal</th>
               <th>Deskripsi</th>
+              <th>Kategori</th>
               <th style="text-align:right ">Penerimaan</th>
-              <th style="text-align:right ">Pengeluaran</th>
+             
               <th>Tindakan</th>
             </tr>
             </thead>
@@ -143,15 +143,12 @@
                     <td>{{$keuangan->created_at->diffForHumans()}}</td>
                     <td>{{$keuangan->tanggal}}</td>
                     <td>{{$keuangan->keterangan}}</td>
+                    <td>{{$keuangan->kategori->nama_kategori}}</td>
                      @if ($keuangan->penerimaan == null)
                         <td style="text-align:right ">-</td>
                      @else
                      <td style="text-align:right">{{ number_format($keuangan->penerimaan,2) }}</td>
-                    @endif
-                    @if ($keuangan->pengeluaran == null)
-                        <td style="text-align:right ">-</td>
-                     @else
-                     <td style="text-align:right">{{ number_format($keuangan->pengeluaran,2) }}</td>
+                  
                     @endif
                    
                     
@@ -168,8 +165,9 @@
               <th>Tanggal Buat</th>
               <th>Tanggal</th>
               <th>Deskripsi</th>
+              <th>Kategori</th>
               <th style="text-align:right ">Penerimaan</th>
-              <th style="text-align:right ">Pengeluaran</th>
+             
               <th>Tindakan</th>
             </tr>
             </tfoot>
@@ -183,11 +181,6 @@
           if ( this.value == 'penerimaan')
           {
              
-              $("#Nominal").show();
-          }
-          else if ( this.value == 'pengeluaran')
-          {
-            
               $("#Nominal").show();
           }
           else

@@ -99,22 +99,22 @@
           <a href="#" class="nav-link">
             <i class="nav-icon fas fa-book-open"></i>
             <p>
-              Jurusan
+              Nama Kelas
               <i class="fas fa-angle-left right"></i>
               <span class="badge badge-info right">6</span>
             </p>
           </a>
           <ul class="nav nav-treeview">
             <li class="nav-item">
-            <a href="/admin/jurusan" class="nav-link">
+            <a href="/admin/nama_kelas" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
-                <p>Tambah Jurusan</p>
+                <p>Tambah Nama Kelas</p>
               </a>
             </li>
             <li class="nav-item">
-              <a href="/admin/jurusan/daftar_jurusan" class="nav-link">
+              <a href="/admin/nama_kelas/daftar_nama_kelas" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
-                <p>Daftar Jurusan</p>
+                <p>Daftar Nama Kelas</p>
               </a>
             </li>
           </ul>

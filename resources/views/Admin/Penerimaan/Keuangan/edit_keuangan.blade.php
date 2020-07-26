@@ -10,12 +10,12 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Edit Kategori - {{ $keuangan->tanggal }}</h1>
+            <h1>Edit Keuangan Debit  - {{ $keuangan->tanggal }}</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="{{ route('admin-Data-kategori-index') }}">Daftar Kategori</a></li>
-              <li class="breadcrumb-item active">Edit Kategori</li>
+              <li class="breadcrumb-item"><a href="{{ route('admin-Data-keuangan-index') }}">Daftar Keuangan Debit</a></li>
+              <li class="breadcrumb-item active">Edit Keuangan Debit</li>
             </ol>
           </div>
         </div>
@@ -48,7 +48,7 @@
                      <div class="col-md-12">
                         <div class="card">
                               <div class="card-body card-block">
-                                 <form method="post" id="form-edit-kategori" class="form-horizontal" action="/admin/Data/kategori/{{$keuangan->id}}/update" >
+                                 <form method="post" id="form-edit-kategori" class="form-horizontal" action="/admin/Data/keuangan/{{$keuangan->id}}/update" >
                                     @csrf
                                     
                                     <div class="row form-group">
@@ -73,18 +73,19 @@
                                        </div>
                                        <div class="col-12 col-md-9">
                                           <select id="hf-kategori" name="kategori" placeholder="kategori" required="" class="ops form-control">
-                                            @foreach($kategori as $key=>$value)
-                                            <?php
-                                                 if($key!=0){
-                                                     $sub_categories=DB::table('kategoris')->select('id','nama_kategori')->get();
-                                                     if(count($sub_categories)>0){
-                                                         foreach ($sub_categories as $sub_category){
-                                                             echo '<option value="'.$sub_category->id.'">&nbsp;&nbsp;'.$keuangan->nama_kategori.'</option>';
-                                                         }
-                                                     }
-                                                 }
-                                             ?>
-                                          @endforeach
+                                             @foreach($kategori as $key=>$value)
+                                                   
+                                                   <?php
+                                                   if($key!=0){
+                                                      $sub_categories=DB::table('kategoris')->select('id','nama_kategori')->get();
+                                                      if(count($sub_categories)>0){
+                                                         foreach ($sub_categories as $sub_category){?>
+                                                               <option value="{{$sub_category->id}}"{{$edit_category->id==$sub_category->id?' selected':''}}>&nbsp;&nbsp;{{$sub_category->nama_kategori}}</option>
+                                                         <?php }
+                                                      }
+                                                   }
+                                                   ?>
+                                             @endforeach
                                           </select>
                                        </div>
                                  </div>
@@ -96,7 +97,6 @@
                                              <select id="hf-jenis" name="jenis" placeholder="jenis" required="" class="ops form-control">
                                                 <option class="ops @error('ops') is-invalid @enderror" value="0">Pilih...</option>
                                                 <option class="ops @error('ops') is-invalid @enderror" value="penerimaan">Penerimaan (Debit)</option>
-                                                <option class="ops @error('ops') is-invalid @enderror" value="pengeluaran">Pengeluaran (Kredit)</option>
                                              </select>
                                           </div>
                                     </div>

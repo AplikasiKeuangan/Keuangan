@@ -1,16 +1,16 @@
 @extends('layouts.apps')
-
+@section('judul',' - Daftar Nama Kelas ')
 @section('content')
 <section class="content-header">
     <div class="container-fluid">
       <div class="row mb-2">
         <div class="col-sm-6">
-          <h1>Daftar Jurusan</h1>
+          <h1>Daftar Nama Kelas</h1>
         </div>
         <div class="col-sm-6">
           <ol class="breadcrumb float-sm-right">
             <li class="breadcrumb-item"><a href="/home">Dashboard</a></li>
-            <li class="breadcrumb-item active">Daftar Jurusan</li>
+            <li class="breadcrumb-item active">Daftar Nama Kelas</li>
           </ol>
         </div>
       </div>
@@ -23,7 +23,7 @@
                 <table id="example1" class="table table-bordered table-striped">
                   <thead>
                   <tr>
-                    <th>Nama Jurusan</th>
+                    <th>Nama Nama Kelas</th>
                     <th>Deskripsi</th>
                     <th>Tanggal Buat</th>
                     <th>Status</th>
@@ -31,23 +31,23 @@
                   </tr>
                   </thead>
                   <tbody>
-                    @foreach ($jurusan as $jurusan)
+                    @foreach ($nama_kelas as $nama_kelas)
                      
                         <tr>
-                            <td>{{$jurusan->nama_jurusan}}</td>
-                            <td>{{$jurusan->deskripsi}}</td>
-                            <td>{{$jurusan->created_at->diffForHumans()}}</td>
-                            <td>{{($jurusan->status==0)?' Disabled':'Enable'}}</td>
-                            <td><a href="/admin/jurusan/daftar_jurusan/edit/{{$jurusan->id}}" class="btn btn-primary"><i class="fa fa-edit"></i> Edit</a>
-                                {{-- <a href="javascript:" rel="{{$jurusan->id}}" rel1="delete-jurusan" class="btn btn-danger deleteRecord"><i class="fa fa-eraser"></i> Delete</a></td> --}}
-                                <a href="/admin/jurusan/daftar_jurusan/hapus/{{$jurusan->id}}"class="button delete-confirm btn btn-danger"><i class="fa fa-eraser"></i> Delete</a></td>
+                            <td>{{$nama_kelas->nama_kelas}}</td>
+                            <td>{{$nama_kelas->deskripsi}}</td>
+                            <td>{{$nama_kelas->created_at->diffForHumans()}}</td>
+                            <td>{{($nama_kelas->status==0)?' Disabled':'Enable'}}</td>
+                            <td><a href="/admin/nama_kelas/daftar_nama_kelas/edit/{{$nama_kelas->id}}" class="btn btn-primary"><i class="fa fa-edit"></i></a>
+                                
+                                <a href="/admin/nama_kelas/daftar_nama_kelas/hapus/{{$nama_kelas->id}}"class="button delete-confirm btn btn-danger"><i class="fa fa-eraser"></i></a></td>
                         </tr>
 
                     @endforeach
                   </tbody>
                   <tfoot>
                   <tr>
-                    <th>Nama Jurusan</th>
+                    <th>Nama Nama Kelas</th>
                     <th>Deskripsi</th>
                     <th>Tanggal Buat</th>
                     <th>Status</th>

@@ -108,6 +108,29 @@
                       </div>
                     </div>
                   </div>
+                  <div class="card card-primary">
+                    <div class="card-header">
+                      <h4 class="card-title w-100">
+                        <a class="d-block w-100" data-toggle="collapse" href="#collapseThree">
+                          Keteranagan Pendidikan Saat ini
+                        </a>
+                      </h4>
+                    </div>
+                    <div id="collapseThree" class="collapse" data-parent="#accordion">
+                      <div class="card-body">
+                        <dl class="row">
+                           <dt class="col-sm-4">Kelas</dt>
+                           <dd class="col-sm-8">{{ $data_siswa->kelas }}</dd>
+                        </dl>
+                      </div>
+                      <div class="card-body">
+                        <dl class="row">
+                           <dt class="col-sm-4">Nama Kelas</dt>
+                           <dd class="col-sm-8">{{ $data_siswa->nama_kelas }}</dd>
+                        </dl>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
               <!-- /.card-body -->

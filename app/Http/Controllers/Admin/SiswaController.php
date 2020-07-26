@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Siswa;
 use App\Kelas;
-use App\Jurusan;
+use App\Nama_Kelas;
 use DB;
 use Carbon\carbon;
 use DataTables;
@@ -17,9 +17,9 @@ class SiswaController extends Controller
     public function index()
     {
         $nis = $this->nis();
-        $jurusan=Jurusan::all();
+        $nama_kelas=Nama_Kelas::all();
         $kelas=Kelas::all();
-        return view('Admin.Siswa.index',compact('nis','jurusan','kelas'));
+        return view('Admin.Siswa.index',compact('nis','nama_kelas','kelas'));
     }
     public function data(Request $request)
     {
@@ -81,7 +81,7 @@ class SiswaController extends Controller
                 'alamat' => 'required|max:255',
                 'asal_sekolah' => 'required|max:255',
                 'kelas'=> 'required|max:255',
-                'jurusan'=> 'required|max:255',
+                'nama_kelas'=> 'required|max:255',
             ]);
 
             if($validatedData == true){
@@ -106,7 +106,7 @@ class SiswaController extends Controller
                 $siswa->alamat = $request->alamat;
                 $siswa->asal_sekolah = $request->asal_sekolah;
                 $siswa->kelas = $request->kelas;
-                $siswa->jurusan = $request->jurusan;
+                $siswa->nama_kelas = $request->nama_kelas;
                 $siswa->save();
             }else{
                 return redirect()->route('admin-siswa-index')->with('danger', 'Gagal ditambahkan!');
@@ -118,10 +118,10 @@ class SiswaController extends Controller
     }
     public function edit($nis, $nama_lengkap){
         $data_siswa = Siswa::where([['nis',$nis],['nama_lengkap',$nama_lengkap]])->first();
-        $jurusan=Jurusan::all();
+        $nama_kelas=Nama_Kelas::all();
         $kelas=Kelas::all();
         if($data_siswa){
-            return view('admin.siswa.edit', compact('data_siswa','jurusan','kelas'));
+            return view('admin.siswa.edit', compact('data_siswa','nama_kelas','kelas'));
         }
         else{
             return abort(404);
@@ -144,7 +144,7 @@ class SiswaController extends Controller
                 'bahasa_sehari_hari' => 'required|max:255',
                 'alamat' => 'required|max:255',
                 'asal_sekolah' => 'required|max:255',
-                'jurusan' => 'required|max:255',
+                'nama_kelas' => 'required|max:255',
                 'kelas' => 'required|max:255',
             ]);
 
@@ -170,7 +170,7 @@ class SiswaController extends Controller
                 $siswa->email = $request->email;
                 $siswa->alamat = $request->alamat;
                 $siswa->asal_sekolah = $request->asal_sekolah;
-                $siswa->jurusan = $request->jurusan;
+                $siswa->nama_kelas = $request->nama_kelas;
                 $siswa->kelas = $request->kelas;
                 $siswa->update();
                 return redirect()->route('admin-siswa-index')->with('success', 'Berhasil diupdate!');

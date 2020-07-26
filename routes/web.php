@@ -21,12 +21,12 @@ Route::get('/admin', 'HomeController@index')->name('home');
 Route::get('/test', 'HomeController@test')->name('test');
 
 // Jurusan
-Route::get('/admin/jurusan', 'JurusanController@index');
-Route::post('/admin/jurusan/tambah','JurusanController@store')->name('tambah');
-Route::get('/admin/jurusan/daftar_jurusan','JurusanController@daftar_jurusan')->name('daftar_jurusan');
-Route::get('/admin/jurusan/daftar_jurusan/hapus/{id}','JurusanController@destroy')->name('hapus_jurusan');
-Route::get('/admin/jurusan/daftar_jurusan/edit/{id}','JurusanController@edit')->name('edit');
-Route::put('/admin/jurusan/daftar_jurusan/update/{id}','JurusanController@update')->name('update');
+Route::get('/admin/nama_kelas', 'Nama_KelasController@index');
+Route::post('/admin/nama_kelas/tambah','Nama_KelasController@store')->name('tambah');
+Route::get('/admin/nama_kelas/daftar_nama_kelas','Nama_KelasController@daftar_nama_kelas')->name('daftar_nama_kelas');
+Route::get('/admin/nama_kelas/daftar_nama_kelas/hapus/{id}','Nama_KelasController@destroy')->name('hapus_jurusan');
+Route::get('/admin/nama_kelas/daftar_nama_kelas/edit/{id}','Nama_KelasController@edit')->name('edit');
+Route::put('/admin/nama_kelas/daftar_nama_kelas/update/{id}','Nama_KelasController@update')->name('update');
 
 // Kelas
 Route::get('/admin/kelas', 'KelasController@index');

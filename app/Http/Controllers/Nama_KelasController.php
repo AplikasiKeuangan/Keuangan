@@ -1,12 +1,10 @@
 <?php
 
 namespace App\Http\Controllers;
-
-Use Alert;
-use App\Jurusan;
+use App\Nama_Kelas;
 use Illuminate\Http\Request;
 
-class JurusanController extends Controller
+class Nama_KelasController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,17 +13,7 @@ class JurusanController extends Controller
      */
     public function index()
     {
-        $menu_active=0;
-        return view('Jurusan.tambah_jurusan',compact('menu_active'));
-    }
-
-    
-
-    public function daftar_jurusan()
-    {
-        $menu_active=0;
-        $jurusan=Jurusan::all();
-        return view('Jurusan.daftar_jurusan',compact('menu_active','jurusan'));
+        return view('Nama_Kelas.tambah_nama_kelas');
     }
 
     /**
@@ -33,6 +21,12 @@ class JurusanController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    public function daftar_nama_kelas()
+    {
+        $nama_kelas=Nama_Kelas::all();
+        return view('Nama_Kelas.daftar_nama_kelas',compact('nama_kelas'));
+    }
     public function create()
     {
         //
@@ -47,16 +41,22 @@ class JurusanController extends Controller
     public function store(Request $request)
     {
         $this->validate($request,[
-            'nama_jurusan'=>'required|max:255|unique:jurusans,nama_jurusan',
+            'nama_kelas'=>'required|max:255|unique:nama__kelas,nama_kelas',
             'deskripsi'=>'required',
         ]);
         $data=$request->all();
-        Jurusan::create($data);
-        // toast('Data tersimpan!','success');
-        alert()->success('Jurusan Berhasil Ditambahkan!');
+        if ($data) {
+          
+            Nama_Kelas::create($data);
+            alert()->success('Nama Kelas Berhasil Didaftarkan!');
+
+        }else{
+            alert()->error('Nama Kelas Gagal Didaftarkan!');
+
+        }
 
 
-        return redirect('/admin/jurusan/daftar_jurusan');
+        return redirect('/admin/nama_kelas/daftar_nama_kelas');
     }
 
     /**
@@ -78,8 +78,8 @@ class JurusanController extends Controller
      */
     public function edit($id)
     {
-        $jurusan = Jurusan::findOrfail($id);
-        return view('Jurusan.edit_jurusan',compact('jurusan'));
+        $nama_kelas = Nama_Kelas::findOrfail($id);
+        return view('Nama_Kelas.edit_nama_kelas',compact('nama_kelas'));
     }
 
     /**
@@ -91,9 +91,9 @@ class JurusanController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $update_jurusan=Jurusan::findOrFail($id);
+        $update_nama_kelas=Nama_Kelas::findOrFail($id);
         $this->validate($request,[
-            'nama_jurusan'=>'required|max:255|unique:jurusans,nama_jurusan,'.$update_jurusan->id,
+            'nama_kelas'=>'required|max:255|unique:nama__kelas,nama_kelas,'.$update_nama_kelas->id,
             'deskripsi'=>'required',
         ]);
         //dd($request->all());die();
@@ -101,9 +101,10 @@ class JurusanController extends Controller
         if(empty($input_data['status'])){
             $input_data['status']=0;
         }
-        $update_jurusan->update($input_data);
-        alert()->success('Jurusan Berhasil Diedit!');
-    	return redirect('/admin/jurusan/daftar_jurusan');
+        $update_nama_kelas->update($input_data);
+       
+        alert()->success('Nama Kelas Berhasil Diedit!');
+    	return redirect('/admin/nama_kelas/daftar_nama_kelas');
     }
 
     /**
@@ -114,11 +115,14 @@ class JurusanController extends Controller
      */
     public function destroy($id)
     {
-        $jurusan = Jurusan::find($id);
-        $jurusan->delete();
+        $Nama_Kelas = Nama_Kelas::find($id);
+        $Nama_Kelas->delete();
 
-        if ($jurusan) {
-            alert()->success('Jurusan Berhasil Dihapus!');
+        if ($Nama_Kelas) {
+            alert()->success('Nama Kelas Berhasil Dihapus!');
+            return back();
+        }else{
+            alert()->error('Nama Kelas Gagal Dihapus!');
             return back();
         }
     }

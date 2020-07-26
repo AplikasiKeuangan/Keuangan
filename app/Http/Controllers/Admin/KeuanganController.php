@@ -83,9 +83,11 @@ class KeuanganController extends Controller
      */
     public function edit($id)
     {
-        $keuangan = Keuangan::findOrfail($id);
+       
         $kategori=Kategori::pluck('id')->all();
-        return view('admin.Penerimaan.Keuangan.edit_keuangan',compact('kategori','keuangan'));
+        $keuangan = Keuangan::findOrfail($id);
+        $edit_category=Kategori::findOrFail($keuangan->kategori_id);
+        return view('admin.Penerimaan.Keuangan.edit_keuangan',compact('keuangan','kategori','edit_category'));
     }
 
     /**
@@ -97,7 +99,24 @@ class KeuanganController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        try {
+            $keuangan = Keuangan::findOrfail($id);
+            $keuangan->tanggal = $request->tanggal;
+            $keuangan->kategori_id = $request->kategori;
+            $keuangan->keterangan = $request->keterangan;
+
+            if ($request->jenis == 'penerimaan') {
+                $keuangan->pengeluaran = 0;
+                $keuangan->penerimaan = $request->nominal;
+            
+            }else{
+                return redirect(route('admin-Data-keuangan-index'))->with('error','Data Gagal Ditambah');
+            }
+           $keuangan->update();
+            return redirect('/admin/Data/keuangan/')->with('success','Data Berhasil Ditambahkan');
+        } catch (\Throwable $th) {
+            //throw $th;
+        }
     }
 
     /**

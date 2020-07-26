@@ -10,8 +10,8 @@ class Keuangan extends Model
     protected $primaryKey='id';
     protected $fillable = ['tanggal','keterangan','jenis','nominal','kategori_id']; 
 
-    // public function kategori()
-    // {
-    //     return $this->belongsTo(Kategori::class,'kategori_id','id');
-    // }
+    public function kategori()
+    {
+        return $this->belongsTo(Kategori::class,'kategori_id','id');
+    }
 }
