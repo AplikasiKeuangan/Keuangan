@@ -82,10 +82,15 @@
             </tr>
             </thead>
             <tbody>
+               @php
+                   $i = 0;
+               @endphp
               @foreach ($kategori as $kategori)
-               
+               @php
+                   $i++;
+               @endphp
                 <tr>
-                    <td>{{$kategori->id}}</td>
+                    <td>{{$i}}</td>
                     <td>{{$kategori->created_at->diffForHumans()}}</td>
                     <td>{{$kategori->nama_kategori}}</td>
                     <td align="center"><a href="/admin/Data/kategori/{{$kategori->id}}/edit" class="btn btn-primary"><i class="fa fa-edit"></i></a>

@@ -51,7 +51,7 @@ class KategoriController extends Controller
         try{
             $validatedData = $request->validate([
                 
-                'nama_kategori'=> 'required|max:255',
+                'nama_kategori'=> 'required|max:255|unique:kategoris,nama_kategori',
             ]);
 
             if($validatedData == true){
@@ -102,7 +102,7 @@ class KategoriController extends Controller
     {
         $update_kategori=Kategori::findOrFail($id);
         $this->validate($request,[
-            'nama_kategori'=>'required|max:255',
+            'nama_kategori'=> 'required|max:255|unique:kategoris,nama_kategori',
             
         ]);
 
@@ -126,11 +126,14 @@ class KategoriController extends Controller
     public function destroy($id)
     {
         $Kategori = Kategori::find($id);
+        
         $Kategori->delete();
 
         if ($Kategori) {
             alert()->success('Jurusan Berhasil Dihapus!');
             return back();
+            $keuangan = Keuangan::where('kategori_id');
+            $keuangan->delete();
         }else{
             alert()->error('Jurusan Gagal Dihapus!');
         }

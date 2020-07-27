@@ -139,16 +139,25 @@
             </tr>
             </thead>
             <tbody>
+               @php
+                   $i = 0;
+               @endphp
               @foreach ($keuangan as $keuangan)
                @php
-                   $i++
+                   $i++;
                @endphp
                 <tr>
                     <td>{{$i}}</td>
                     <td>{{$keuangan->created_at->diffForHumans()}}</td>
                     <td>{{$keuangan->tanggal}}</td>
                     <td>{{$keuangan->keterangan}}</td>
+                    @if(empty($keuangan->kategori->nama_kategori))
+                     <td>-</td>
+                    @else
                     <td>{{$keuangan->kategori->nama_kategori}}</td>
+                    @endif
+
+                   
                      @if ($keuangan->penerimaan == null)
                         <td style="text-align:right ">-</td>
                      @else

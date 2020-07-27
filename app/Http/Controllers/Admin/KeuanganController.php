@@ -49,6 +49,11 @@ class KeuanganController extends Controller
     public function store(Request $request)
     {
         try {
+            $this->validate($request,[
+                'kategori'=>'required|max:255|unique:keuangans,kategori_id'
+            ]);
+
+            
             $keuangan = new Keuangan;
             $keuangan->tanggal = $request->tanggal;
             $keuangan->kategori_id = $request->kategori;
@@ -64,6 +69,7 @@ class KeuanganController extends Controller
             }
            $keuangan->save();
             return redirect('/admin/Data/keuangan/')->with('success','Data Berhasil Ditambahkan');
+        
         } catch (\Throwable $th) {
             return back()->with('warning','Terjadi Kesalahan');
 
@@ -107,6 +113,11 @@ class KeuanganController extends Controller
     public function update(Request $request, $id)
     {
         try {
+
+           $this->validate($request,[
+                'kategori'=>'required|max:255|unique:keuangans,kategori_id'
+            ]);
+
             $keuangan = Keuangan::findOrfail($id);
             $keuangan->tanggal = $request->tanggal;
             $keuangan->kategori_id = $request->kategori;

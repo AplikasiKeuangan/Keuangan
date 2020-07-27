@@ -73,6 +73,8 @@
                                        </div>
                                        <div class="col-12 col-md-9">
                                           <select id="hf-kategori" name="kategori" placeholder="kategori"  class="ops form-control">
+
+                                             
                                              @foreach($kategori as $key=>$value)
                                                    
                                                    <?php
