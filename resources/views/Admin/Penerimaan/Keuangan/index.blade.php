@@ -165,10 +165,13 @@
                   
                     @endif
                    
-                    
+                    @if(empty($keuangan->kategori->nama_kategori))
+                    <td><a href="/admin/Data/keuangan/{{$keuangan->id}}/hapus"class="button delete-confirm btn btn-danger"><i class="fa fa-eraser"></i></a></td>
+                    @else
                     <td align="center"><a href="/admin/Data/keuangan/{{$keuangan->id}}/edit" class="btn btn-primary"><i class="fa fa-edit"></i></a>
                          
-                          <a href="/admin/Data/keuangan/{{$keuangan->id}}/hapus"class="button delete-confirm btn btn-danger"><i class="fa fa-eraser"></i></a></td>
+                    <a href="/admin/Data/keuangan/{{$keuangan->id}}/hapus"class="button delete-confirm btn btn-danger"><i class="fa fa-eraser"></i></a></td>
+                    @endif
                 </tr>
 
               @endforeach
