@@ -93,4 +93,16 @@ Route::prefix('admin')->name('admin-')->middleware(['checkLoginStatus'])->group(
             Route::get('/{id_kas_tunai}/hapus', 'Admin\KeuanganController@destroy')->name('hapus');
         });
     });
+    Route::prefix('Data')->name('Data-')->group(function () {
+        Route::prefix('tahun_ajaran')->name('tahun_ajaran-')->group(function () {
+            Route::get('/menu', 'Admin\KeuanganController@index1')->name('index1');
+            Route::get('/', 'Admin\KeuanganController@index')->name('index');
+            Route::get('/get-data', 'Admin\KeuanganController@data')->name('data');
+            Route::post('/store', 'Admin\KeuanganController@store')->name('store');
+            Route::get('/{id}/edit', 'Admin\KeuanganController@edit')->name('edit');
+            Route::post('/{id}/update', 'Admin\KeuanganController@update')->name('update');
+            Route::get('/{id_kas_tunai}/hapus', 'Admin\KeuanganController@destroy')->name('hapus');
+        });
+    });
+
 });

@@ -6,6 +6,8 @@
   <title>An-Nahl @yield('judul')</title>
 
   <!-- Google Font: Source Sans Pro -->
+  <link rel="icon" href="{{ asset('template/dist/img/logo1.png')}} " type="image/x-icon" />
+	<link rel="shortcut icon" type="image/x-icon" href="{{ asset('template/dist/img/logo1.png')}}" />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
   <!-- Font Awesome -->
   <link rel="stylesheet" href="{{ asset('template/plugins/fontawesome-free/css/all.min.css')}}">
