@@ -14,6 +14,7 @@
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item"><a href="{{ route('admin-kas-index') }}">Kas</a></li>
               <li class="breadcrumb-item active">Kas Bank</li>
             </ol>
           </div>
@@ -111,7 +112,17 @@
                      <table id="datatables-kas-bank" class="table table-bordered table-hover">
                         <thead>
                            <tr>
+                              <th colspan="5">Saldo Akhir:</th>
+                              <th style="text-align: right">{{ number_format($totaldebit,2) }}</th>
+                              <th style="text-align: right">{{ number_format($totalkredit,2) }}</th>
+                              <th style="text-align: right">{{ number_format($totalsaldo,2) }}</th>
+                              <th></th>
+                           </tr>
+                        </thead>
+                        <thead>
+                           <tr>
                               <th>Tanggal</th>
+                              <th>Ditambahkan Pada</th>
                               <th>No. Bukti</th>
                               <th>No. Rekening</th>
                               <th>Uraian</th>
@@ -125,6 +136,7 @@
                         <tfoot>
                            <tr>
                               <th>Tanggal</th>
+                              <th>Ditambahkan Pada</th>
                               <th>No. Bukti</th>
                               <th>No. Rekening</th>
                               <th>Uraian</th>
@@ -134,15 +146,6 @@
                               <th style="text-align: right">Tindakan</th>
                            </tr>
                         </tfoot>
-                        <tbaru>
-                           <tr>
-                              <th colspan="4">Saldo Akhir:</th>
-                              <th style="text-align: right">{{ number_format($totaldebit,2) }}</th>
-                              <th style="text-align: right">{{ number_format($totalkredit,2) }}</th>
-                              <th style="text-align: right">{{ number_format($totalsaldo,2) }}</th>
-                              <th></th>
-                           </tr>
-                        </tbaru>
                      </table>
                   </div>
                </div>
@@ -172,6 +175,7 @@
          ajax: '{!! route('admin-kas-bank-data') !!}',
          columns: [
                   { data: 'tanggal', name: 'tanggal', orderable: false },
+                  { data: 'ditambahkan_pada', name: 'ditambahkan_pada', orderable: false },
                   { data: 'no_bukti', name: 'no_bukti', orderable: false },
                   { data: 'no_rekening', name: 'no_rekening', orderable: false },
                   { data: 'uraian', name: 'uraian', orderable: false },

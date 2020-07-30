@@ -26,17 +26,26 @@ class HomeController extends Controller
      */
     public function index()
     {
-        //code awal
+        $kasBank = KasBank::get();
+        $totalDebitBank = $kasBank->sum('debit');
+        $totalKreditBank = $kasBank->sum('kredit');
+        $saldoAkhirBank = $totalDebitBank - $totalKreditBank;
+
+        $kasTunai = KasTunai::get();
+        $totalDebitTunai = $kasTunai->sum('debit');
+        $totalKreditTunai = $kasTunai->sum('kredit');
+        $saldoAkhirTunai = $totalDebitTunai - $totalKreditTunai;
+        //code 
         $timeNow    = Carbon::now();
-        $haris = [];
-        $nama_bulans = [];
-        $bulans = [];
-        $tahuns = [];
-        date_default_timezone_set("Asia/Jakarta");
+        $chart_date_time = $this->chart_date_time($timeNow);
+        $haris = $chart_date_time['haris'];
+        $nama_bulans = $chart_date_time['nama_bulans'];
+        $bulans = $chart_date_time['bulans'];
+        $tahuns = $chart_date_time['tahuns'];
 
         $greeting = time();
         $hour = date("G",$greeting);
-
+        
         if ($hour>=0 && $hour<=11)
         {
         $ucapan = ("Selamat Pagi");
@@ -57,9 +66,43 @@ class HomeController extends Controller
         {
          $ucapan = ("Selamat Malam ");
         };
+
+        //code lanjutan
+            //Kas Tunai
+        $chart_kas_tunai = app('App\Http\Controllers\Admin\KasTunaiController')->chart($timeNow, $haris, $bulans, $tahuns);
+        $jumlah_debit_per_bulans = $chart_kas_tunai['jumlah_debit_per_bulans'];
+        $jumlah_kredit_per_bulans = $chart_kas_tunai['jumlah_kredit_per_bulans'];
+        $jumlah_debit_per_haris = $chart_kas_tunai['jumlah_debit_per_haris'];
+        $jumlah_kredit_per_haris = $chart_kas_tunai['jumlah_kredit_per_haris'];
+            //Kas Bank
+        $chart_kas_bank = app('App\Http\Controllers\Admin\KasBankController')->chart($timeNow, $haris, $bulans, $tahuns);
+        $jumlah_debit_bank_per_bulans = $chart_kas_bank['jumlah_debit_per_bulans'];
+        $jumlah_kredit_bank_per_bulans = $chart_kas_bank['jumlah_kredit_per_bulans'];
+        $jumlah_debit_bank_per_haris = $chart_kas_bank['jumlah_debit_per_haris'];
+        $jumlah_kredit_bank_per_haris = $chart_kas_bank['jumlah_kredit_per_haris'];
+
+        return view('home', compact('haris','nama_bulans','jumlah_debit_per_bulans','jumlah_kredit_per_bulans','jumlah_debit_per_haris','jumlah_kredit_per_haris','jumlah_debit_bank_per_bulans','jumlah_kredit_bank_per_bulans','jumlah_debit_bank_per_haris','jumlah_kredit_bank_per_haris','ucapan','saldoAkhirBank','saldoAkhirTunai'));
+    }
+    public function test()
+    {
+        return view('layouts.apps');
+    }
+    public function greeting()
+    {
+        
+
+    }
+    public function chart_date_time($timeNow){
+        $haris = [];
+        $nama_bulans = [];
+        $bulans = [];
+        $tahuns = [];
+
+        //tanggal sekarang - tanggal 1
         for ($i=0; $i < $timeNow->format('d') ; $i++) {
             $haris[] = $timeNow->format('d') - $i;
         }
+        //bulan dan tahun
         for ($i=0; $i < 12 ; $i++) {
             if($timeNow->format('m') < ($i+1)){
                 $bulans[] = (12 + ($timeNow->format('m') - $i));
@@ -69,6 +112,7 @@ class HomeController extends Controller
                 $tahuns[] = $timeNow->format('Y') + 0;
             }
         }
+        //nama bulan
         for ($i=0; $i < count($bulans) ; $i++) { 
             if($bulans[$i] == 1){
                 $nama_bulans[] = "Januari ".$tahuns[$i];
@@ -96,51 +140,12 @@ class HomeController extends Controller
                 $nama_bulans[] = "Desember ".$tahuns[$i];
             }
         }
-
-        //code lanjutan
-            //Kas Tunai
-        $jumlah_debit_per_bulans = [];
-        for ($i=0; $i < count($bulans) ; $i++) { 
-            $jumlah_debit_per_bulans[] = KasTunai::whereMonth('tanggal',$bulans[$i])->whereYear('tanggal',$tahuns[$i])->get()->sum('debit');
-        }
-        $jumlah_kredit_per_bulans = [];
-        for ($i=0; $i < count($bulans) ; $i++) { 
-            $jumlah_kredit_per_bulans[] = KasTunai::whereMonth('tanggal',$bulans[$i])->whereYear('tanggal',$tahuns[$i])->get()->sum('kredit');
-        }
-        $jumlah_debit_per_haris = [];
-        for ($i=0; $i < count($haris) ; $i++) { 
-            $jumlah_debit_per_haris[] = KasTunai::whereDay('tanggal',$haris[$i])->whereMonth('tanggal',$timeNow->format('m'))->whereYear('tanggal',$timeNow->format('Y'))->get()->sum('debit');
-        }
-        $jumlah_kredit_per_haris = [];
-        for ($i=0; $i < count($haris) ; $i++) { 
-            $jumlah_kredit_per_haris[] = KasTunai::whereDay('tanggal',$haris[$i])->whereMonth('tanggal',$timeNow->format('m'))->whereYear('tanggal',$timeNow->format('Y'))->get()->sum('kredit');
-        }
-            //Kas Bank
-        $jumlah_debit_bank_per_bulans = [];
-        for ($i=0; $i < count($bulans) ; $i++) { 
-            $jumlah_debit_bank_per_bulans[] = KasBank::whereMonth('tanggal',$bulans[$i])->whereYear('tanggal',$tahuns[$i])->get()->sum('debit');
-        }
-        $jumlah_kredit_bank_per_bulans = [];
-        for ($i=0; $i < count($bulans) ; $i++) { 
-            $jumlah_kredit_bank_per_bulans[] = KasBank::whereMonth('tanggal',$bulans[$i])->whereYear('tanggal',$tahuns[$i])->get()->sum('kredit');
-        }
-        $jumlah_debit_bank_per_haris = [];
-        for ($i=0; $i < count($haris) ; $i++) { 
-            $jumlah_debit_bank_per_haris[] = KasBank::whereDay('tanggal',$haris[$i])->whereMonth('tanggal',$timeNow->format('m'))->whereYear('tanggal',$timeNow->format('Y'))->get()->sum('debit');
-        }
-        $jumlah_kredit_bank_per_haris = [];
-        for ($i=0; $i < count($haris) ; $i++) { 
-            $jumlah_kredit_bank_per_haris[] = KasBank::whereDay('tanggal',$haris[$i])->whereMonth('tanggal',$timeNow->format('m'))->whereYear('tanggal',$timeNow->format('Y'))->get()->sum('kredit');
-        }
-        return view('home', compact('haris','nama_bulans','jumlah_debit_per_bulans','jumlah_kredit_per_bulans','jumlah_debit_per_haris','jumlah_kredit_per_haris','jumlah_debit_bank_per_bulans','jumlah_kredit_bank_per_bulans','jumlah_debit_bank_per_haris','jumlah_kredit_bank_per_haris','ucapan'));
-    }
-    public function test()
-    {
-        return view('layouts.apps');
-    }
-    public function greeting()
-    {
         
-
+        return [
+            'haris' => $haris,
+            'nama_bulans' => $nama_bulans,
+            'bulans' => $bulans,
+            'tahuns' => $tahuns
+        ];
     }
 }

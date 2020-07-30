@@ -63,10 +63,10 @@
             </li>
           </ul>
         </li>
-        <li class="nav-item has-treeview {{ Route::currentRouteName() == 'admin-kas-tunai-index' || Route::currentRouteName() == 'admin-kas-bank-index' ? 'menu-open':'' }}">
-          <a href="#" class="nav-link {{ Route::currentRouteName() == 'admin-kas-tunai-index' || Route::currentRouteName() == 'admin-kas-bank-index' ? 'active':'' }}">
+        <li class="nav-item has-treeview {{ Route::currentRouteName() == 'admin-kas-tunai-index' || Route::currentRouteName() == 'admin-kas-bank-index' || Route::currentRouteName() == 'admin-kas-index' ? 'menu-open':'' }}">
+          <a href="#" class="nav-link {{ Route::currentRouteName() == 'admin-kas-tunai-index' || Route::currentRouteName() == 'admin-kas-bank-index' || Route::currentRouteName() == 'admin-kas-index' ? 'active':'' }}">
             <i class="nav-icon fas fa-money-bill-alt"></i>
-            <p>
+            <p onclick="location.href='{{ route('admin-kas-index') }}'">
               Kas
               <i class="fas fa-angle-left right"></i>
             </p>
