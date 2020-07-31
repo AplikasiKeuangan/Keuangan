@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\KasTunai;
 use DataTables;
 use Carbon\Carbon;
+use DateTime;
 
 class KasTunaiController extends Controller
 {
@@ -21,8 +22,11 @@ class KasTunaiController extends Controller
     public function data(Request $request)
     {
         if ($request->ajax()) {
-            $kastunai  = KasTunai::get();
+            $kastunai  = KasTunai::orderBy('created_at', 'DESC')->get();
             return DataTables::of($kastunai)
+                ->addColumn('ditambahkan_pada', function($kastunai){
+                    return $kastunai->created_at->diffForHumans();
+                })
                 ->addColumn('debit', function($kastunai){
                     if($kastunai->debit == 0){
                         return "-";
@@ -36,10 +40,10 @@ class KasTunaiController extends Controller
                     return $kastunai->kredit;
                 })
                 ->addColumn('saldo', function($kastunai){
-                    return KasTunai::where('id_kas_tunai', "<=", $kastunai->id_kas_tunai)->sum('debit') - KasTunai::where('id_kas_tunai', "<=", $kastunai->id_kas_tunai)->sum('kredit');
+                    return (KasTunai::where('created_at', '<=', $kastunai->created_at)->sum('debit') - (KasTunai::where('created_at', '<=', $kastunai->created_at))->sum('kredit'));
                 })
                 ->addColumn('action', function($kastunai){
-                    if($kastunai->id_kas_tunai == KasTunai::orderBy('id_kas_tunai','DESC')->first()->id_kas_tunai){
+                    if($kastunai->id_kas_tunai == KasTunai::orderBy('created_at','DESC')->first()->id_kas_tunai){
                         return '<a data-admin="/admin/kas/tunai/'.$kastunai->id_kas_tunai.'/hapus" class="btn btn-danger admin-remove" onclick="adminDelete()" href="#"><i class="fa fa-eraser"></i> Delete</a>';
                     }
                     return '';
@@ -66,8 +70,12 @@ class KasTunaiController extends Controller
                 $kasTunai->debit = $request->nominal;
                 $kasTunai->kredit = 0;
             }
-            $kasTunai->save();
-            return redirect()->route('admin-kas-tunai-index')->with('success', 'Berhasil ditambahkan!');
+            if(!KasTunai::where('created_at', Carbon::now())->first()){
+                $kasTunai->save();
+                return redirect()->route('admin-kas-tunai-index')->with('success', 'Berhasil ditambahkan!');
+            }else{
+                return redirect()->route('admin-kas-tunai-index')->with('danger', 'Data gagal ditambahkan, harap masukkan data beberapa saat lagi!');
+            }
         }catch(Exception $e){
             return redirect()->route('admin-kas-tunai-index')->with('danger', 'Harap masukkan inputan dengan benar!');
         }
@@ -75,7 +83,7 @@ class KasTunaiController extends Controller
     public function destroy($id_kas_tunai)
     {
         try {
-            $lastKasTunai = KasTunai::orderBy('id_kas_tunai','DESC')->first();
+            $lastKasTunai = KasTunai::orderBy('create_at','DESC')->first();
             if($id_kas_tunai == $lastKasTunai->id_kas_tunai){
                 $lastKasTunai->delete();
             }else{
@@ -85,5 +93,29 @@ class KasTunaiController extends Controller
         } catch (\Exception $th) {
             return redirect()->route('admin-kas-tunai-index')->with('danger', 'Gagal dihapus!');
         }
+    }
+    public function chart($timeNow, $haris, $bulans, $tahuns){
+        $jumlah_debit_per_bulans = [];
+        for ($i=0; $i < count($bulans) ; $i++) { 
+            $jumlah_debit_per_bulans[] = KasTunai::whereMonth('tanggal',$bulans[$i])->whereYear('tanggal',$tahuns[$i])->get()->sum('debit');
+        }
+        $jumlah_kredit_per_bulans = [];
+        for ($i=0; $i < count($bulans) ; $i++) { 
+            $jumlah_kredit_per_bulans[] = KasTunai::whereMonth('tanggal',$bulans[$i])->whereYear('tanggal',$tahuns[$i])->get()->sum('kredit');
+        }
+        $jumlah_debit_per_haris = [];
+        for ($i=0; $i < count($haris) ; $i++) { 
+            $jumlah_debit_per_haris[] = KasTunai::whereDay('tanggal',$haris[$i])->whereMonth('tanggal',$timeNow->format('m'))->whereYear('tanggal',$timeNow->format('Y'))->get()->sum('debit');
+        }
+        $jumlah_kredit_per_haris = [];
+        for ($i=0; $i < count($haris) ; $i++) { 
+            $jumlah_kredit_per_haris[] = KasTunai::whereDay('tanggal',$haris[$i])->whereMonth('tanggal',$timeNow->format('m'))->whereYear('tanggal',$timeNow->format('Y'))->get()->sum('kredit');
+        }
+        return [
+            'jumlah_debit_per_bulans' => $jumlah_debit_per_bulans,
+            'jumlah_kredit_per_bulans' => $jumlah_kredit_per_bulans,
+            'jumlah_debit_per_haris' => $jumlah_debit_per_haris,
+            'jumlah_kredit_per_haris' => $jumlah_kredit_per_haris
+            ];
     }
 }

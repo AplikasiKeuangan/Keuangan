@@ -21,6 +21,7 @@ class CreateKasBanksTable extends Migration
             $table->text('uraian');
             $table->bigInteger('debit')->nullable();
             $table->bigInteger('kredit')->nullable();
+            $table->timestamps();
         });
     }
 

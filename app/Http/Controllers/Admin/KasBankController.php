@@ -21,8 +21,11 @@ class KasBankController extends Controller
     public function data(Request $request)
     {
         if ($request->ajax()) {
-            $kasBank  = KasBank::get();
+            $kasBank  = KasBank::orderBy('created_at', 'DESC')->get();
             return DataTables::of($kasBank)
+                ->addColumn('ditambahkan_pada', function($kasBank){
+                    return $kasBank->created_at->diffForHumans();
+                })
                 ->addColumn('debit', function($kasBank){
                     if($kasBank->debit == 0){
                         return "-";
@@ -36,7 +39,7 @@ class KasBankController extends Controller
                     return $kasBank->kredit;
                 })
                 ->addColumn('saldo', function($kasBank){
-                    return KasBank::where('id_kas_bank', "<=", $kasBank->id_kas_bank)->sum('debit') - KasBank::where('id_kas_bank', "<=", $kasBank->id_kas_bank)->sum('kredit');
+                    return KasBank::where('created_at', "<=", $kasBank->created_at)->sum('debit') - KasBank::where('created_at', "<=", $kasBank->created_at)->sum('kredit');
                 })
                 ->addColumn('action', function($kasBank){
                     if($kasBank->id_kas_bank == KasBank::orderBy('id_kas_bank','DESC')->first()->id_kas_bank){
@@ -67,8 +70,11 @@ class KasBankController extends Controller
                 $kasBank->debit = $request->nominal;
                 $kasBank->kredit = 0;
             }
-            $kasBank->save();
-            return redirect()->route('admin-kas-bank-index')->with('success', 'Berhasil ditambahkan!');
+            if(!KasBank::where('created_at', Carbon::now())->first()){
+                $kasBank->save();
+                return redirect()->route('admin-kas-bank-index')->with('success', 'Berhasil ditambahkan!');
+            }
+            return redirect()->route('admin-kas-bank-index')->with('danger', 'Data gagal ditambahkan, harap masukkan data beberapa saat lagi');
         }catch(Exception $e){
             return redirect()->route('admin-kas-bank-index')->with('danger', 'Harap masukkan inputan dengan benar!');
         }
@@ -86,5 +92,30 @@ class KasBankController extends Controller
         } catch (\Exception $th) {
             return redirect()->route('admin-kas-bank-index')->with('danger', 'Gagal dihapus!');
         }
+    }
+    public function chart($timeNow, $haris, $bulans, $tahuns)
+    {
+        $jumlah_debit_per_bulans = [];
+        for ($i=0; $i < count($bulans) ; $i++) { 
+            $jumlah_debit_per_bulans[] = KasBank::whereMonth('tanggal',$bulans[$i])->whereYear('tanggal',$tahuns[$i])->get()->sum('debit');
+        }
+        $jumlah_kredit_per_bulans = [];
+        for ($i=0; $i < count($bulans) ; $i++) { 
+            $jumlah_kredit_per_bulans[] = KasBank::whereMonth('tanggal',$bulans[$i])->whereYear('tanggal',$tahuns[$i])->get()->sum('kredit');
+        }
+        $jumlah_debit_per_haris = [];
+        for ($i=0; $i < count($haris) ; $i++) { 
+            $jumlah_debit_per_haris[] = KasBank::whereDay('tanggal',$haris[$i])->whereMonth('tanggal',$timeNow->format('m'))->whereYear('tanggal',$timeNow->format('Y'))->get()->sum('debit');
+        }
+        $jumlah_kredit_per_haris = [];
+        for ($i=0; $i < count($haris) ; $i++) { 
+            $jumlah_kredit_per_haris[] = KasBank::whereDay('tanggal',$haris[$i])->whereMonth('tanggal',$timeNow->format('m'))->whereYear('tanggal',$timeNow->format('Y'))->get()->sum('kredit');
+        }
+        return [
+            'jumlah_debit_per_bulans' => $jumlah_debit_per_bulans,
+            'jumlah_kredit_per_bulans' => $jumlah_kredit_per_bulans,
+            'jumlah_debit_per_haris' => $jumlah_debit_per_haris,
+            'jumlah_kredit_per_haris' => $jumlah_kredit_per_haris
+            ];
     }
 }

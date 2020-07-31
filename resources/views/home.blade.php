@@ -21,7 +21,7 @@
               <ol class="breadcrumb float-sm-right">
                
               
-              <li class="breadcrumb-item active"><h4><i><b>{{$ucapan}}</b></i> {{Auth::user()->name}}</h4></li>
+              <li class="breadcrumb-item active"><h4><b>{{$ucapan}},</i></b> {{Auth::user()->name}}</h4></li>
               </ol>
             </div><!-- /.col -->
           </div><!-- /.row -->
@@ -95,6 +95,36 @@
             </div>
             <!-- ./col -->
           </div>
+        <div class="row">
+          <div class="col-lg-6 col-12">
+            <!-- small box -->
+            <div class="small-box bg-success">
+              <div class="inner">
+                <h3>Rp {{ number_format($saldoAkhirBank,2) }}<sup style="font-size: 20px"></sup></h3>
+
+                <p>Saldo Akhir Kas Bank</p>
+              </div>
+              <div class="icon">
+                <i class="ion ion-card"></i>
+              </div>
+              <a href="{{ route('admin-kas-bank-index') }}" class="small-box-footer">Info lebih lanjut <i class="fas fa-arrow-circle-right"></i></a>
+            </div>
+          </div>
+          <div class="col-lg-6 col-12">
+            <!-- small box -->
+            <div class="small-box bg-success">
+              <div class="inner">
+                <h3>Rp {{ number_format($saldoAkhirTunai,2) }}<sup style="font-size: 20px"></sup></h3>
+
+                <p>Saldo Akhir Kas Tunai</p>
+              </div>
+              <div class="icon">
+                <i class="ion ion-cash"></i>
+              </div>
+              <a href="{{ route('admin-kas-tunai-index') }}" class="small-box-footer">Info lebih lanjut <i class="fas fa-arrow-circle-right"></i></a>
+            </div>
+          </div>
+        </div>
           <!-- /.row -->
           <!-- Main row -->
           <div class="row">
