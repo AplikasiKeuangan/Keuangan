@@ -21,7 +21,7 @@
               <ol class="breadcrumb float-sm-right">
                
               
-              <li class="breadcrumb-item active"><h4><i><b>{{$ucapan}}</b></i> {{Auth::user()->name}}</h4></li>
+              <li class="breadcrumb-item active"><h4><b>{{$ucapan}},</i></b> {{Auth::user()->name}}</h4></li>
               </ol>
             </div><!-- /.col -->
           </div><!-- /.row -->

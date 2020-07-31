@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use Carbon\Carbon;
 use App\KasTunai;
 use App\KasBank;
+use App\User;
+use Auth;
 
 class HomeController extends Controller
 {
@@ -52,19 +54,19 @@ class HomeController extends Controller
         }
         elseif ($hour >=12 && $hour<=14)
         {
-         $ucapan = ("Selamat Siang ");
+         $ucapan = ("Selamat Siang");
         }
         elseif ($hour >=15 && $hour<=17)
         {
-         $ucapan = ("Selamat Sore ");
+         $ucapan = ("Selamat Sore");
         }
         elseif ($hour >=17 && $hour<=18)
         {
-         $ucapan = ("Selamat Petang ");
+         $ucapan = ("Selamat Petang");
         }
         elseif ($hour >=19 && $hour<=23)
         {
-         $ucapan = ("Selamat Malam ");
+         $ucapan = ("Selamat Malam");
         };
 
         //code lanjutan
@@ -82,6 +84,26 @@ class HomeController extends Controller
         $jumlah_kredit_bank_per_haris = $chart_kas_bank['jumlah_kredit_per_haris'];
 
         return view('home', compact('haris','nama_bulans','jumlah_debit_per_bulans','jumlah_kredit_per_bulans','jumlah_debit_per_haris','jumlah_kredit_per_haris','jumlah_debit_bank_per_bulans','jumlah_kredit_bank_per_bulans','jumlah_debit_bank_per_haris','jumlah_kredit_bank_per_haris','ucapan','saldoAkhirBank','saldoAkhirTunai'));
+    }
+    public function profile()
+    {
+        return view('admin.profile');
+    }
+    public function profile_edit()
+    {
+        return view('admin.profile-edit');
+    }
+    public function profile_update(Request $request)
+    {
+        Try{
+            $user = User::find(Auth::User()->id);
+            $user->name = $request->name;
+            $user->email = $request->email;
+            $user->update();
+            return redirect()->route('admin-profile')->with('success', 'Data berhasil diupdate!');
+        }catch(Exception $e){
+            return redirect()->route('admin-profile')->with('danger', 'Data gagal diupdate!');
+        }
     }
     public function test()
     {

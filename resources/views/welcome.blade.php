@@ -7,7 +7,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>An-Nahl</title>
+    <title>SMP IT AN NAHL</title>
 
     <!-- Prevent the demo from appearing in search engines -->
     <meta name="robots" content="noindex">
@@ -144,7 +144,7 @@
                     <!-- Navbar Brand -->
                     <a href="/" class="navbar-brand">
                     <img class="navbar-brand-icon mr-0 mr-md-8pt" src="{{asset('home/assets/images/logo/logo1.png')}}" width="30">
-                        <span class="d-none d-md-block">SMP IT An-Nahl</span>
+                        <span class="d-none d-md-block">SMP IT AN NAHL</span>
                     </a>
 
                    
@@ -158,7 +158,7 @@
                             @if (Route::has('login'))
                             <div class="top-right links">
                                 @auth
-                                    <a href="{{ url('/home') }}">Home</a>
+                                    <a href="{{ url('/admin') }}">Home</a>
                                 @else
                                     <a href="{{route('login')}}" class="nav-link">
                                         <i class="material-icons">lock_open</i>
@@ -210,7 +210,7 @@
                         <div class="row align-items-center text-center text-md-left">
                             <div class="col-md-6 col-lg-5 order-1 order-md-0">
                                 <h1 class="text-white"> <span class="d-block d-md-inline-block text-scramble js-text-scramble"></span></h1>
-                                <p class="lead mb-32pt mb-lg-48pt text-white">SMPITANNAHL adalah sebuah lembaga pendidikan untuk memenuhi tiga ranah pendidikan dalam mendidik siswa siswi... Pengetahuan siswa dapatkan melalui kegiatan belajar mengajar yang aktif dan menyenangkan.  keterampilan siswa dapatkan melalui learning by doing, sikap dan nilai-nilai siswa terapkan dengan meneladankan empat sifat rasululloh, sidiq, amanah, tabliq, dan fathonah... Yang kami sampaikan melalui pendidikan karakter (character Building)</p>
+                                <p class="lead mb-32pt mb-lg-48pt text-white">SMP IT AN NAHL adalah sebuah lembaga pendidikan untuk memenuhi tiga ranah pendidikan dalam mendidik siswa siswi... Pengetahuan siswa dapatkan melalui kegiatan belajar mengajar yang aktif dan menyenangkan.  keterampilan siswa dapatkan melalui learning by doing, sikap dan nilai-nilai siswa terapkan dengan meneladankan empat sifat rasululloh, sidiq, amanah, tabliq, dan fathonah... Yang kami sampaikan melalui pendidikan karakter (character Building)</p>
                                
                                
                             </div>
@@ -369,7 +369,7 @@
                     </div>
                     <div class="col-md-4 text-md-right">
                         <p class="text-70 brand justify-content-md-end">
-                            <img class="brand-icon" src="{{ asset('home/assets/images/logo/logo1.png')}}" width="30" alt="SMP IT An-Nahl">SMP IT An-Nahl
+                            <img class="brand-icon" src="{{ asset('home/assets/images/logo/logo1.png')}}" width="30" alt="SMP IT An-Nahl">SMP IT AN NAHL
                         </p>
                         <p class="text-muted mb-0 mb-lg-16pt">NPSN : 69980914 <br>
                             Status : Swasta <br>

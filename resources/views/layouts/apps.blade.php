@@ -3,9 +3,11 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>An-Nahl @yield('judul')</title>
+  <title>SMP IT AN NAHL @yield('judul')</title>
 
   <!-- Google Font: Source Sans Pro -->
+  <link rel="icon" href="{{ asset('template/dist/img/logo1.png')}} " type="image/x-icon" />
+	<link rel="shortcut icon" type="image/x-icon" href="{{ asset('template/dist/img/logo1.png')}}" />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
   <!-- Font Awesome -->
   <link rel="stylesheet" href="{{ asset('template/plugins/fontawesome-free/css/all.min.css')}}">
@@ -46,7 +48,7 @@
     <!-- /.content-wrapper -->
     
     <footer class="main-footer">
-      <strong>Copyright &copy; 2020 <a href="#">SMP IT An-Nahl</a>.</strong>
+      <strong>Copyright &copy; 2020 <a href="{{ route('welcome') }}">SMP IT An-Nahl</a>.</strong>
       All rights reserved.
       <div class="float-right d-none d-sm-inline-block">
         <b>Version</b> 1.7.0
