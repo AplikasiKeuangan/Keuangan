@@ -24,9 +24,10 @@
                   <thead>
                   <tr>
                     <th>Nama Kelas</th>
+                    <th>Tahun Ajaran</th>
                     <th>Tanggal Buat</th>
                     <th>Status</th>
-                    <th>Aksi</th>
+                    <th>Tindakan</th>
                   </tr>
                   </thead>
                   <tbody>
@@ -34,6 +35,7 @@
                      
                         <tr>
                             <td>{{$kelas->nama_kelas}}</td>
+                            <td>{{$kelas->tahun_ajaran->nama}}</td>
                             <td>{{$kelas->created_at->diffForHumans()}}</td>
                             <td>{{($kelas->status==0)?' Disabled':'Enable'}}</td>
                             <td><a href="/admin/kelas/daftar_kelas/edit/{{$kelas->id}}" class="btn btn-primary"><i class="fa fa-edit"></i> Edit</a>
@@ -46,9 +48,10 @@
                   <tfoot>
                   <tr>
                     <th>Nama Kelas</th>
+                    <th>Tahun Ajaran</th>
                     <th>Tanggal Buat</th>
                     <th>Status</th>
-                    <th>Aksi</th>
+                    <th>Tindakan</th>
                   </tr>
                   </tfoot>
                 </table>

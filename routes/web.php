@@ -79,7 +79,7 @@ Route::prefix('admin')->name('admin-')->middleware(['checkLoginStatus'])->group(
             Route::post('/store', 'Admin\KategoriController@store')->name('store');
             Route::get('/{id}/edit', 'Admin\KategoriController@edit')->name('edit');
             Route::post('/{id}/update', 'Admin\KategoriController@update')->name('update');
-            Route::get('/{id_kas_tunai}/hapus', 'Admin\KategoriController@destroy')->name('hapus');
+            Route::get('/{id}/hapus', 'Admin\KategoriController@destroy')->name('hapus');
         });
     });
     Route::prefix('Data')->name('Data-')->group(function () {
@@ -90,18 +90,18 @@ Route::prefix('admin')->name('admin-')->middleware(['checkLoginStatus'])->group(
             Route::post('/store', 'Admin\KeuanganController@store')->name('store');
             Route::get('/{id}/edit', 'Admin\KeuanganController@edit')->name('edit');
             Route::post('/{id}/update', 'Admin\KeuanganController@update')->name('update');
-            Route::get('/{id_kas_tunai}/hapus', 'Admin\KeuanganController@destroy')->name('hapus');
+            Route::get('/{id}/hapus', 'Admin\KeuanganController@destroy')->name('hapus');
         });
     });
     Route::prefix('Data')->name('Data-')->group(function () {
         Route::prefix('tahun_ajaran')->name('tahun_ajaran-')->group(function () {
-            Route::get('/menu', 'Admin\KeuanganController@index1')->name('index1');
-            Route::get('/', 'Admin\KeuanganController@index')->name('index');
-            Route::get('/get-data', 'Admin\KeuanganController@data')->name('data');
-            Route::post('/store', 'Admin\KeuanganController@store')->name('store');
-            Route::get('/{id}/edit', 'Admin\KeuanganController@edit')->name('edit');
-            Route::post('/{id}/update', 'Admin\KeuanganController@update')->name('update');
-            Route::get('/{id_kas_tunai}/hapus', 'Admin\KeuanganController@destroy')->name('hapus');
+            Route::get('/menu', 'Admin\Tahun_AjaranController@index1')->name('index1');
+            Route::get('/', 'Admin\Tahun_AjaranController@index')->name('index');
+            Route::get('/get-data', 'Admin\Tahun_AjaranController@data')->name('data');
+            Route::post('/store', 'Admin\Tahun_AjaranController@store')->name('store');
+            Route::get('/{id}/edit', 'Admin\Tahun_AjaranController@edit')->name('edit');
+            Route::post('/{id}/update', 'Admin\Tahun_AjaranController@update')->name('update');
+            Route::get('/{id}/hapus', 'Admin\Tahun_AjaranController@destroy')->name('hapus');
         });
     });
 

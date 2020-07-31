@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Kelas;
+use App\Tahun_Ajaran;
 use DB;
 class KelasController extends Controller
 {
@@ -14,8 +15,9 @@ class KelasController extends Controller
      */
     public function index()
     {
+        $ta =Tahun_Ajaran::where('is_active','1')->get();
         $menu_active=0;
-        return view('Kelas.tambah_kelas',compact('menu_active'));
+        return view('Kelas.tambah_kelas',compact('ta'));
     }
 
     /**
@@ -73,8 +75,9 @@ class KelasController extends Controller
      */
     public function edit($id)
     {
+        $ta =Tahun_Ajaran::where('is_active','1')->get();
         $kelas = Kelas::findOrfail($id);
-        return view('Kelas.edit_kelas',compact('kelas'));
+        return view('Kelas.edit_kelas',compact('kelas','ta'));
     }
 
     /**

@@ -41,18 +41,56 @@
                      <div class="col-md-12">
                         <div class="card">
                               <div class="card-body card-block">
-                                 <form method="post" id="form1" class="form-horizontal" action="{{ route('admin-Data-kategori-store') }}" >
+                                 <form method="post" id="form1" class="form-horizontal" action="{{ route('admin-Data-tahun_ajaran-store') }}" >
                                     @csrf
                                     <div class="row form-group">
                                           <div class="col col-md-3">
-                                             <label for="hf-kategori" class=" form-control-label">Nama Kategori</label>
+                                             <label for="hf-kategori" class=" form-control-label">Nama</label>
                                           </div>
                                           <div class="col-12 col-md-9">
-                                             <input type="text" id="hf-kategori" name="nama_kategori" placeholder="Nama Kategori..." required="" class="form-control">
+                                             <input type="text" id="hf-kategori" name="nama" placeholder="Nama"required="" class="form-control">
                                           </div>
                                     </div>
-                                 </form>
-                              </div>
+                                    <div class="row form-group">
+                                        <div class="col col-md-3">
+                                           <label for="hf-dt" class=" form-control-label">Tanggal Mulai</label>
+                                        </div>
+                                        <div class="col-12 col-md-6">
+                                            <div class="input-group date" id="dt" data-target-input="nearest">
+                                                <input type="text" name="tgl_mulai" class="form-control datetimepicker-input" data-target="#dt"/>
+                                                <div class="input-group-append" data-target="#dt" data-toggle="datetimepicker">
+                                                    <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row form-group">
+                                        <div class="col col-md-3">
+                                           <label for="hf-dte" class=" form-control-label">Tanggal Selesai</label>
+                                        </div>
+                                        <div class="col-12 col-md-6">
+                                            <div class="input-group date" id="dte" data-target-input="nearest">
+                                                <input type="text" name="tgl_selesai" class="form-control datetimepicker-input" data-target="#dte"/>
+                                                <div class="input-group-append" data-target="#dte" data-toggle="datetimepicker">
+                                                    <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row form-group">
+                                        <div class="col col-md-3">
+                                           <label for="hf-status" class=" form-control-label">Status</label>
+                                        </div>
+                                        <div class="col-12 col-md-6">
+                                            <label class="custom-switch">
+                                                <input type="checkbox" name="is_active" value="1" class="custom-switch-input">
+                                                <span class="custom-switch-indicator"></span>
+                                                <span class="custom-switch-description">Aktif</span>
+                                                </label>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
                         </div>
                      </div>
                   </div>
@@ -71,13 +109,15 @@
       <div class="card">
               
         <!-- /.card-header -->
-        {{-- <div class="card-body">
+        <div class="card-body">
           <table id="example1" class="table table-bordered table-striped">
             <thead>
             <tr>
               <th>No</th>
-              <th>Tanggal Buat</th>
-              <th>Nama Jurusan</th>
+              <th>Nama</th>
+              <th>Tanggal Mulai</th>
+              <th>Tanggal Selesai</th>
+              <th>Status</th>
               <th>Tindakan</th>
             </tr>
             </thead>
@@ -85,17 +125,27 @@
                @php
                    $i = 0;
                @endphp
-              @foreach ($kategori as $kategori)
+              @foreach ($tahun_ajaran as $tahun_ajaran)
                @php
                    $i++;
                @endphp
                 <tr>
                     <td>{{$i}}</td>
-                    <td>{{$kategori->created_at->diffForHumans()}}</td>
-                    <td>{{$kategori->nama_kategori}}</td>
-                    <td align="center"><a href="/admin/Data/kategori/{{$kategori->id}}/edit" class="btn btn-primary"><i class="fa fa-edit"></i></a>
+                    <td>{{$tahun_ajaran->nama}}</td>
+                    <td>{{$tahun_ajaran->tgl_mulai}}</td>
+                    <td>{{$tahun_ajaran->tgl_selesai}}</td>
+
+                    @if ($tahun_ajaran->is_active)
+                        
+                        <td><span class="badge badge-info">Enabled</span></td>
+
+                    @else
+                    <td><span class="badge badge-dark">Disabled</span></td>
+                    @endif
+                   
+                    <td align="center"><a href="/admin/Data/tahun_ajaran/{{$tahun_ajaran->id}}/edit" class="btn btn-primary"><i class="fa fa-edit"></i></a>
                          
-                          <a href="/admin/Data/kategori/{{$kategori->id}}/hapus"class="button delete-confirm btn btn-danger"><i class="fa fa-eraser"></i></a></td>
+                          <a href="/admin/Data/tahun_ajaran/{{$tahun_ajaran->id}}/hapus"class="button delete-confirm btn btn-danger"><i class="fa fa-eraser"></i></a></td>
                 </tr>
 
               @endforeach
@@ -103,13 +153,15 @@
             <tfoot>
             <tr>
                 <th>No</th>
-                <th>Tanggal Buat</th>
-                <th>Nama Jurusan</th>
+                <th>Nama</th>
+                <th>Tanggal Mulai</th>
+                <th>Tanggal Selesai</th>
+                <th>Status</th>
                 <th>Tindakan</th>
             </tr>
             </tfoot>
           </table>
-        </div> --}}
+        </div>
         <!-- /.card-body -->
       </div>
 @endsection

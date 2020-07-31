@@ -81,7 +81,7 @@
 <!-- <script src="{{ asset ('template/plugins/jquery-knob/jquery.knob.min.js')}}"></script> -->
 <!-- daterangepicker -->
 <script src="{{ asset ('template/plugins/moment/moment.min.js')}}"></script>
-<!-- <script src="{{ asset ('template/plugins/daterangepicker/daterangepicker.js')}}"></script> -->
+<script src="{{ asset ('template/plugins/daterangepicker/daterangepicker.js')}}"></script>
 <!-- Tempusdominus Bootstrap 4 -->
 <script src="{{ asset ('template/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js')}}"></script>
 <!-- Summernote -->
@@ -195,6 +195,22 @@ $('.select2bs4').select2({
              }
          });
      });
+</script>
+<script type="text/javascript">
+  $(function () {
+      $('#dt').datetimepicker({
+        autoclose: true,
+            format: 'YYYY/MM/DD'
+      });
+  });
+</script>
+<script type="text/javascript">
+  $(function () {
+      $('#dte').datetimepicker({
+        autoclose: true,
+            format: 'YYYY/MM/DD'
+      });
+  });
 </script>
 
 @include('sweetalert::alert')

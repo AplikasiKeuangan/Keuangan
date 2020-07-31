@@ -34,6 +34,17 @@
         <form method="post" enctype="multipart/form-data" action="/admin/kelas/daftar_kelas/update/{{$kelas->id}}">
           <input type="hidden" name="_token" value="{{csrf_token()}}">
           {{ method_field('PUT') }}
+          <div class="card-body">
+            <div class="form-group">
+              <label class="form-label">Periode</label>
+              <select class="form-control" name="tahun_ajaran_id">
+                @foreach ($ta as $item)
+                  <option value=""></option>
+                  <option value="{{ $item->id }}" {{$item->nama ? 'selected':''}}>{{ $item->nama }}</option>
+                @endforeach
+              </select>
+            </div>
+          </div>
             <div class="card-body">
               <div class="form-group"{{$errors->has('nama_kelas')?' has-error':''}}>
                 <label for="nama">Nama</label>

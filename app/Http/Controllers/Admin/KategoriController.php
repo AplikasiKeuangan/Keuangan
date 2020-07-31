@@ -113,7 +113,7 @@ class KategoriController extends Controller
         $update_kategori->update($input_data);
         alert()->success('Kategori Berhasil Diedit!');
         return redirect('admin/Data/kategori/');
-        dd($update_kategori);
+        
         }
     }
 
