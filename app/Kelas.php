@@ -13,4 +13,7 @@ class Kelas extends Model
     public function tahun_ajaran(){
         return $this->hasOne('App\Tahun_Ajaran','id','tahun_ajaran_id');
     }
+    public function nama_kelas(){
+        return $this->hasMany('App\Nama_Kelas','kelas_id','id');
+    }
 }

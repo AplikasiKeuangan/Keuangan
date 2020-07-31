@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Nama_Kelas;
+use App\Kelas;
 use Illuminate\Http\Request;
 
 class Nama_KelasController extends Controller
@@ -13,7 +14,8 @@ class Nama_KelasController extends Controller
      */
     public function index()
     {
-        return view('Nama_Kelas.tambah_nama_kelas');
+        $kelas = Kelas::all();
+        return view('Nama_Kelas.tambah_nama_kelas',compact('kelas'));
     }
 
     /**

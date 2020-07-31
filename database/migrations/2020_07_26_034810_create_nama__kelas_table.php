@@ -16,6 +16,7 @@ class CreateNamaKelasTable extends Migration
         Schema::create('nama__kelas', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('nama_kelas');
+            $table->integer('kelas_id');
             $table->text('deskripsi')->nullable();
             $table->tinyInteger('status')->default(0);
             $table->timestamps();
