@@ -234,7 +234,7 @@
                                              <select class="form-control hf-kelas" name="nama_kelas_id" data-placeholder="Pilih Kelas" style="width: 100%;">
                                                 @foreach($t as $item)
                                                 <option value="{{ $item->id }}">{{ $item->kelas->nama_kelas.'-'.$item->nama_kelas.'-'.$item->kelas->tahun_ajaran->nama}} </option>
-                                             @endforeach
+                                                @endforeach
                                              </select>
                                           </div>
                                     </div>

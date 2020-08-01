@@ -82,15 +82,9 @@
               </a>
             </li>
             <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a href="{{route('admin-Data-tagihan-index')}}" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
                 <p>Tagihan</p>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="#" class="nav-link">
-                <i class="far fa-circle nav-icon"></i>
-                <p>Tabungan</p>
               </a>
             </li>
             <li class="nav-item">

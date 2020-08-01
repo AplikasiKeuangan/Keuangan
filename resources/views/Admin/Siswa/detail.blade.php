@@ -120,15 +120,13 @@
                       <div class="card-body">
                         <dl class="row">
                            <dt class="col-sm-4">Kelas</dt>
-                           <dd class="col-sm-8">{{ $data_siswa->kelas }}</dd>
+                           @foreach ($nama_kelas as $nama_kelas)
+                           <dd class="col-sm-8">{{ $nama_kelas->kelas->nama_kelas.'-'.$nama_kelas->nama_kelas.'-'.$nama_kelas->kelas->tahun_ajaran->nama}}</dd>
+                           @endforeach
+                           
                         </dl>
                       </div>
-                      <div class="card-body">
-                        <dl class="row">
-                           <dt class="col-sm-4">Nama Kelas</dt>
-                           <dd class="col-sm-8">{{ $data_siswa->nama_kelas }}</dd>
-                        </dl>
-                      </div>
+                      
                     </div>
                   </div>
                 </div>

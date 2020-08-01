@@ -108,4 +108,16 @@ Route::prefix('admin')->name('admin-')->middleware(['checkLoginStatus'])->group(
         });
     });
 
+    Route::prefix('Data')->name('Data-')->group(function () {
+        Route::prefix('tagihan')->name('tagihan-')->group(function () {
+            Route::get('/menu', 'Admin\TagihanController@index1')->name('index1');
+            Route::get('/', 'Admin\TagihanController@index')->name('index');
+            Route::get('/get-data', 'Admin\TagihanController@data')->name('data');
+            Route::post('/store', 'Admin\TagihanController@store')->name('store');
+            Route::get('/{id}/edit', 'Admin\TagihanController@edit')->name('edit');
+            Route::post('/{id}/update', 'Admin\TagihanController@update')->name('update');
+            Route::get('/{id}/hapus', 'Admin\TagihanController@destroy')->name('hapus');
+        });
+    });
+
 });

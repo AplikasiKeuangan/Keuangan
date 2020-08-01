@@ -13,7 +13,6 @@ class Nama_Kelas extends Model
     public function kelas(){
         return $this->hasOne('App\Kelas','id','kelas_id');
     }
-    public function nama_kelas_combine(){
-        return $this->hasMany('App\Nama_Kelas','nama_kelas_id','id');
-    }
+    
+   
 }

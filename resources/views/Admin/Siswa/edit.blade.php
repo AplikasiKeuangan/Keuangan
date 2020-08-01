@@ -226,30 +226,19 @@
                                           <input type="text" id="hf-asal-sekolah" name="asal_sekolah" placeholder="Asal Sekolah" required="" class="form-control" value="{{ $data_siswa->asal_sekolah }}">
                                        </div>
                                     </div>
+                                    
                                     <div class="row form-group">
                                        <div class="col col-md-3">
                                           <label for="hf-kelas" class=" form-control-label">Kelas</label>
                                        </div>
                                        <div class="col-12 col-md-9">
-                                          <select id="hf-kelas" name="kelas"  required="" class="form-control">
-                                             @foreach ($kelas as $kelas)
-                                                <option value="{{$kelas->nama_kelas}}" {{$kelas->nama_kelas ? 'selected':''}}>{{$kelas->nama_kelas}}</option>
-                                             @endforeach
+                                          <select class="form-control hf-kelas" name="nama_kelas_id" data-placeholder="Pilih Kelas" style="width: 100%;">
+                                             @foreach($nama_kelas as $item)
+                                             <option value="{{ $item->id }}">{{ $item->kelas->nama_kelas.'-'.$item->nama_kelas.'-'.$item->kelas->tahun_ajaran->nama}} </option>
+                                          @endforeach
                                           </select>
                                        </div>
-                                    </div>
-                                    <div class="row form-group">
-                                       <div class="col col-md-3">
-                                          <label for="hf-nama-kelas" class=" form-control-label">Nama Kelas</label>
-                                       </div>
-                                       <div class="col-12 col-md-9">
-                                          <select id="hf-nama_kelas" name="nama_kelas"  required="" class="form-control">
-                                             @foreach ($nama_kelas as $nama_kelas)
-                                                <option value="{{$nama_kelas->nama_kelas}}" {{$nama_kelas->nama_kelas ? 'selected':''}}>{{$nama_kelas->nama_kelas}}</option>
-                                             @endforeach
-                                          </select>
-                                       </div>
-                                    </div>
+                                 </div>
                                  </form>
                               </div>
                         </div>

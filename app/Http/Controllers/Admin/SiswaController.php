@@ -55,8 +55,9 @@ class SiswaController extends Controller
     public function detail($nis, $nama_lengkap)
     {
         $data_siswa = Siswa::where([['nis',$nis],['nama_lengkap',$nama_lengkap]])->first();
+        $nama_kelas=Nama_Kelas::where('status',1)->get();
         if($data_siswa){
-            return view('admin.siswa.detail', compact('data_siswa'));
+            return view('admin.siswa.detail', compact('data_siswa','nama_kelas'));
         }
         else{
             return abort(404);
@@ -118,7 +119,8 @@ class SiswaController extends Controller
     }
     public function edit($nis, $nama_lengkap){
         $data_siswa = Siswa::where([['nis',$nis],['nama_lengkap',$nama_lengkap]])->first();
-        $nama_kelas=Nama_Kelas::all();
+        
+        $nama_kelas=Nama_Kelas::where('status',1)->get();
         $kelas=Kelas::all();
         if($data_siswa){
             return view('admin.siswa.edit', compact('data_siswa','nama_kelas','kelas'));
