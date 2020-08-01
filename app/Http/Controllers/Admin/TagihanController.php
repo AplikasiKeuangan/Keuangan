@@ -60,10 +60,10 @@ class TagihanController extends Controller
                 
             
             }else{
-                return redirect(route('admin-Data-tagihan-index'))->with('error','Data Gagal Ditambah');
+                return redirect(route('admin-Data-tagihan-index'))->with('error','Tagihan Gagal Ditambah');
             }
            $tagihan->save();
-            return redirect('/admin/Data/tagihan/')->with('success','Data Berhasil Ditambahkan');
+            return redirect('/admin/Data/tagihan/')->with('success','Tagihan Berhasil Ditambahkan');
         
         } catch (\Throwable $th) {
             return back()->with('warning','Terjadi Kesalahan');
@@ -90,7 +90,12 @@ class TagihanController extends Controller
      */
     public function edit($id)
     {
-        //
+        $tagihan = Tagihan::findOrfail($id);
+        $kelas = Kelas::all();
+        $siswa = Siswa::get();
+        $nama_kelas=Nama_Kelas::where('status',1)->get();
+        return view('Admin.Tagihan.edit',compact('kelas','siswa','nama_kelas','tagihan'));
+
     }
 
     /**
@@ -102,7 +107,32 @@ class TagihanController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        
+        try {
+            $this->validate($request,[
+                'nama'=>'max:255'
+            ]);
+
+            
+            $tagihan =Tagihan::findOrfail($id);
+            $tagihan->nama = $request->nama;
+            
+           
+
+            if ($request->jenis == 'SPP') {
+                $tagihan->jumlah = $request->jumlah;
+                
+            
+            }else{
+                return redirect(route('admin-Data-tagihan-index'))->with('error','Data Gagal Ditambah');
+            }
+           $tagihan->save();
+            return redirect('/admin/Data/tagihan/')->with('success','Data Berhasil Ditambahkan');
+        
+        } catch (\Throwable $th) {
+            return back()->with('warning','Terjadi Kesalahan');
+
+        }
     }
 
     /**
@@ -113,6 +143,15 @@ class TagihanController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $tagihan = Tagihan::findOrfail($id);
+        $tagihan->delete();
+
+        if ($tagihan) {
+            alert()->success('Tagihan Berhasil Dihapus!');
+        }else{
+            alert()->error('Tagihan Gagal Dihapus!');
+        }
+        return back();
+    
     }
 }

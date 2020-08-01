@@ -237,10 +237,10 @@ class KeuanganController extends Controller
                 $keuangan->penerimaan = $request->nominal;
             
             }else{
-                return redirect(route('admin-Data-keuangan-index'))->with('error','Data Gagal Ditambah');
+                return redirect(route('admin-Data-keuangan-index'))->with('error','Data Gagal Diupdate');
             }
            $keuangan->update();
-            return redirect('/admin/Data/keuangan/')->with('success','Data Berhasil Ditambahkan');
+            return redirect('/admin/Data/keuangan/')->with('success','Data Berhasil Diupdate');
         } catch (\Throwable $th) {
             //throw $th;
         }
