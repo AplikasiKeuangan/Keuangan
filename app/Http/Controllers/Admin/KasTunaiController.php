@@ -12,7 +12,7 @@ use DateTime;
 class KasTunaiController extends Controller
 {
     public function index(){
-        $kasTunai = KasTunai::get();
+        $kasTunai = KasTunai::whereNotNull('created_at')->get();
         $totaldebit = $kasTunai->sum('debit');
         $totalkredit = $kasTunai->sum('kredit');
         
@@ -22,7 +22,7 @@ class KasTunaiController extends Controller
     public function data(Request $request)
     {
         if ($request->ajax()) {
-            $kastunai  = KasTunai::orderBy('created_at', 'DESC')->get();
+            $kastunai  = KasTunai::whereNotNull('created_at')->orderBy('created_at', 'DESC')->get();
             return DataTables::of($kastunai)
                 ->addColumn('ditambahkan_pada', function($kastunai){
                     return $kastunai->created_at->diffForHumans();
@@ -97,19 +97,19 @@ class KasTunaiController extends Controller
     public function chart($timeNow, $haris, $bulans, $tahuns){
         $jumlah_debit_per_bulans = [];
         for ($i=0; $i < count($bulans) ; $i++) { 
-            $jumlah_debit_per_bulans[] = KasTunai::whereMonth('tanggal',$bulans[$i])->whereYear('tanggal',$tahuns[$i])->get()->sum('debit');
+            $jumlah_debit_per_bulans[] = KasTunai::whereNotNull('created_at')->whereMonth('tanggal',$bulans[$i])->whereYear('tanggal',$tahuns[$i])->get()->sum('debit');
         }
         $jumlah_kredit_per_bulans = [];
         for ($i=0; $i < count($bulans) ; $i++) { 
-            $jumlah_kredit_per_bulans[] = KasTunai::whereMonth('tanggal',$bulans[$i])->whereYear('tanggal',$tahuns[$i])->get()->sum('kredit');
+            $jumlah_kredit_per_bulans[] = KasTunai::whereNotNull('created_at')->whereMonth('tanggal',$bulans[$i])->whereYear('tanggal',$tahuns[$i])->get()->sum('kredit');
         }
         $jumlah_debit_per_haris = [];
         for ($i=0; $i < count($haris) ; $i++) { 
-            $jumlah_debit_per_haris[] = KasTunai::whereDay('tanggal',$haris[$i])->whereMonth('tanggal',$timeNow->format('m'))->whereYear('tanggal',$timeNow->format('Y'))->get()->sum('debit');
+            $jumlah_debit_per_haris[] = KasTunai::whereNotNull('created_at')->whereDay('tanggal',$haris[$i])->whereMonth('tanggal',$timeNow->format('m'))->whereYear('tanggal',$timeNow->format('Y'))->get()->sum('debit');
         }
         $jumlah_kredit_per_haris = [];
         for ($i=0; $i < count($haris) ; $i++) { 
-            $jumlah_kredit_per_haris[] = KasTunai::whereDay('tanggal',$haris[$i])->whereMonth('tanggal',$timeNow->format('m'))->whereYear('tanggal',$timeNow->format('Y'))->get()->sum('kredit');
+            $jumlah_kredit_per_haris[] = KasTunai::whereNotNull('created_at')->whereDay('tanggal',$haris[$i])->whereMonth('tanggal',$timeNow->format('m'))->whereYear('tanggal',$timeNow->format('Y'))->get()->sum('kredit');
         }
         return [
             'jumlah_debit_per_bulans' => $jumlah_debit_per_bulans,

@@ -1,20 +1,16 @@
 @extends('layouts.apps')
 
 @section('judul',' - Edit Tahun Ajaran')
-@section('head')
-   <!-- Bootstrap CSS -->
-   <link rel="stylesheet" href="//cdn.datatables.net/1.10.7/css/jquery.dataTables.min.css">
-@endsection
 @section('content')
    <div class="content-header">
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Edit Tahun Ajaran -{{ $tahun_ajaran->nama }}</h1>
+            <h1>Edit Tahun Ajaran - {{ $tahun_ajaran->nama }}</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="{{ route('admin-Data-tahun_ajaran-index') }}">Daftar Tahun Ajaran</a></li>
+              <li class="breadcrumb-item"><a href="{{ route('admin-tahun-ajaran-index') }}">Daftar Tahun Ajaran</a></li>
               <li class="breadcrumb-item active">Edit Tahun Ajaran</li>
             </ol>
           </div>
@@ -48,7 +44,7 @@
                      <div class="col-md-12">
                         <div class="card">
                               <div class="card-body card-block">
-                                 <form method="post" id="form-edit-tahun_ajaran" class="form-horizontal" action="/admin/Data/tahun_ajaran/{{$tahun_ajaran->id}}/update" >
+                                 <form method="post" id="form-edit-tahun_ajaran" class="form-horizontal" action="/admin/tahun-ajaran/{{$tahun_ajaran->id}}/update" >
                                     @csrf
                                     
                                     <div class="row form-group">

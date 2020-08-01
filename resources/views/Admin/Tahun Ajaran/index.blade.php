@@ -18,7 +18,7 @@
             </ol>
           </div>
           <div class="col-sm-12">
-            <button type="button" class="btn bg-gradient-primary float-right" data-toggle="modal" data-target="#mediumModal">Tambah Tahun Ajaran</button>
+            <button type="button" class="btn bg-gradient-primary float-right" data-toggle="modal" data-target="#mediumModal">Tambah data</button>
           </div>
         </div>
       </div>
@@ -41,7 +41,7 @@
                      <div class="col-md-12">
                         <div class="card">
                               <div class="card-body card-block">
-                                 <form method="post" id="form1" class="form-horizontal" action="{{ route('admin-Data-tahun_ajaran-store') }}" >
+                                 <form method="post" id="form1" class="form-horizontal" action="{{ route('admin-tahun-ajaran-store') }}" >
                                     @csrf
                                     <div class="row form-group">
                                           <div class="col col-md-3">
@@ -89,8 +89,8 @@
                                                 </label>
                                         </div>
                                     </div>
-                                </form>
-                            </div>
+                                 </form>
+                              </div>
                         </div>
                      </div>
                   </div>
@@ -106,62 +106,110 @@
          </div>
       </div>
       <!-- ./modal-tambah-data -->
-      <div class="card">
-              
-        <!-- /.card-header -->
-        <div class="card-body">
-          <table id="example1" class="table table-bordered table-striped">
-            <thead>
-            <tr>
-              <th>No</th>
-              <th>Nama</th>
-              <th>Tanggal Mulai</th>
-              <th>Tanggal Selesai</th>
-              <th>Status</th>
-              <th>Tindakan</th>
-            </tr>
-            </thead>
-            <tbody>
-               @php
-                   $i = 0;
-               @endphp
-              @foreach ($tahun_ajaran as $tahun_ajaran)
-               @php
-                   $i++;
-               @endphp
-                <tr>
-                    <td>{{$i}}</td>
-                    <td>{{$tahun_ajaran->nama}}</td>
-                    <td>{{$tahun_ajaran->tgl_mulai}}</td>
-                    <td>{{$tahun_ajaran->tgl_selesai}}</td>
-
-                    @if ($tahun_ajaran->is_active)
-                        
-                        <td><span class="badge badge-info">Enabled</span></td>
-
-                    @else
-                    <td><span class="badge badge-dark">Disabled</span></td>
-                    @endif
-                   
-                    <td align="center"><a href="/admin/Data/tahun_ajaran/{{$tahun_ajaran->id}}/edit" class="btn btn-primary"><i class="fa fa-edit"></i></a>
-                         
-                          <a href="/admin/Data/tahun_ajaran/{{$tahun_ajaran->id}}/hapus"class="button delete-confirm btn btn-danger"><i class="fa fa-eraser"></i></a></td>
-                </tr>
-
-              @endforeach
-            </tbody>
-            <tfoot>
-            <tr>
-                <th>No</th>
-                <th>Nama</th>
-                <th>Tanggal Mulai</th>
-                <th>Tanggal Selesai</th>
-                <th>Status</th>
-                <th>Tindakan</th>
-            </tr>
-            </tfoot>
-          </table>
-        </div>
-        <!-- /.card-body -->
+      <div class="container-fluid">
+         <div class="row">
+            <div class="col-12">
+               <div class="card">
+                  <div class="card-body">
+                     <table id="datatables-tahun-ajaran" class="table table-bordered table-hover">
+                        <thead>
+                           <tr>
+                              <th>Nama Tahun Ajaran</th>
+                              <th>Tanggal Mulai</th>
+                              <th>Tanggal Selesai</th>
+                              <th>Status</th>
+                              <th style="text-align: right">Tindakan</th>
+                           </tr>
+                        </thead>
+                        <tbody></tbody>
+                        <tfoot>
+                           <tr>
+                              <th>Nama Tahun Ajaran</th>
+                              <th>Tanggal Mulai</th>
+                              <th>Tanggal Selesai</th>
+                              <th>Status</th>
+                              <th style="text-align: right">Tindakan</th>
+                           </tr>
+                        </tfoot>
+                     </table>
+                  </div>
+               </div>
+            </div>
+         </div>
       </div>
+   </section>
+@endsection
+
+@section('script')
+
+<!-- DataTables -->
+<script src="{{ asset('plugins/datatables/jquery.dataTables.min.js')}}"></script>
+<script src="{{ asset('plugins/datatables-bs4/js/dataTables.bootstrap4.min.js')}}"></script>
+<script src="{{ asset('plugins/datatables-responsive/js/dataTables.responsive.min.js')}}"></script>
+<script src="{{ asset('plugins/datatables-responsive/js/responsive.bootstrap4.min.js')}}"></script>
+
+
+<script>
+   $(function () {
+      //$('#example1').DataTable()
+      var table = $('#datatables-tahun-ajaran').DataTable({
+         responsive: true,
+         autoWidth: false,
+         processing : true,
+         serverSide: true,
+         ajax: '{!! route('admin-tahun-ajaran-data') !!}',
+         columns: [
+                  { data: 'nama', name: 'nama'},
+                  { data: 'tgl_mulai', name: 'tgl_mulai'},
+                  { data: 'tgl_selesai', name: 'tgl_selesai'},
+                  { data: 'is_active', name: 'status', searchable: false, render : function(data, type, row) 
+                     {
+                        if(data == 1){
+                           return '<span class="badge badge-info">Aktif</span>';
+                        }
+                        return '<span class="badge badge-dark">Tidak Aktif</span>';
+                     }
+                  },
+                  { data: 'action', className: 'dt-right', orderable: false, searchable: false }
+               ],
+         // "rowCallback": function( row, data ) {}
+         "language": {
+            "lengthMenu": "Menampilkan _MENU_ records per halaman",
+            "zeroRecords": "Tidak metemukan record",
+            "info": "Menampilkan _PAGE_ dari _PAGES_ halaman",
+            "infoEmpty": "Tidak ada record",
+            "infoFiltered": "(difilter dari _MAX_ total records)",
+            "infoPostFix":    "",
+            "thousands":      ",",
+            "loadingRecords": "Memuat...",
+            "processing":     "Proses...",
+            "search":         "Cari:",
+            "paginate": {
+                  "first":      "Pertama",
+                  "last":       "Terakhir",
+                  "next":       "Selanjutnya",
+                  "previous":   "Sebelumnya"
+            },
+            "aria": {
+                  "sortAscending":  ": aktifkan untuk mengurutkan kolom naik",
+                  "sortDescending": ": aktifkan untuk mengurutkan kolom turun"
+            }
+         }
+      })
+   })
+   function adminDelete() {
+      event.preventDefault();
+      const url = $(event.currentTarget).data('admin');
+      swal({
+         title: 'Apa Anda Yakin?',
+         text: 'Data yang dihapus tidak bisa dipulihkan!',
+         icon: 'warning',
+         buttons: ["Batal", "Ya!"],
+      }).then(function(value) {
+         if (value) {
+            window.location.href = url;
+         }
+      });
+    }
+   </script>
 @endsection

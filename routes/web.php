@@ -97,17 +97,8 @@ Route::prefix('admin')->name('admin-')->middleware(['checkLoginStatus'])->group(
         });
     });
     Route::prefix('Data')->name('Data-')->group(function () {
-        Route::prefix('tahun_ajaran')->name('tahun_ajaran-')->group(function () {
-            Route::get('/menu', 'Admin\Tahun_AjaranController@index1')->name('index1');
-            Route::get('/', 'Admin\Tahun_AjaranController@index')->name('index');
-            Route::get('/get-data', 'Admin\Tahun_AjaranController@data')->name('data');
-            Route::post('/store', 'Admin\Tahun_AjaranController@store')->name('store');
-            Route::get('/{id}/edit', 'Admin\Tahun_AjaranController@edit')->name('edit');
-            Route::post('/{id}/update', 'Admin\Tahun_AjaranController@update')->name('update');
-            Route::get('/{id}/hapus', 'Admin\Tahun_AjaranController@destroy')->name('hapus');
-        });
+        //
     });
-
     Route::prefix('Data')->name('Data-')->group(function () {
         Route::prefix('tagihan')->name('tagihan-')->group(function () {
             Route::get('/menu', 'Admin\TagihanController@index1')->name('index1');
@@ -119,5 +110,32 @@ Route::prefix('admin')->name('admin-')->middleware(['checkLoginStatus'])->group(
             Route::get('/{id}/hapus', 'Admin\TagihanController@destroy')->name('hapus');
         });
     });
-
+    Route::prefix('tahun-ajaran')->name('tahun-ajaran-')->group(function(){
+        Route::get('/', 'Admin\TahunAjaranController@index')->name('index');
+        Route::get('/get-data', 'Admin\TahunAjaranController@data')->name('data');
+        Route::post('/store', 'Admin\TahunAjaranController@store')->name('store');
+        Route::prefix('{id_tahun_ajaran}')->group(function(){
+            Route::get('/edit', 'Admin\TahunAjaranController@edit')->name('edit');
+            Route::post('/update', 'Admin\TahunAjaranController@update')->name('update');
+            Route::get('/delete', 'Admin\TahunAjaranController@destroy')->name('delete');
+            Route::prefix('kelas')->name('kelas-')->group(function(){
+                Route::get('/', 'Admin\KelasController@index')->name('index');
+                Route::get('/get-data', 'Admin\KelasController@data')->name('data');
+                Route::post('/store', 'Admin\KelasController@store')->name('store');
+                Route::prefix('{id_kelas}')->group(function(){
+                    Route::get('/edit', 'Admin\KelasController@edit')->name('edit');
+                    Route::post('/update', 'Admin\KelasController@update')->name('update');
+                    Route::get('/delete', 'Admin\KelasController@destroy')->name('delete');
+                    Route::prefix('nama-kelas')->name('nama-kelas-')->group(function(){
+                        Route::get('/', 'Admin\NamaKelasController@index')->name('index');
+                        Route::get('/get-data', 'Admin\NamaKelasController@data')->name('data');
+                        Route::post('/store', 'Admin\NamaKelasController@store')->name('store');
+                        Route::get('/{id_nama_kelas}/edit', 'Admin\NamaKelasController@edit')->name('edit');
+                        Route::post('/{id_nama_kelas}/update', 'Admin\NamaKelasController@update')->name('update');
+                        Route::get('/{id_nama_kelas}/delete', 'Admin\NamaKelasController@destroy')->name('delete');
+                    });
+                });
+            });
+        });
+    });
 });

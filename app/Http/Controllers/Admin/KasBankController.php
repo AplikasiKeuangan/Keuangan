@@ -11,7 +11,7 @@ use DataTables;
 class KasBankController extends Controller
 {
     public function index(){
-        $kasBank = KasBank::get();
+        $kasBank = KasBank::whereNotNull('created_at')->get();
         $totaldebit = $kasBank->sum('debit');
         $totalkredit = $kasBank->sum('kredit');
         
@@ -21,7 +21,7 @@ class KasBankController extends Controller
     public function data(Request $request)
     {
         if ($request->ajax()) {
-            $kasBank  = KasBank::orderBy('created_at', 'DESC')->get();
+            $kasBank  = KasBank::orderBy('created_at', 'DESC')->whereNotNull('created_at')->get();
             return DataTables::of($kasBank)
                 ->addColumn('ditambahkan_pada', function($kasBank){
                     return $kasBank->created_at->diffForHumans();
@@ -97,19 +97,19 @@ class KasBankController extends Controller
     {
         $jumlah_debit_per_bulans = [];
         for ($i=0; $i < count($bulans) ; $i++) { 
-            $jumlah_debit_per_bulans[] = KasBank::whereMonth('tanggal',$bulans[$i])->whereYear('tanggal',$tahuns[$i])->get()->sum('debit');
+            $jumlah_debit_per_bulans[] = KasBank::whereNotNull('created_at')->whereMonth('tanggal',$bulans[$i])->whereYear('tanggal',$tahuns[$i])->get()->sum('debit');
         }
         $jumlah_kredit_per_bulans = [];
         for ($i=0; $i < count($bulans) ; $i++) { 
-            $jumlah_kredit_per_bulans[] = KasBank::whereMonth('tanggal',$bulans[$i])->whereYear('tanggal',$tahuns[$i])->get()->sum('kredit');
+            $jumlah_kredit_per_bulans[] = KasBank::whereNotNull('created_at')->whereMonth('tanggal',$bulans[$i])->whereYear('tanggal',$tahuns[$i])->get()->sum('kredit');
         }
         $jumlah_debit_per_haris = [];
         for ($i=0; $i < count($haris) ; $i++) { 
-            $jumlah_debit_per_haris[] = KasBank::whereDay('tanggal',$haris[$i])->whereMonth('tanggal',$timeNow->format('m'))->whereYear('tanggal',$timeNow->format('Y'))->get()->sum('debit');
+            $jumlah_debit_per_haris[] = KasBank::whereNotNull('created_at')->whereDay('tanggal',$haris[$i])->whereMonth('tanggal',$timeNow->format('m'))->whereYear('tanggal',$timeNow->format('Y'))->get()->sum('debit');
         }
         $jumlah_kredit_per_haris = [];
         for ($i=0; $i < count($haris) ; $i++) { 
-            $jumlah_kredit_per_haris[] = KasBank::whereDay('tanggal',$haris[$i])->whereMonth('tanggal',$timeNow->format('m'))->whereYear('tanggal',$timeNow->format('Y'))->get()->sum('kredit');
+            $jumlah_kredit_per_haris[] = KasBank::whereNotNull('created_at')->whereDay('tanggal',$haris[$i])->whereMonth('tanggal',$timeNow->format('m'))->whereYear('tanggal',$timeNow->format('Y'))->get()->sum('kredit');
         }
         return [
             'jumlah_debit_per_bulans' => $jumlah_debit_per_bulans,

@@ -11,12 +11,12 @@ use App\KasTunai;
 class KasController extends Controller
 {
     public function index(){
-        $kasBank = KasBank::get();
+        $kasBank = KasBank::whereNotNull('created_at')->get();
         $totalDebitBank = $kasBank->sum('debit');
         $totalKreditBank = $kasBank->sum('kredit');
         $saldoAkhirBank = $totalDebitBank - $totalKreditBank;
 
-        $kasTunai = KasTunai::get();
+        $kasTunai = KasTunai::whereNotNull('created_at')->get();
         $totalDebitTunai = $kasTunai->sum('debit');
         $totalKreditTunai = $kasTunai->sum('kredit');
         $saldoAkhirTunai = $totalDebitTunai - $totalKreditTunai;

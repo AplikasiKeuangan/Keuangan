@@ -175,23 +175,13 @@
             </li>
           </ul>
         </li>
-        <li class="nav-item has-treeview">
-          <a href="#" class="nav-link">
-            <i class="nav-icon fas fa-clock"></i>
+        <li class="nav-item">
+          <a href="{{route('admin-tahun-ajaran-index')}}" class="nav-link {{ Route::currentRouteName() == 'admin-tahun-ajaran-index' ? 'active':'' }}">
+            <i class="nav-icon fas fa-school"></i>
             <p>
-              Tahun Akademik
-              <i class="fas fa-angle-left right"></i>
-              <span class="badge badge-info right">6</span>
+              Tahun Ajaran | Kelas
             </p>
           </a>
-          <ul class="nav nav-treeview">
-            <li class="nav-item">
-            <a href="{{route('admin-Data-tahun_ajaran-index')}}" class="nav-link">
-                <i class="far fa-circle nav-icon"></i>
-                <p>Tahun Ajaran</p>
-              </a>
-            </li>
-          </ul>
         </li>
         
      
