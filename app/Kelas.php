@@ -16,4 +16,5 @@ class Kelas extends Model
     public function nama_kelas(){
         return $this->hasMany('App\Nama_Kelas','kelas_id','id');
     }
+    
 }

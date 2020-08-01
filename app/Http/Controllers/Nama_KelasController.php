@@ -14,7 +14,7 @@ class Nama_KelasController extends Controller
      */
     public function index()
     {
-        $kelas = Kelas::all();
+        $kelas = Kelas::where('status',1)->get();
         return view('Nama_Kelas.tambah_nama_kelas',compact('kelas'));
     }
 
@@ -80,8 +80,9 @@ class Nama_KelasController extends Controller
      */
     public function edit($id)
     {
+        $kelas = Kelas::where('status',1)->get();
         $nama_kelas = Nama_Kelas::findOrfail($id);
-        return view('Nama_Kelas.edit_nama_kelas',compact('nama_kelas'));
+        return view('Nama_Kelas.edit_nama_kelas',compact('nama_kelas','kelas'));
     }
 
     /**

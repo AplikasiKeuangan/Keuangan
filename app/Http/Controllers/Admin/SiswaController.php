@@ -17,9 +17,9 @@ class SiswaController extends Controller
     public function index()
     {
         $nis = $this->nis();
-        $nama_kelas=Nama_Kelas::all();
-        $kelas=Kelas::all();
-        return view('Admin.Siswa.index',compact('nis','nama_kelas','kelas'));
+        $t=Nama_Kelas::where('status',1)->get();
+        
+        return view('Admin.Siswa.index',compact('nis','t'));
     }
     public function data(Request $request)
     {
@@ -80,8 +80,8 @@ class SiswaController extends Controller
                 'bahasa_sehari_hari' => 'required|max:255',
                 'alamat' => 'required|max:255',
                 'asal_sekolah' => 'required|max:255',
-                'kelas'=> 'required|max:255',
-                'nama_kelas'=> 'required|max:255',
+                'nama_kelas_id'=> 'required|max:255',
+               
             ]);
 
             if($validatedData == true){
@@ -105,8 +105,8 @@ class SiswaController extends Controller
                 $siswa->email = $request->email;
                 $siswa->alamat = $request->alamat;
                 $siswa->asal_sekolah = $request->asal_sekolah;
-                $siswa->kelas = $request->kelas;
-                $siswa->nama_kelas = $request->nama_kelas;
+                $siswa->nama_kelas_id = $request->nama_kelas_id;
+               
                 $siswa->save();
             }else{
                 return redirect()->route('admin-siswa-index')->with('danger', 'Gagal ditambahkan!');
@@ -144,8 +144,7 @@ class SiswaController extends Controller
                 'bahasa_sehari_hari' => 'required|max:255',
                 'alamat' => 'required|max:255',
                 'asal_sekolah' => 'required|max:255',
-                'nama_kelas' => 'required|max:255',
-                'kelas' => 'required|max:255',
+                'nama_kelas_id'=> 'required|max:255',
             ]);
 
             if($validatedData == false){
@@ -170,8 +169,7 @@ class SiswaController extends Controller
                 $siswa->email = $request->email;
                 $siswa->alamat = $request->alamat;
                 $siswa->asal_sekolah = $request->asal_sekolah;
-                $siswa->nama_kelas = $request->nama_kelas;
-                $siswa->kelas = $request->kelas;
+                $siswa->nama_kelas_id = $request->nama_kelas_id;
                 $siswa->update();
                 return redirect()->route('admin-siswa-index')->with('success', 'Berhasil diupdate!');
             }

@@ -35,6 +35,14 @@
           <input type="hidden" name="_token" value="{{csrf_token()}}">
           {{ method_field('PUT') }}
             <div class="card-body">
+              <div class="form-group">
+                <label class="form-label">Kelas</label>
+                <select id="select-beast" class="form-control custom-select" name="kelas_id">
+                    @foreach($kelas as $item)
+                        <option value="{{ $item->id }}">{{ $item->nama_kelas }} - {{  $item->tahun_ajaran->nama }}</option>
+                    @endforeach
+                </select>
+              </div>
               <div class="form-group"{{$errors->has('nama_kelas')?' has-error':''}}>
                 <label for="nama">Nama</label>
               <input type="text" class="form-control" id="nama" name="nama_kelas" value="{{$nama_kelas->nama_kelas}}" placeholder="Masukkan Nama Jurusan">

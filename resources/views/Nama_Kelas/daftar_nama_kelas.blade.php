@@ -23,7 +23,8 @@
                 <table id="example1" class="table table-bordered table-striped">
                   <thead>
                   <tr>
-                    <th>Nama Nama Kelas</th>
+                    <th>Kelas</th>
+                    <th>Nama Kelas</th>
                     <th>Deskripsi</th>
                     <th>Tanggal Buat</th>
                     <th>Status</th>
@@ -35,9 +36,17 @@
                      
                         <tr>
                             <td>{{$nama_kelas->nama_kelas}}</td>
+                            <td>{{$nama_kelas->kelas->nama_kelas}}-{{$nama_kelas->kelas->tahun_ajaran->nama}}</td>
                             <td>{{$nama_kelas->deskripsi}}</td>
                             <td>{{$nama_kelas->created_at->diffForHumans()}}</td>
-                            <td>{{($nama_kelas->status==0)?' Disabled':'Enable'}}</td>
+                            {{-- <td>{{($nama_kelas->status==0)?' Disabled':'Enable'}}</td> --}}
+                            <td>
+                              @if ($nama_kelas->status==1)
+                                  <span class="badge badge-info">Enabled</span>
+                              @else
+                              <span class="badge badge-dark">Disabled</span>
+                              @endif
+                            </td>
                             <td><a href="/admin/nama_kelas/daftar_nama_kelas/edit/{{$nama_kelas->id}}" class="btn btn-primary"><i class="fa fa-edit"></i></a>
                                 
                                 <a href="/admin/nama_kelas/daftar_nama_kelas/hapus/{{$nama_kelas->id}}"class="button delete-confirm btn btn-danger"><i class="fa fa-eraser"></i></a></td>
@@ -47,7 +56,8 @@
                   </tbody>
                   <tfoot>
                   <tr>
-                    <th>Nama Nama Kelas</th>
+                    <th>Kelas</th>
+                    <th>Nama Kelas</th>
                     <th>Deskripsi</th>
                     <th>Tanggal Buat</th>
                     <th>Status</th>

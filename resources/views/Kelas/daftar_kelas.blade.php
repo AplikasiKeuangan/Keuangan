@@ -37,7 +37,13 @@
                             <td>{{$kelas->nama_kelas}}</td>
                             <td>{{$kelas->tahun_ajaran->nama}}</td>
                             <td>{{$kelas->created_at->diffForHumans()}}</td>
-                            <td>{{($kelas->status==0)?' Disabled':'Enable'}}</td>
+                            <td>
+                              @if ($kelas->status==1)
+                                <span class="badge badge-info">Enabled</span>
+                              @else
+                              <span class="badge badge-dark">Disabled</span>
+                              @endif
+                            </td>
                             <td><a href="/admin/kelas/daftar_kelas/edit/{{$kelas->id}}" class="btn btn-primary"><i class="fa fa-edit"></i> Edit</a>
                                 {{-- <a href="javascript:" rel="{{$kelas->id}}" rel1="delete-kelas" class="btn btn-danger deleteRecord"><i class="fa fa-eraser"></i> Delete</a></td> --}}
                                 <a href="/admin/kelas/daftar_kelas/hapus/{{$kelas->id}}"class="button delete-confirm btn btn-danger"><i class="fa fa-eraser"></i> Delete</a></td>

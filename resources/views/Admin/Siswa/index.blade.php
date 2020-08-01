@@ -231,14 +231,14 @@
                                              <label for="hf-kelas" class=" form-control-label">Kelas</label>
                                           </div>
                                           <div class="col-12 col-md-9">
-                                             <select class="form-control hf-kelas" name="kelas" data-placeholder="Pilih Kelas" style="width: 100%;">
-                                                @foreach ($kelas as $kelas)
-                                                   <option value="{{$kelas->nama_kelas}}">{{$kelas->nama_kelas}}</option>
-                                                @endforeach
+                                             <select class="form-control hf-kelas" name="nama_kelas_id" data-placeholder="Pilih Kelas" style="width: 100%;">
+                                                @foreach($t as $item)
+                                                <option value="{{ $item->id }}">{{ $item->kelas->nama_kelas.'-'.$item->nama_kelas.'-'.$item->kelas->tahun_ajaran->nama}} </option>
+                                             @endforeach
                                              </select>
                                           </div>
                                     </div>
-                                    <div class="row form-group">
+                                    {{-- <div class="row form-group">
                                        <div class="col col-md-3">
                                           <label for="hf-nama-kelas" class=" form-control-label">Nama Kelas</label>
                                        </div>
@@ -249,7 +249,7 @@
                                              @endforeach
                                           </select>
                                        </div>
-                                 </div>
+                                 </div> --}}
                                  </form>
                               </div>
                         </div>
@@ -294,7 +294,7 @@
                               <th>Email</th>
                               <th>Asal Sekolah</th>
                               <th>Kelas</th>
-                              <th>Nama Kelas</th>
+                              
                               <th style="text-align: right">Tindakan</th>
                            </tr>
                         </thead>
@@ -320,7 +320,7 @@
                               <th>Email</th>
                               <th>Asal Sekolah</th>
                               <th>Kelas</th>
-                              <th>Nama Kelas</th>
+                              
                               <th style="text-align: right">Tindakan</th>
                            </tr>
                         </tfoot>
@@ -372,8 +372,8 @@
                   { data: 'handphone', name: 'handphone' },
                   { data: 'email', name: 'email' },
                   { data: 'asal_sekolah', name: 'asal_sekolah' },
-                  { data: 'kelas',name:'kelas'},
-                  { data: 'nama_kelas',name:'nama_kelas'},
+                  { data: 'nama_kelas_id',name:'nama_kelas_id.nama'},
+                 
                   { data: 'action', className: 'dt-right', orderable: false, searchable: true }
                ],
          // "rowCallback": function( row, data ) {}
