@@ -183,7 +183,15 @@
             </p>
           </a>
         </li>
-        
+        <li class="nav-header"> Setting</li>
+        <li class="nav-item has-treeview">
+          <a href="#" class="nav-link">
+            <i class="nav-icon fas fa-key fa-lock right"></i>
+            <p>
+              Password Recovery
+            </p>
+          </a>
+        </li>
      
        
         
