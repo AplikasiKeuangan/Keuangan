@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Tahun_Ajaran;
+use App\Kelas;
 use DataTables;
 
 class TahunAjaranController extends Controller
@@ -17,12 +18,6 @@ class TahunAjaranController extends Controller
         if ($request->ajax()) {
             $tahunAjaran  = Tahun_Ajaran::orderBy('created_at', 'DESC')->get();
             return DataTables::of($tahunAjaran)
-                ->addColumn('status', function($tahunAjaran){
-                    if($tahunAjaran->is_active == 1){
-                        return '<span class="badge badge-info">Aktif</span>';
-                    }
-                    return '<span class="badge badge-dark">Tidak Aktif</span>';
-                })
                 ->addColumn('action', function($tahunAjaran){
                     $cog = '<a href="/admin/tahun-ajaran/'.$tahunAjaran->id.'/kelas" class="btn btn-light"><i class="fa fa-cog"></i></a> ';
                     if($tahunAjaran->is_active == 0){
@@ -38,7 +33,7 @@ class TahunAjaranController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'nama' => 'required|max:255|unique:tahun__ajarans,nama',
+            'nama' => 'required|max:255,nama',
             'tgl_mulai' => 'required|date|before:'.$request->tgl_selesai,
             'tgl_selesai' => 'required|date',
             'is_active' => 'nullable|boolean',
@@ -84,11 +79,14 @@ class TahunAjaranController extends Controller
     public function destroy($id_tahun_ajaran)
     {
         $tahun_ajaran = Tahun_Ajaran::findOrfail($id_tahun_ajaran);
-        $tahun_ajaran->delete();
-        if ($tahun_ajaran) {
+        $kelasCount = Kelas::where('tahun_ajaran_id',$tahun_ajaran->id)->count();
+        if ($kelasCount == 0) {
+            $tahun_ajaran->delete();
             alert()->success('Tahun Ajaran berhasil dihapus!');
             return back();
+        }else{
+            alert()->warning('Harap hapus Kelas-Kelas di Tahun Ajaran ini terlebih dahulu!');
+            return back();
         }
-
     }
 }

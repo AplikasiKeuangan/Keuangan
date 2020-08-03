@@ -219,37 +219,6 @@
                                              <input type="text" id="hf-asal-sekolah" name="asal_sekolah" placeholder="Asal Sekolah" required="" class="form-control">
                                           </div>
                                     </div>
-
-                                    <!-- Keterangan Pendidikan Saat Ini -->
-                                    <div class="row form-group">
-                                       <div class="col-12 col-md-12">
-                                          <label class="form-control ">Keterangan Pendidikan Saat Ini</label>
-                                       </div>
-                                    </div>
-                                    <div class="row form-group">
-                                          <div class="col col-md-3">
-                                             <label for="hf-kelas" class=" form-control-label">Kelas</label>
-                                          </div>
-                                          <div class="col-12 col-md-9">
-                                             <select class="form-control hf-kelas" name="nama_kelas_id" data-placeholder="Pilih Kelas" style="width: 100%;">
-                                                @foreach($t as $item)
-                                                <option value="{{ $item->id }}">{{ $item->kelas->nama_kelas.'-'.$item->nama_kelas.'-'.$item->kelas->tahun_ajaran->nama}} </option>
-                                                @endforeach
-                                             </select>
-                                          </div>
-                                    </div>
-                                    {{-- <div class="row form-group">
-                                       <div class="col col-md-3">
-                                          <label for="hf-nama-kelas" class=" form-control-label">Nama Kelas</label>
-                                       </div>
-                                       <div class="col-12 col-md-9">
-                                          <select id="hf-nama-kelas" name="nama_kelas"  required="" class="form-control">
-                                             @foreach ($nama_kelas as $nama_kelas)
-                                             <option value="{{$nama_kelas->nama_kelas}}" >{{$nama_kelas->nama_kelas}}</option>
-                                             @endforeach
-                                          </select>
-                                       </div>
-                                 </div> --}}
                                  </form>
                               </div>
                         </div>
@@ -293,7 +262,6 @@
                               <th>Handphone</th>
                               <th>Email</th>
                               <th>Asal Sekolah</th>
-                              <th>Kelas</th>
                               
                               <th style="text-align: right">Tindakan</th>
                            </tr>
@@ -319,7 +287,6 @@
                               <th>Handphone</th>
                               <th>Email</th>
                               <th>Asal Sekolah</th>
-                              <th>Kelas</th>
                               
                               <th style="text-align: right">Tindakan</th>
                            </tr>
@@ -372,7 +339,6 @@
                   { data: 'handphone', name: 'handphone' },
                   { data: 'email', name: 'email' },
                   { data: 'asal_sekolah', name: 'asal_sekolah' },
-                  { data: 'nama_kelas_id',name:'nama_kelas_id.nama'},
                  
                   { data: 'action', className: 'dt-right', orderable: false, searchable: true }
                ],

@@ -35,7 +35,7 @@ class SiswaController extends Controller
         }
     }
 
-    protected function NIS()
+    protected function nis()
     {
         $kd="";
         $query = DB::table('siswas')
@@ -81,7 +81,6 @@ class SiswaController extends Controller
                 'bahasa_sehari_hari' => 'required|max:255',
                 'alamat' => 'required|max:255',
                 'asal_sekolah' => 'required|max:255',
-                'nama_kelas_id'=> 'required|max:255',
                
             ]);
 
@@ -106,8 +105,6 @@ class SiswaController extends Controller
                 $siswa->email = $request->email;
                 $siswa->alamat = $request->alamat;
                 $siswa->asal_sekolah = $request->asal_sekolah;
-                $siswa->nama_kelas_id = $request->nama_kelas_id;
-               
                 $siswa->save();
             }else{
                 return redirect()->route('admin-siswa-index')->with('danger', 'Gagal ditambahkan!');
@@ -146,7 +143,6 @@ class SiswaController extends Controller
                 'bahasa_sehari_hari' => 'required|max:255',
                 'alamat' => 'required|max:255',
                 'asal_sekolah' => 'required|max:255',
-                'nama_kelas_id'=> 'required|max:255',
             ]);
 
             if($validatedData == false){
@@ -171,7 +167,6 @@ class SiswaController extends Controller
                 $siswa->email = $request->email;
                 $siswa->alamat = $request->alamat;
                 $siswa->asal_sekolah = $request->asal_sekolah;
-                $siswa->nama_kelas_id = $request->nama_kelas_id;
                 $siswa->update();
                 return redirect()->route('admin-siswa-index')->with('success', 'Berhasil diupdate!');
             }

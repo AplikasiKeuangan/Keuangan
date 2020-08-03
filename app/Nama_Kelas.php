@@ -13,6 +13,4 @@ class Nama_Kelas extends Model
     public function kelas(){
         return $this->hasOne('App\Kelas','id','kelas_id');
     }
-    
-   
 }

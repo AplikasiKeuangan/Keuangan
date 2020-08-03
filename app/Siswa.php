@@ -13,6 +13,7 @@ class Siswa extends Model
     public function siswa(){
         return $this->hasMany('App\Nama_Kelas','nama_kode_id','id');
     }
-    
-    
+    public function relasiNamaKelas(){
+        return $this->hasMany('App\RelasiNamaKelasSiswa','nis','nis');
+    }
 }

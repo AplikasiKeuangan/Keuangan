@@ -19,6 +19,10 @@ class Kelas extends Model
     public function nama_combine(){
         return $this->hasOne('App\Siswa','id','nama_kelas_id');
     }
-   
-    
+    public function nama_kelass(){
+        return $this->belongsToMany('App\Nama_Kelas','kelas','id','id')->withTimestamps();
+    }
+    public function tahunAjaran(){
+        return $this->belongsTo('App\Tahun_Ajaran','tahun_ajaran_id','id');
+    }
 }

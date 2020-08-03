@@ -127,54 +127,6 @@
             </p>
           </a>
         </li>
-        <li class="nav-item has-treeview">
-          <a href="#" class="nav-link">
-            <i class="nav-icon fas fa-book-open"></i>
-            <p>
-              Nama Kelas
-              <i class="fas fa-angle-left right"></i>
-              <span class="badge badge-info right">6</span>
-            </p>
-          </a>
-          <ul class="nav nav-treeview">
-            <li class="nav-item">
-            <a href="/admin/nama_kelas" class="nav-link">
-                <i class="far fa-circle nav-icon"></i>
-                <p>Tambah Nama Kelas</p>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="/admin/nama_kelas/daftar_nama_kelas" class="nav-link">
-                <i class="far fa-circle nav-icon"></i>
-                <p>Daftar Nama Kelas</p>
-              </a>
-            </li>
-          </ul>
-        </li>
-        <li class="nav-item has-treeview">
-          <a href="#" class="nav-link">
-            <i class="nav-icon fas fa-school"></i>
-            <p>
-              Kelas
-              <i class="fas fa-angle-left right"></i>
-              <span class="badge badge-info right">6</span>
-            </p>
-          </a>
-          <ul class="nav nav-treeview">
-            <li class="nav-item">
-            <a href="/admin/kelas" class="nav-link">
-                <i class="far fa-circle nav-icon"></i>
-                <p>Tambah Kelas</p>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="/admin/kelas/daftar_kelas" class="nav-link">
-                <i class="far fa-circle nav-icon"></i>
-                <p>Daftar Kelas</p>
-              </a>
-            </li>
-          </ul>
-        </li>
         <li class="nav-item">
           <a href="{{route('admin-tahun-ajaran-index')}}" class="nav-link {{ Route::currentRouteName() == 'admin-tahun-ajaran-index' ? 'active':'' }}">
             <i class="nav-icon fas fa-school"></i>

@@ -122,7 +122,7 @@ Route::prefix('admin')->name('admin-')->middleware(['checkLoginStatus'])->group(
                 Route::get('/', 'Admin\KelasController@index')->name('index');
                 Route::get('/get-data', 'Admin\KelasController@data')->name('data');
                 Route::post('/store', 'Admin\KelasController@store')->name('store');
-                Route::prefix('{id_kelas}')->group(function(){
+                Route::prefix('/{id_kelas}')->group(function(){
                     Route::get('/edit', 'Admin\KelasController@edit')->name('edit');
                     Route::post('/update', 'Admin\KelasController@update')->name('update');
                     Route::get('/delete', 'Admin\KelasController@destroy')->name('delete');
@@ -130,9 +130,19 @@ Route::prefix('admin')->name('admin-')->middleware(['checkLoginStatus'])->group(
                         Route::get('/', 'Admin\NamaKelasController@index')->name('index');
                         Route::get('/get-data', 'Admin\NamaKelasController@data')->name('data');
                         Route::post('/store', 'Admin\NamaKelasController@store')->name('store');
-                        Route::get('/{id_nama_kelas}/edit', 'Admin\NamaKelasController@edit')->name('edit');
-                        Route::post('/{id_nama_kelas}/update', 'Admin\NamaKelasController@update')->name('update');
-                        Route::get('/{id_nama_kelas}/delete', 'Admin\NamaKelasController@destroy')->name('delete');
+                        Route::prefix('{id_nama_kelas}')->group(function(){
+                            Route::get('/edit', 'Admin\NamaKelasController@edit')->name('edit');
+                            Route::post('/update', 'Admin\NamaKelasController@update')->name('update');
+                            Route::get('/delete', 'Admin\NamaKelasController@destroy')->name('delete');
+                            Route::prefix('siswa')->name('siswa-')->group(function(){
+                                Route::get('/', 'Admin\RelasiNamaKelasSiswaController@index')->name('index');
+                                Route::get('/get-data', 'Admin\RelasiNamaKelasSiswaController@data')->name('data');
+                                Route::post('/store', 'Admin\RelasiNamaKelasSiswaController@store')->name('store');
+                                Route::prefix('{id_relasi}')->group(function(){
+                                    Route::get('/delete', 'Admin\RelasiNamaKelasSiswaController@destroy')->name('delete');
+                                });
+                            });
+                        });
                     });
                 });
             });

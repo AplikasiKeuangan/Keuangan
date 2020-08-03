@@ -53,7 +53,7 @@
                                             <select class="form-control" name="nama" id="hanya-siswa" >
                                                 @foreach($nama_kelas as $item)
                                                    @foreach ($siswa as $data)
-                                                   <option value="{{ $item->id }}">{{ $data->nama_lengkap.'-'.$item->kelas->nama_kelas.' - '.$item->nama_kelas.' - '.$item->kelas->tahun_ajaran->nama }} </option>
+                                                   <option value="{{ $item->id }}"> </option>
                                                    @endforeach
                                                 
                                                 {{-- <option value="{{ $item->id }}">{{ $item->kelas->nama_kelas.'-'.$item->nama_kelas.'-'.$item->kelas->tahun_ajaran->nama}} </option> --}}
