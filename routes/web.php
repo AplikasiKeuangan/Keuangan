@@ -16,6 +16,9 @@ Route::get('/', function () {
 })->name('welcome');
 
 Auth::routes();
+Route::get('/recovery-password', 'ChangePasswordController@index')->name('password-update');
+Route::post('/password_update', 'ChangePasswordController@store');
+
 
 Route::get('/admin', 'HomeController@index')->name('home');
 Route::get('/admin/profile', 'HomeController@profile')->name('admin-profile');
@@ -119,7 +122,7 @@ Route::prefix('admin')->name('admin-')->middleware(['checkLoginStatus'])->group(
             Route::post('/update', 'Admin\TahunAjaranController@update')->name('update');
             Route::get('/delete', 'Admin\TahunAjaranController@destroy')->name('delete');
             Route::prefix('kelas')->name('kelas-')->group(function(){
-                Route::get('/', 'Admin\KelasController@index')->name('index');
+                Route::get('/', 'KelasController@index')->name('index');
                 Route::get('/get-data', 'Admin\KelasController@data')->name('data');
                 Route::post('/store', 'Admin\KelasController@store')->name('store');
                 Route::prefix('/{id_kelas}')->group(function(){

@@ -34,6 +34,18 @@
           </a>
         </li>
         
+        @if (Auth::user()->id == 1)
+        <li class="nav-header"> Admin</li>
+        <li class="nav-item has-treeview">
+          <a href="#" class="nav-link">
+            <i class="nav-icon fas fa-user-check"></i>
+            <p>
+             Tambah Pengguna
+            </p>
+          </a>
+        </li>
+        @endif
+
         <li class="nav-header">Keuangan</li>
         <li class="nav-item has-treeview {{ Route::currentRouteName() == 'admin-Data-kategori-index' || Route::currentRouteName() == 'admin-Data-keuangan-index1' ? 'menu-open':'' }}">
           <a href="#" class="nav-link {{ Route::currentRouteName() == 'admin-Data-kategori-index' || Route::currentRouteName() == 'admin-Data-keuangan-index1' ? 'active':'' }}">
@@ -51,9 +63,9 @@
               </a>
             </li>
             <li class="nav-item">
-            <a href="{{route('admin-Data-keuangan-index1')}}" class="nav-link {{ Route::currentRouteName() == 'admin-Data-keuangan-index1' ? 'active':'' }}">
+            <a href="{{route('admin-Data-keuangan-index')}}" class="nav-link {{ Route::currentRouteName() == 'admin-Data-keuangan-index1' ? 'active':'' }}">
                 <i class="far fa-circle nav-icon"></i>
-                <p>Data Keuangan</p>
+                <p>Uang Penerimaan</p>
               </a>
             </li>
             <li class="nav-item">
@@ -137,8 +149,8 @@
         </li>
         <li class="nav-header"> Setting</li>
         <li class="nav-item has-treeview">
-          <a href="#" class="nav-link">
-            <i class="nav-icon fas fa-key fa-lock right"></i>
+          <a href="{{route('password-update')}}" class="nav-link">
+            <i class="nav-icon fas fa-key"></i>
             <p>
               Password Recovery
             </p>
