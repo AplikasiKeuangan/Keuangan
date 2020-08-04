@@ -111,14 +111,17 @@
                   <div class="card card-primary">
                     <div class="card-header">
                       <h4 class="card-title w-100">
-                        <a class="d-block w-100" data-toggle="collapse" href="#collapseThree">
+                        <a class="d-block w-100" data-toggle="collapse" href="#collapseFour">
                           Kelas-Kelas Selama di SMP IT AN NAHL
                         </a>
                       </h4>
                     </div>
-                    <div id="collapseThree" class="collapse" data-parent="#accordion">
+                    <div id="collapseFour" class="collapse" data-parent="#accordion">
                       <div class="card-body">
                         <dl class="row">
+                          @if($data_siswa->relasiNamaKelas->count() < 1)
+                          <dt class="col-sm-12" style="text-align: center">Harap masukkan kelas Siswa di menu 'Tahun Ajaran | Kelas'</dt>
+                          @endif
                            @foreach($data_siswa->relasiNamaKelas as $data)
                            <dt class="col-sm-12" style="text-align: center">Tahun Ajaran - {{ $data->namaKelas->kelas->tahun_ajaran->nama }}</dt>
                            <dt class="col-sm-4">Kelas Tingkat</dt>

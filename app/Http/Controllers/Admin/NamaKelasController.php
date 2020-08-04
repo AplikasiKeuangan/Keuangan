@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Nama_Kelas;
 use App\Kelas;
 use App\Tahun_Ajaran;
+use App\RelasiNamaKelasSiswa;
 use DataTables;
 
 class NamaKelasController extends Controller
@@ -126,13 +127,13 @@ class NamaKelasController extends Controller
             $kelas = Kelas::find($id_kelas);
             if($tahunAjaran->is_active == 1 && $kelas->status == 1){
                 $Nama_Kelas = Nama_Kelas::find($id_nama_kelas);
-                $Nama_Kelas->delete();
-
-                if ($Nama_Kelas) {
+                $relasi_nama_kelas_siswa = RelasiNamaKelasSiswa::where('id_nama_kelas',$id_nama_kelas)->get()->count();
+                if ($relasi_nama_kelas_siswa < 1) {
+                    $Nama_Kelas->delete();
                     alert()->success('Nama Kelas Berhasil Dihapus!');
                     return back();
                 }else{
-                    alert()->error('Nama Kelas Gagal Dihapus!');
+                    alert()->warning('Harap kosongkan Nama-Nama Siswa terlebih dahulu!');
                     return back();
                 }
             }else{

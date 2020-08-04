@@ -50,14 +50,6 @@
                                     </div>
                                     <div class="row form-group">
                                           <div class="col col-md-3">
-                                             <label for="hf-nis" class=" form-control-label">NIS</label>
-                                          </div>
-                                          <div class="col-12 col-md-9">
-                                          <input type="text" id="hf-nis" name="nis" placeholder="NIS" required="" value="{{$nis}}" class="form-control">
-                                          </div>
-                                    </div>
-                                    <div class="row form-group">
-                                          <div class="col col-md-3">
                                              <label for="hf-nama-lengkap" class=" form-control-label">Nama Lengkap</label>
                                           </div>
                                           <div class="col-12 col-md-9">

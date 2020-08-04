@@ -15,7 +15,7 @@
         <img src="{{ asset ('template/dist/img/user2-160x160.jpg')}}" class="img-circle elevation-2" alt="User Image">
       </div>
       <div class="info">
-      <a href="{{ route('admin-profile') }}" class="d-block">{{Auth::user()->name}}</a>
+      <a href="#" class="d-block">{{Auth::user()->name}}</a>
       </div>
     </div>
 
@@ -26,7 +26,7 @@
         <!-- Add icons to the links using the .nav-icon class
                  with font-awesome or any other icon font library -->
         <li class="nav-item has-treeview">
-          <a href="{{ route('home') }}" class="nav-link {{ Route::currentRouteName() == 'home' ? 'active':'' }}">
+          <a href="{{ route('welcome') }}" class="nav-link {{ Route::currentRouteName() == 'welcome' ? 'active':'' }}">
             <i class="nav-icon fas fa-tachometer-alt"></i>
             <p>
               Dashboard

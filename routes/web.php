@@ -19,34 +19,7 @@ Auth::routes();
 Route::get('/recovery-password', 'ChangePasswordController@index')->name('password-update');
 Route::post('/password_update', 'ChangePasswordController@store');
 
-
-Route::get('/admin', 'HomeController@index')->name('home');
-Route::get('/admin/profile', 'HomeController@profile')->name('admin-profile');
-Route::get('/admin/profile/edit', 'HomeController@profile_edit')->name('admin-profile-edit');
-Route::post('/admin/profile/update', 'HomeController@profile_update')->name('admin-profile-update');
-Route::get('/test', 'HomeController@test')->name('test');
-
-// Nama Kelas
-Route::get('/admin/nama_kelas', 'Nama_KelasController@index');
-Route::post('/admin/nama_kelas/tambah','Nama_KelasController@store')->name('tambah');
-Route::get('/admin/nama_kelas/daftar_nama_kelas','Nama_KelasController@daftar_nama_kelas')->name('daftar_nama_kelas');
-Route::get('/admin/nama_kelas/daftar_nama_kelas/hapus/{id}','Nama_KelasController@destroy')->name('hapus_jurusan');
-Route::get('/admin/nama_kelas/daftar_nama_kelas/edit/{id}','Nama_KelasController@edit')->name('edit');
-Route::put('/admin/nama_kelas/daftar_nama_kelas/update/{id}','Nama_KelasController@update')->name('update');
-
-// Kelas
-Route::get('/admin/kelas', 'KelasController@index');
-Route::post('/admin/kelas/tambah','KelasController@store')->name('tambah_kelas');
-Route::get('/admin/kelas/daftar_kelas','KelasController@daftar_kelas')->name('daftar_kelas');
-Route::get('/admin/kelas/daftar_kelas/hapus/{id}','KelasController@destroy')->name('hapus_kelas');
-Route::get('/admin/kelas/daftar_kelas/edit/{id}','KelasController@edit')->name('edit');
-Route::put('/admin/kelas/daftar_kelas/update/{id}','KelasController@update')->name('update');
-
-
 Route::get('/admin/penerimaan/SPP','SPP@index')->name('index_SPP');
-
-
-
 
 Route::prefix('admin')->name('admin-')->middleware(['checkLoginStatus'])->group(function () {
     //siswa
@@ -122,7 +95,7 @@ Route::prefix('admin')->name('admin-')->middleware(['checkLoginStatus'])->group(
             Route::post('/update', 'Admin\TahunAjaranController@update')->name('update');
             Route::get('/delete', 'Admin\TahunAjaranController@destroy')->name('delete');
             Route::prefix('kelas')->name('kelas-')->group(function(){
-                Route::get('/', 'KelasController@index')->name('index');
+                Route::get('/', 'Admin\KelasController@index')->name('index');
                 Route::get('/get-data', 'Admin\KelasController@data')->name('data');
                 Route::post('/store', 'Admin\KelasController@store')->name('store');
                 Route::prefix('/{id_kelas}')->group(function(){

@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Siswa;
 use App\Kelas;
 use App\Nama_Kelas;
+use App\RelasiNamaKelasSiswa;
 use DB;
 use Carbon\carbon;
 use DataTables;
@@ -16,10 +17,8 @@ class SiswaController extends Controller
 {
     public function index()
     {
-        $nis = $this->nis();
         $t=Nama_Kelas::where('status',1)->get();
-        
-        return view('Admin.Siswa.index',compact('nis','t'));
+        return view('Admin.Siswa.index',compact('t'));
     }
     public function data(Request $request)
     {
@@ -34,24 +33,6 @@ class SiswaController extends Controller
             return abort(403);
         }
     }
-
-    protected function nis()
-    {
-        $kd="";
-        $query = DB::table('siswas')
-        ->select(DB::raw('MAX(RIGHT(kode,4)) as kd_max'))
-            ->whereDate('created_at',Carbon::today());
-        if ($query->count()>0) {
-            foreach ($query->get() as $key ) {
-            $tmp = ((int)$key->kd_max)+1;
-            $kd = sprintf("%04s", $tmp);
-            }
-        }else {
-        $kd = "0001";
-   }
-
-    return  "".date('dmy').$kd;
-  }
     public function detail($nis, $nama_lengkap)
     {
         $data_siswa = Siswa::where([['nis',$nis],['nama_lengkap',$nama_lengkap]])->first();
@@ -66,7 +47,6 @@ class SiswaController extends Controller
     public function store(Request $request){
         try{
             $validatedData = $request->validate([
-                'nis' => 'required|unique:siswas|numeric',
                 'nama_lengkap' => 'required|max:45',
                 'nama_panggilan' => 'required|max:30',
                 'jenis_kelamin' => 'required|max:10',
@@ -83,10 +63,13 @@ class SiswaController extends Controller
                 'asal_sekolah' => 'required|max:255',
                
             ]);
-
+            $last_nis = Siswa::where('nis','LIKE', Carbon::now()->year.'%')->max('nis');
+            if(!$last_nis){
+                $last_nis = Carbon::now()->year*10000;
+            }
             if($validatedData == true){
                 $siswa = new Siswa();
-                $siswa->nis = $request->nis;
+                $siswa->nis = $last_nis+1;
                 $siswa->nama_lengkap = $request->nama_lengkap;
                 $siswa->nama_panggilan = $request->nama_panggilan;
                 $siswa->jenis_kelamin = $request->jenis_kelamin;
@@ -177,7 +160,11 @@ class SiswaController extends Controller
     public function destroy($nis, $nama_lengkap){
         try {
             $siswa = Siswa::where([['nis',$nis]])->first();
+            $relasi = RelasiNamaKelasSiswa::where('nis',$nis)->get();
             if($siswa->delete()){
+                foreach ($relasi as $data) {
+                    $data->delete();
+                }
                 return redirect()->route('admin-siswa-index')->with('success', 'Berhasil dihapus!');
             }else{
                 return redirect()->route('admin-siswa-index')->with('danger', 'Gagal dihapus!');

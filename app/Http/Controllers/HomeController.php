@@ -7,6 +7,8 @@ use Carbon\Carbon;
 use App\KasTunai;
 use App\KasBank;
 use App\User;
+use App\Tahun_Ajaran;
+use App\Siswa;
 use Auth;
 
 class HomeController extends Controller
@@ -83,7 +85,9 @@ class HomeController extends Controller
         $jumlah_debit_bank_per_haris = $chart_kas_bank['jumlah_debit_per_haris'];
         $jumlah_kredit_bank_per_haris = $chart_kas_bank['jumlah_kredit_per_haris'];
 
-        return view('home', compact('haris','nama_bulans','jumlah_debit_per_bulans','jumlah_kredit_per_bulans','jumlah_debit_per_haris','jumlah_kredit_per_haris','jumlah_debit_bank_per_bulans','jumlah_kredit_bank_per_bulans','jumlah_debit_bank_per_haris','jumlah_kredit_bank_per_haris','ucapan','saldoAkhirBank','saldoAkhirTunai'));
+        $jumlah_tahun_ajaran = Tahun_Ajaran::get()->count();
+        $jumlah_siswa = Siswa::get()->count();
+        return view('home', compact('haris','nama_bulans','jumlah_debit_per_bulans','jumlah_kredit_per_bulans','jumlah_debit_per_haris','jumlah_kredit_per_haris','jumlah_debit_bank_per_bulans','jumlah_kredit_bank_per_bulans','jumlah_debit_bank_per_haris','jumlah_kredit_bank_per_haris','ucapan','saldoAkhirBank','saldoAkhirTunai','jumlah_tahun_ajaran','jumlah_siswa'));
     }
     public function profile()
     {
