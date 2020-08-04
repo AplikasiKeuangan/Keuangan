@@ -19,6 +19,12 @@ Auth::routes();
 Route::get('/recovery-password', 'ChangePasswordController@index')->name('password-update');
 Route::post('/password_update', 'ChangePasswordController@store');
 
+Route::get('/admin', 'HomeController@index')->name('home');
+Route::get('/admin/profile', 'HomeController@profile')->name('admin-profile');
+Route::get('/admin/profile/edit', 'HomeController@profile_edit')->name('admin-profile-edit');
+Route::post('/admin/profile/update', 'HomeController@profile_update')->name('admin-profile-update');
+Route::get('/test', 'HomeController@test')->name('test');
+
 Route::get('/admin/penerimaan/SPP','SPP@index')->name('index_SPP');
 
 Route::prefix('admin')->name('admin-')->middleware(['checkLoginStatus'])->group(function () {
