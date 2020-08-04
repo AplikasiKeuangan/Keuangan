@@ -78,6 +78,19 @@ Route::prefix('admin')->name('admin-')->middleware(['checkLoginStatus'])->group(
             Route::get('/{id}/hapus', 'Admin\KeuanganController@destroy')->name('hapus');
         });
     });
+
+    Route::prefix('Data')->name('Data-')->group(function () {
+        Route::prefix('users')->name('users-')->group(function () {
+            Route::get('/menu', 'Admin\UserController@index1')->name('index1');
+            Route::get('/', 'Admin\UserController@index')->name('index');
+            Route::get('/get-data', 'Admin\UserController@data')->name('data');
+            Route::post('/store', 'Admin\UserController@store')->name('store');
+            Route::get('/{id}/edit', 'Admin\UserController@edit')->name('edit');
+            Route::post('/{id}/update', 'Admin\UserController@update')->name('update');
+            Route::get('/{id}/hapus', 'Admin\UserController@destroy')->name('hapus');
+        });
+    });
+
     Route::prefix('Data')->name('Data-')->group(function () {
         //
     });

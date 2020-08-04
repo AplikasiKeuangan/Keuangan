@@ -37,8 +37,8 @@
         @if (Auth::user()->id == 1)
         <li class="nav-header"> Admin</li>
         <li class="nav-item has-treeview">
-          <a href="#" class="nav-link">
-            <i class="nav-icon fas fa-user-check"></i>
+          <a href="{{route('admin-Data-users-index')}}" class="nav-link">
+            <i class="nav-icon fas fa-user-cog"></i>
             <p>
              Tambah Pengguna
             </p>
