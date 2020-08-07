@@ -47,62 +47,25 @@
         @endif
 
         <li class="nav-header">Keuangan</li>
-        <li class="nav-item has-treeview {{ Route::currentRouteName() == 'admin-Data-kategori-index' || Route::currentRouteName() == 'admin-Data-keuangan-index1' ? 'menu-open':'' }}">
-          <a href="#" class="nav-link {{ Route::currentRouteName() == 'admin-Data-kategori-index' || Route::currentRouteName() == 'admin-Data-keuangan-index1' ? 'active':'' }}">
+        <li class="nav-item has-treeview {{ Route::currentRouteName() == 'admin-piutang-tagihan-index' ||  Route::currentRouteName() == 'admin-piutang-transaksi-index' ? 'menu-open':'' }}">
+          <a href="#" class="nav-link {{ Route::currentRouteName() == 'admin-piutang-tagihan-index' ||  Route::currentRouteName() == 'admin-piutang-transaksi-index' ? 'active':'' }}">
             <i class="nav-icon fas fa-money-bill-alt"></i>
             <p>
-              Keuangan Sekolah
+              Piutang Siswa
               <i class="fas fa-angle-left right"></i>
             </p>
           </a>
           <ul class="nav nav-treeview ">
             <li class="nav-item">
-              <a href="{{ route('admin-Data-kategori-index') }}" class="nav-link {{ Route::currentRouteName() == 'admin-Data-kategori-index' ? 'active':'' }}">
+              <a href="{{route('admin-piutang-transaksi-index')}}" class="nav-link {{ Route::currentRouteName() == 'admin-piutang-transaksi-index' ? 'active':'' }}">
                 <i class="far fa-circle nav-icon"></i>
-                <p>Kategori</p>
+                <p>Transaksi</p>
               </a>
             </li>
             <li class="nav-item">
-            <a href="{{route('admin-Data-keuangan-index')}}" class="nav-link {{ Route::currentRouteName() == 'admin-Data-keuangan-index1' ? 'active':'' }}">
-                <i class="far fa-circle nav-icon"></i>
-                <p>Uang Penerimaan</p>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="#" class="nav-link">
-                <i class="far fa-circle nav-icon"></i>
-                <p>Hutang & Piutang</p>
-                <i class="fas fa-lock right"></i>
-              </a>
-            </li>
-          </ul>
-        </li>
-        
-        <li class="nav-item has-treeview">
-          <a href="#" class="nav-link">
-            <i class="nav-icon fas fa-money-bill-alt"></i>
-            <p>
-              Transaksi SPP
-              <i class="fas fa-angle-left right"></i>
-            </p>
-          </a>
-          <ul class="nav nav-treeview ">
-            <li class="nav-item">
-              <a href="#" class="nav-link ">
-                <i class="far fa-circle nav-icon"></i>
-                <p>Transaksi SPP</p>
-              </a>
-            </li>
-            <li class="nav-item">
-            <a href="{{route('admin-Data-tagihan-index')}}" class="nav-link">
+            <a href="{{route('admin-piutang-tagihan-index')}}" class="nav-link {{ Route::currentRouteName() == 'admin-piutang-tagihan-index' ? 'active':'' }}">
                 <i class="far fa-circle nav-icon"></i>
                 <p>Tagihan</p>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="#" class="nav-link">
-                <i class="far fa-circle nav-icon"></i>
-                <p>Kuitansi</p>
               </a>
             </li>
           </ul>

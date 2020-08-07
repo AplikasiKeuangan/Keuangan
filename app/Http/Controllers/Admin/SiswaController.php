@@ -8,6 +8,7 @@ use App\Siswa;
 use App\Kelas;
 use App\Nama_Kelas;
 use App\RelasiNamaKelasSiswa;
+use App\Pembayaran;
 use DB;
 use Carbon\carbon;
 use DataTables;
@@ -23,7 +24,7 @@ class SiswaController extends Controller
     public function data(Request $request)
     {
         if ($request->ajax()) {
-            $siswa  = Siswa::get();
+            $siswa  = Siswa::orderBy('nis', 'DESC')->get();
             return DataTables::of($siswa)
                 ->addColumn('action', function($siswa){
                     return '<a href="./siswa/'.$siswa->nis.'/'.$siswa->nama_lengkap.'/detail" class="btn btn-light"><i class="fa fa-pencil-square-o"></i> Detail</a> <a href="./siswa/'.$siswa->nis.'/'.$siswa->nama_lengkap.'/edit" class="btn btn-primary"><i class="fa fa-pencil-square-o"></i> Edit</a> <a data-admin="admin/'.$siswa->nis.'/'.$siswa->nama_lengkap.'/hapus" class="btn btn-danger admin-remove" href="./siswa/'.$siswa->nis.'/'.$siswa->nama_lengkap.'/destroy" onclick="adminDelete()"><i class="fa fa-trash"></i></a>';
@@ -161,7 +162,11 @@ class SiswaController extends Controller
         try {
             $siswa = Siswa::where([['nis',$nis]])->first();
             $relasi = RelasiNamaKelasSiswa::where('nis',$nis)->get();
-            if($siswa->delete()){
+            $transaksiCount = Pembayaran::where('id_siswa',$nis)->count();
+            if($transaksiCount > 0){
+                alert()->warning('Harap hapus data Transaksi yang berhubungan dengan Siswa ini terlebih dahulu!');
+                return back();
+            }else if($siswa->delete()){
                 foreach ($relasi as $data) {
                     $data->delete();
                 }

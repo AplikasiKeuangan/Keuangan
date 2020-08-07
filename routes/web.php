@@ -90,19 +90,21 @@ Route::prefix('admin')->name('admin-')->middleware(['checkLoginStatus'])->group(
             Route::get('/{id}/hapus', 'Admin\UserController@destroy')->name('hapus');
         });
     });
-
-    Route::prefix('Data')->name('Data-')->group(function () {
-        //
-    });
-    Route::prefix('Data')->name('Data-')->group(function () {
+    Route::prefix('piutang')->name('piutang-')->group(function () {
+        Route::prefix('transaksi')->name('transaksi-')->group(function () {
+            Route::get('/', 'Admin\TransaksiController@index')->name('index');
+            Route::get('/get-data', 'Admin\TransaksiController@data')->name('data');
+            Route::post('/get-siswa', 'Admin\TransaksiController@siswa')->name('siswa');
+            Route::post('/get-hutang', 'Admin\TransaksiController@hutang')->name('hutang');
+            Route::post('/store', 'Admin\TransaksiController@store')->name('store');
+            Route::get('/{id_transaksi}/hapus', 'Admin\TransaksiController@destroy')->name('hapus');
+        });
         Route::prefix('tagihan')->name('tagihan-')->group(function () {
-            Route::get('/menu', 'Admin\TagihanController@index1')->name('index1');
             Route::get('/', 'Admin\TagihanController@index')->name('index');
             Route::get('/get-data', 'Admin\TagihanController@data')->name('data');
+            Route::post('/get-kelas', 'Admin\TagihanController@kelas')->name('kelas');
             Route::post('/store', 'Admin\TagihanController@store')->name('store');
-            Route::get('/{id}/edit', 'Admin\TagihanController@edit')->name('edit');
-            Route::post('/{id}/update', 'Admin\TagihanController@update')->name('update');
-            Route::get('/{id}/hapus', 'Admin\TagihanController@destroy')->name('hapus');
+            Route::get('/{id_tagihan}/hapus', 'Admin\TagihanController@destroy')->name('hapus');
         });
     });
     Route::prefix('tahun-ajaran')->name('tahun-ajaran-')->group(function(){

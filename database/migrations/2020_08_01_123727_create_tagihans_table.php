@@ -14,11 +14,12 @@ class CreateTagihansTable extends Migration
     public function up()
     {
         Schema::create('tagihans', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->string('nama');
-            $table->double('jumlah');
-            $table->boolean('wajib_semua')->nullable();
-            $table->integer('user_id')->nullable();
+            $table->bigIncrements('id_tagihan');
+            $table->string('judul_tagihan');
+            $table->string('jenis');
+            $table->bigInteger('id_tahun_ajaran');
+            $table->bigInteger('id_kelas')->nullable();
+            $table->bigInteger('jumlah');
             $table->timestamps();
         });
     }

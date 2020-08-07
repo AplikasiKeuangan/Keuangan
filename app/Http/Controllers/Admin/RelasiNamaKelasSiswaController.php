@@ -9,6 +9,7 @@ use App\Kelas;
 use App\Nama_Kelas;
 use App\RelasiNamaKelasSiswa;
 use App\Siswa;
+use App\Pembayaran;
 use DataTables;
 
 class RelasiNamaKelasSiswaController extends Controller
@@ -95,8 +96,12 @@ class RelasiNamaKelasSiswaController extends Controller
             $tahunAjaran = Tahun_Ajaran::find($id_tahun_ajaran);
             $kelas = Kelas::find($id_kelas);
             $namaKelas = Nama_Kelas::find($id_nama_kelas);
-            if($tahunAjaran->is_active == 1 && $kelas->status == 1 && $namaKelas->status == 1){
-                $relasiNamaKelasSiswa = RelasiNamaKelasSiswa::find($id_relasi);
+            $relasiNamaKelasSiswa = RelasiNamaKelasSiswa::find($id_relasi);
+            $transaksiCount = Pembayaran::where('id_siswa',$relasiNamaKelasSiswa->nis)->count();
+            if($transaksiCount > 0){
+                alert()->warning('Harap hapus data Transaksi yang berhubungan dengan Siswa ini terlebih dahulu!');
+                return back();
+            }else if($tahunAjaran->is_active == 1 && $kelas->status == 1 && $namaKelas->status == 1){
                 $relasiNamaKelasSiswa->delete();
                 if ($relasiNamaKelasSiswa) {
                     alert()->success('Berhasil Dihapus!');

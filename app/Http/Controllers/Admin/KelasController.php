@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Kelas;
 use App\Tahun_Ajaran;
 use App\Nama_Kelas;
+use App\Tagihan;
 use DataTables;
 
 class KelasController extends Controller
@@ -115,12 +116,16 @@ class KelasController extends Controller
             if($tahunAjaran->is_active == 1){
                 $kelas = Kelas::findOrFail($id_kelas);
                 $namaKelasCount = Nama_Kelas::where('kelas_id',$id_kelas)->count();
-                if ($namaKelasCount == 0) {
-                    $kelas->delete();
-                    alert()->success('Kelas berhasil dihapus!');
+                $tagihanCount = Tagihan::where('id_kelas',$id_kelas)->count();
+                if ($namaKelasCount > 0) {
+                    alert()->warning('Harap hapus Nama-Nama Kelas di Daftar Kelas ini terlebih dahulu!');
+                    return back();
+                }else if($tagihanCount > 0){
+                    alert()->warning('Harap hapus data Tagihan yang berhubungan dengan Kelas ini terlebih dahulu!');
                     return back();
                 }else{
-                    alert()->warning('Harap hapus Nama-Nama Kelas di Daftar Kelas ini terlebih dahulu!');
+                    $kelas->delete();
+                    alert()->success('Kelas berhasil dihapus!');
                     return back();
                 }
             }else{

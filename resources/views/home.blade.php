@@ -69,7 +69,7 @@
         <!-- small box -->
         <div class="small-box bg-warning">
           <div class="inner">
-            <h3>Rp {{ $jumlah_tahun_ajaran }}<sup style="font-size: 20px"></sup></h3>
+            <h3>{{ $jumlah_tahun_ajaran }}<sup style="font-size: 20px"></sup></h3>
 
             <p>Tahun Ajaran</p>
           </div>
@@ -84,7 +84,7 @@
         <!-- small box -->
         <div class="small-box bg-danger">
           <div class="inner">
-            <h3>Rp {{ $jumlah_siswa }}<sup style="font-size: 20px"></sup></h3>
+            <h3>{{ $jumlah_siswa }}<sup style="font-size: 20px"></sup></h3>
 
             <p>Siswa yang Telah Didaftarkan</p>
           </div>

@@ -32,7 +32,7 @@
   <link rel="stylesheet" href="{{ asset('plugins/datatables-responsive/css/responsive.bootstrap4.min.css')}}">
   <!-- Sweet Alert-->
 
-  <link href="{{ asset('assets/plugins/select2/select2.min.css') }}" rel="stylesheet" />
+  <!-- <link href="{{ asset('plugins/select2/select2.full.min.js') }}" rel="stylesheet" />
     <style>
         .select2-container--default .select2-selection--multiple .select2-selection__choice {
             color: black;
@@ -40,7 +40,7 @@
         .select2{
             width: 100% !important;
         }
-    </style>
+    </style> -->
   @yield('head')
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Tahun_Ajaran;
 use App\Kelas;
+use App\Tagihan;
 use DataTables;
 
 class TahunAjaranController extends Controller
@@ -80,12 +81,16 @@ class TahunAjaranController extends Controller
     {
         $tahun_ajaran = Tahun_Ajaran::findOrfail($id_tahun_ajaran);
         $kelasCount = Kelas::where('tahun_ajaran_id',$tahun_ajaran->id)->count();
-        if ($kelasCount == 0) {
-            $tahun_ajaran->delete();
-            alert()->success('Tahun Ajaran berhasil dihapus!');
+        $tagihanCount = Tagihan::where('id_tahun_ajaran',$tahun_ajaran->id)->count();
+        if ($kelasCount > 0) {
+            alert()->warning('Harap hapus Kelas-Kelas di Tahun Ajaran ini terlebih dahulu!');
+            return back();
+        }else if($tagihanCount > 0){
+            alert()->warning('Harap hapus data Tagihan yang berhubungan dengan Tahun Ajaran ini terlebih dahulu!');
             return back();
         }else{
-            alert()->warning('Harap hapus Kelas-Kelas di Tahun Ajaran ini terlebih dahulu!');
+            $tahun_ajaran->delete();
+            alert()->success('Tahun Ajaran berhasil dihapus!');
             return back();
         }
     }

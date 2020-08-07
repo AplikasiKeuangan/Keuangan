@@ -1,10 +1,20 @@
 @extends('layouts.apps')
 
-@section('judul',' - Tagihan')
+@section('judul',' - Transaksi')
 @section('head')
 <!-- Bootstrap CSS -->
 <link rel="stylesheet" href="//cdn.datatables.net/1.10.7/css/jquery.dataTables.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+<!-- <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css" rel="stylesheet" /> -->
+
+<link rel="stylesheet" href="{{ asset('plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css')}}">
+<!-- Select2 -->
+<link rel="stylesheet" href="{{ asset('plugins/select2/css/select2.min.css')}}">
+<link rel="stylesheet" href="{{ asset('plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css')}}">
+<!-- Bootstrap4 Duallistbox -->
+<link rel="stylesheet" href="{{ asset('plugins/bootstrap4-duallistbox/bootstrap-duallistbox.min.css')}}">
+<!-- Theme style -->
+<link rel="stylesheet" href="{{ asset('dist/css/adminlte.min.css')}}">
 @endsection
 @section('content')
 
@@ -12,12 +22,12 @@
    <div class="container-fluid">
       <div class="row mb-2">
          <div class="col-sm-6">
-            <h1>Tagihan</h1>
+            <h1>Transaksi</h1>
          </div>
          <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-               <li class="breadcrumb-item"><a href="{{route('admin-piutang-tagihan-index')}}">Tagihan</a></li>
-               <li class="breadcrumb-item active">Tagihan</li>
+               <li class="breadcrumb-item"><a href="{{route('admin-piutang-transaksi-index')}}">Transaksi</a></li>
+               <li class="breadcrumb-item active">Transaksi</li>
             </ol>
          </div>
          <div class="col-sm-12">
@@ -47,58 +57,44 @@
                   <div class="card">
                      <div class="card-body card-block">
                         <form method="post" id="form1" class="form-horizontal"
-                           action="{{ route('admin-piutang-tagihan-store') }}">
+                           action="{{ route('admin-piutang-transaksi-store') }}">
                            @csrf
                            <div class="row form-group">
                               <div class="col col-md-3">
-                                 <label for="hf-jumlah" class=" form-control-label">Judul Tagihan</label>
+                                 <label class=" form-control-label">Tagihan</label>
                               </div>
                               <div class="col-12 col-md-9">
-                                 <input type="text" class="form-control" name="judul_tagihan" required>
-                              </div>
-                           </div>
-                           <div class="row form-group">
-                              <div class="col col-md-3">
-                                 <label class=" form-control-label">Jenis</label>
-                              </div>
-                              <div class="col-12 col-md-9">
-                                 <select class="form-control" name="jenis" id="jenis">
-                                    <option value="SPP">SPP</option>
-                                    <option value="Sekali Bayar">Sekali Bayar</option>
-                                 </select>
-                              </div>
-                           </div>
-                           <div class="row form-group">
-                              <div class="col col-md-3">
-                                 <label class=" form-control-label">Tahun Ajaran</label>
-                              </div>
-                              <div class="col-12 col-md-9">
-                                 <select class="form-control" id="tahun-ajaran" name="id_tahun_ajaran"
-                                    {{$tahunAjaran->count() < 1 ? 'disabled':''}}>
-                                    @if($tahunAjaran->count() < 1) <option value="">Masukkan Tahun Ajar terlebih dahulu!</option>
+                                 <select class="form-control" id="tagihan" name="id_tagihan"
+                                    {{$tagihan->count() < 1 ? 'disabled':''}}>
+                                    @if($tagihan->count() < 1) <option value="">Masukkan Tagihan terlebih dahulu!</option>
                                        @endif
-                                       <option value=""> Pilih Tahun Ajaran </option>
-                                       @foreach($tahunAjaran as $item)
-                                       <option value="{{ $item->id }}">{{ $item->nama }}</option>
+                                       <option value="">Pilih Tagihan</option>
+                                       @foreach($tagihan as $item)
+                                       <option value="{{ $item->id_tagihan }}">{{ $item->judul_tagihan }}</option>
                                        @endforeach
                                  </select>
                               </div>
                            </div>
-                           <div class="row form-group" id="kelas-group">
+                           <div class="row form-group">
                               <div class="col col-md-3">
-                                 <label class=" form-control-label">Tingkat Kelas</label>
+                                 <label class=" form-control-label">Siswa</label>
                               </div>
                               <div class="col-12 col-md-9">
-                                 <select class="form-control" id="kelas" name="id_kelas">
+                                 <select class="form-control select2" id="siswa" name="id_siswa" style="width: 100%;" required>
                                  </select>
                               </div>
                            </div>
                            <div class="row form-group">
                               <div class="col col-md-3">
-                                 <label class="form-control-label" id="label-jumlah">Jumlah</label>
+                                 <label class="form-control-label" id="label-jumlah" min="1">Jumlah</label>
                               </div>
                               <div class="col-12 col-md-9">
-                                 <input type="number" class="form-control" name="jumlah" required>
+                                 <input type="number" class="form-control" name="jumlah_pembayaran" required>
+                              </div>
+                           </div>
+                           <div class="row form-group">
+                              <div class="col col-md-12">
+                                 <label class="form-control-label" id="label-hutang"></label>
                               </div>
                            </div>
                         </form>
@@ -122,14 +118,14 @@
 
       <!-- /.card-header -->
       <div class="card-body">
-         <table id="datatables-tagihan" class="table table-bordered table-hover">
+         <table id="datatables-pembayaran" class="table table-bordered table-hover">
             <thead>
                <tr>
                   <th>Judul Tagihan</th>
-                  <th>Jenis</th>
-                  <th>Tahun Ajaran</th>
-                  <th>Tingkat Kelas</th>
-                  <th>Jumlah</th>
+                  <th>Jenis Tagihan</th>
+                  <th>NIS Siswa</th>
+                  <th>Nama Siswa</th>
+                  <th>Jumlah Pembayaran</th>
                   
                   <th>Tindakan</th>
                </tr>
@@ -138,10 +134,10 @@
             <tfoot>
                <tr>
                   <th>Judul Tagihan</th>
-                  <th>Jenis</th>
-                  <th>Tahun Ajaran</th>
-                  <th>Tingkat Kelas</th>
-                  <th>Jumlah</th>
+                  <th>Jenis Tagihan</th>
+                  <th>NIS Siswa</th>
+                  <th>Nama Siswa</th>
+                  <th>Jumlah Pembayaran</th>
                   
                   <th>Tindakan</th>
                </tr>
@@ -158,69 +154,72 @@
    <script src="{{ asset('plugins/datatables-bs4/js/dataTables.bootstrap4.min.js')}}"></script>
    <script src="{{ asset('plugins/datatables-responsive/js/dataTables.responsive.min.js')}}"></script>
    <script src="{{ asset('plugins/datatables-responsive/js/responsive.bootstrap4.min.js')}}"></script>
+   <!--  -->
+   <!-- <script src="{{ asset('plugins/jquery/jquery.min.js') }}"></script> -->
+   <!-- Bootstrap 4 -->
+   <script src="{{ asset('plugins/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+   <!-- Select2 -->
+   <script src="{{ asset('plugins/select2/js/select2.full.min.js')}}"></script>
+   <!-- Bootstrap4 Duallistbox -->
+   <script src="{{ asset('plugins/bootstrap4-duallistbox/jquery.bootstrap-duallistbox.min.js') }}"></script>
 
    <script>
       $(document).ready(function () {
-         $('#kelas-group').hide();
-         $('#kelas').prop('disabled', 'disabled');
-         $('#label-jumlah').text('Jumlah/bulan');
-         $('#jenis').change(function () {
-            if ($(this).val() == 'SPP') {
-               $('#kelas-group').hide();
-               $('#label-jumlah').text('Jumlah/bulan');
-            }else{
-               $('#kelas-group').show();
-               $('#label-jumlah').text('Jumlah');
-            }
-         });
-         $('#tahun-ajaran').change(function () {
+         $(".select2").select2();
+         $('#siswa').prop('disabled', true);
+         $('#tagihan').change(function () {
             if ($(this).val() != '') {
                var value = $(this).val();
                var _token = $('input[name="_token"]').val();
                $.ajax({
-                  url: "{{ route('admin-piutang-tagihan-kelas') }}",
+                  url: "{{ route('admin-piutang-transaksi-siswa') }}",
                   method: "POST",
                   data: { value: value, _token: _token },
                   success: function (result) {
-                     $('#kelas').prop('disabled', false);
-                     $('#kelas').html(result);
+                     $('#siswa').prop('disabled', false);
+                     $('#siswa').html(result);
                   }
                })
             }else{
-               $('#kelas').prop('disabled', 'disabled');
+               $('#label-hutang').html('');
+               $('#siswa').html('');
+               $('#siswa').prop('disabled', true);
             }
          });
-         $('#tahun-ajaran').change(function () {
-            $('#kelas').val('');
+         $('#siswa').change(function () {
+            if ($(this).val() != '') {
+               var value = $(this).val();
+               var tagihan = $('#tagihan').val();
+               var _token = $('input[name="_token"]').val();
+               $.ajax({
+                  url: "{{ route('admin-piutang-transaksi-hutang') }}",
+                  method: "POST",
+                  data: { value: value, tagihan: tagihan, _token: _token },
+                  success: function (result) {
+                     $('#label-hutang').html(result);
+                  }
+               })
+            }else{
+               $('#label-hutang').html('');
+            }
+         });
+         $('#tagihan').change(function () {
+            $('#siswa').val('');
          });
       });
       //$('#example1').DataTable()
-      var table = $('#datatables-tagihan').DataTable({
+      var table = $('#datatables-pembayaran').DataTable({
          responsive: true,
          autoWidth: false,
          processing : true,
          serverSide: true,
-         ajax: '{!! route('admin-piutang-tagihan-data') !!}',
+         ajax: '{!! route('admin-piutang-transaksi-data') !!}',
          columns: [
                   { data: 'judul_tagihan', name: 'judul_tagihan' },
                   { data: 'jenis', name: 'jenis' },
-                  { data: 'tahun_ajaran', name: 'tahun_ajaran', 
-                  render : function(data, type, row) 
-                     {
-                        return "<a href='/admin/tahun-ajaran/"+row.id_tahun_ajaran+"/kelas'>"+row.tahun_ajaran+"</a>";
-                     }
-                  },
-                  { data: 'kelas', name: 'kelas', 
-                  render : function(data, type, row) 
-                     {
-                        if(data == "Semua"){
-                           return "<a href='/admin/tahun-ajaran/"+row.id_tahun_ajaran+"/kelas'>"+row.kelas+"</a>";
-                        }else{
-                           return "<a href='/admin/tahun-ajaran/"+row.id_tahun_ajaran+"/kelas/"+row.id_kelas+"/nama-kelas'>"+row.kelas+"</a>";
-                        }
-                     }
-                  },
-                  { data: 'jumlah', className: 'dt-right', name: 'jumlah' },
+                  { data: 'nis', name: 'nis' },
+                  { data: 'nama_siswa', name: 'nama_siswa' },
+                  { data: 'jumlah_pembayaran', className: 'dt-right', name: 'jumlah_pembayaran' },
                   { data: 'action', className: 'dt-right', orderable: false, searchable: true }
                ],
          // "rowCallback": function( row, data ) {}
@@ -261,5 +260,12 @@
             }
          });
       }
+   </script>
+   <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+   <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script> -->
+   <script type="text/javascript">
+      $(function () {
+         $(".select2").select2();
+      });
    </script>
    @endsection

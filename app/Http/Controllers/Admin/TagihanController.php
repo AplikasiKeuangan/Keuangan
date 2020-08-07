@@ -3,153 +3,92 @@
 namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
+use App\Tahun_Ajaran;
 use App\Kelas;
 use App\Siswa;
 use App\Nama_Kelas;
 use App\Tagihan;
 use App\Http\Controllers\Controller;
+use App\Pembayaran;
+use DataTables;
 
 
 class TagihanController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
-        $kelas = Kelas::all();
-        $siswa = Siswa::all();
-        $tagihan = Tagihan::all();
-        $nama_kelas=Nama_Kelas::where('status',1)->get();
-        return view('Admin.Tagihan.index',compact('kelas','siswa','nama_kelas','tagihan'));
+        $tahunAjaran = Tahun_Ajaran::where('is_active',1)->orderBy('created_at','DESC')->get();
+        return view('Admin.Tagihan.index',compact('tahunAjaran'));
     }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+    public function kelas(Request $request)
     {
-        
+        $value = $request->get('value');
+        $data = Kelas::where('tahun_ajaran_id',$value)->get();
+        $output = '<option value="">Semua Tingkatan</option>';
+        foreach($data as $row)
+        {
+         $output .= '<option value="'.$row->id.'">'.$row->nama_kelas.'</option>';
+        }
+        echo $output;
     }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+    public function data(Request $request)
+    {
+        if ($request->ajax()) {
+            $tagihan  = Tagihan::orderBy('created_at', 'DESC')->get();
+            return DataTables::of($tagihan)
+                ->addColumn('tahun_ajaran',function($tagihan){
+                    return $tagihan->tahun_ajaran->nama;
+                })
+                ->addColumn('jumlah',function($tagihan){
+                    return "Rp ".number_format($tagihan->jumlah,2);
+                })
+                ->addColumn('kelas',function($tagihan){
+                    if($tagihan->jenis == 'SPP'){
+                        return '';
+                    }else if($tagihan->id_kelas == NULL){
+                        return 'Semua';
+                    }else{
+                        return Kelas::find($tagihan->id_kelas)->nama_kelas;
+                    }
+                    return '';
+                })
+                ->addColumn('action', function($tagihan){
+                    return '<a class="btn btn-light" href="/admin/piutang/tagihan/'.$tagihan->id_tagihan.'/transaksi"><i class="fa fa-cog"></i></a> <a data-admin="/admin/piutang/tagihan/'.$tagihan->id_tagihan.'/hapus" class="btn btn-danger admin-remove" onclick="adminDelete()" href="#"><i class="fa fa-eraser"></i> Delete</a>';
+                })
+                ->make(true);
+        }else{
+            return abort(403);
+        }
+    }
     public function store(Request $request)
     {
         try {
-            $this->validate($request,[
-                'nama'=>'max:255'
-            ]);
-
-            
             $tagihan = new Tagihan;
-            $tagihan->nama = $request->nama;
-            
-           
-
-            if ($request->jenis == 'SPP') {
-                $tagihan->jumlah = $request->jumlah;
-                
-            
-            }else{
-                return redirect(route('admin-Data-tagihan-index'))->with('error','Tagihan Gagal Ditambah');
+            $tagihan->judul_tagihan = $request->judul_tagihan;
+            $tagihan->jenis = $request->jenis;
+            $tagihan->id_tahun_ajaran = $request->id_tahun_ajaran;
+            if($request->jenis != 'SPP' && $request->id_kelas != NULL){
+                $tagihan->id_kelas = $request->id_kelas;
             }
-           $tagihan->save();
-            return redirect('/admin/Data/tagihan/')->with('success','Tagihan Berhasil Ditambahkan');
-        
+            $tagihan->jumlah = $request->jumlah;
+            $tagihan->save();
+            alert()->success('Berhasil dalam memasukkan data!');
+            return redirect()->route('admin-piutang-tagihan-index');
         } catch (\Throwable $th) {
-            return back()->with('warning','Terjadi Kesalahan');
-
+            alert()->warning('Gagal dalam memasukkan data!');
+            return back();
         }
     }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        $tagihan = Tagihan::findOrfail($id);
-        $kelas = Kelas::all();
-        $siswa = Siswa::get();
-        $nama_kelas=Nama_Kelas::where('status',1)->get();
-        return view('Admin.Tagihan.edit',compact('kelas','siswa','nama_kelas','tagihan'));
-
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        
-        try {
-            $this->validate($request,[
-                'nama'=>'max:255'
-            ]);
-
-            
-            $tagihan =Tagihan::findOrfail($id);
-            $tagihan->nama = $request->nama;
-            
-           
-
-            if ($request->jenis == 'SPP') {
-                $tagihan->jumlah = $request->jumlah;
-                
-            
-            }else{
-                return redirect(route('admin-Data-tagihan-index'))->with('error','Data Gagal Ditambah');
-            }
-           $tagihan->save();
-            return redirect('/admin/Data/tagihan/')->with('success','Data Berhasil Ditambahkan');
-        
-        } catch (\Throwable $th) {
-            return back()->with('warning','Terjadi Kesalahan');
-
-        }
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+    
     public function destroy($id)
     {
         $tagihan = Tagihan::findOrfail($id);
-        $tagihan->delete();
-
-        if ($tagihan) {
+        $pembayaran = Pembayaran::where('id_tagihan',$id)->get();
+        if ($pembayaran->count() == 0) {
+            $tagihan->delete();
             alert()->success('Tagihan Berhasil Dihapus!');
         }else{
-            alert()->error('Tagihan Gagal Dihapus!');
+            alert()->warning('Harap hapus data Transaksi terlebih dahulu!');
         }
         return back();
     
