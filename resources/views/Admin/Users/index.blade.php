@@ -77,14 +77,7 @@
                                              <input type="password" id="hf-password" name="password" placeholder="Buat Password" required="" autocomplete="new-password" class="form-control @error('password') is-invalid @enderror">
                                           </div>
                                     </div>
-                                    <div class="row form-group">
-                                          <div class="col col-md-3">
-                                             <label for="hf-password_confirmation" class=" form-control-label">Konfirmasi Password</label>
-                                          </div>
-                                          <div class="col-12 col-md-9">
-                                             <input type="password" id="hf-password_confirmation" name="password_confirmation" placeholder="Ulangi Password" required="" autocomplete="new-password" class="form-control @error('password') is-invalid @enderror">
-                                          </div>
-                                    </div>
+                                    
                                     <div class="row form-group">
                                           <div class="col col-md-3">
                                              <label for="hf-role" class=" form-control-label">Role</label>
@@ -155,10 +148,10 @@
                            <span>Siswa</span>
                         @endif
                     </td>
-                    <td></td>
-                    <td align="center"><a href="/admin/Data/kategori/{{$user->id}}/edit" class="btn btn-primary"><i class="fa fa-edit"></i></a>
+                    <td>   <input data-id="{{$user->id}}" class="toggle-class" type="checkbox" data-onstyle="success" data-offstyle="danger" data-toggle="toggle" data-on="Active" data-off="InActive" {{ $user->status ? 'checked' : '' }}></td>
+                    <td align="center"><a href="/admin/Data/users/{{$user->id}}/edit" class="btn btn-primary"><i class="fa fa-edit"></i></a>
                           {{-- <a href="javascript:" rel="{{$user->id}}" rel1="delete-kategori" class="btn btn-danger deleteRecord"><i class="fa fa-eraser"></i> Delete</a></td> --}}
-                          <a href="/admin/Data/kategori/{{$user->id}}/hapus"class="button delete-confirm btn btn-danger"><i class="fa fa-eraser"></i></a></td>
+                          <a href="/admin/Data/users/{{$user->id}}/hapus"class="button delete-confirm btn btn-danger"><i class="fa fa-eraser"></i></a></td>
                 </tr>
 
               @endforeach

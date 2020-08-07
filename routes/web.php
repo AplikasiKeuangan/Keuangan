@@ -67,6 +67,7 @@ Route::prefix('admin')->name('admin-')->middleware(['checkLoginStatus'])->group(
             Route::get('/{id}/hapus', 'Admin\KategoriController@destroy')->name('hapus');
         });
     });
+
     Route::prefix('Data')->name('Data-')->group(function () {
         Route::prefix('keuangan')->name('keuangan-')->group(function () {
             Route::get('/menu', 'Admin\KeuanganController@index1')->name('index1');
@@ -89,6 +90,11 @@ Route::prefix('admin')->name('admin-')->middleware(['checkLoginStatus'])->group(
             Route::post('/{id}/update', 'Admin\UserController@update')->name('update');
             Route::get('/{id}/hapus', 'Admin\UserController@destroy')->name('hapus');
         });
+    });
+    Route::get('/changeStatus', 'Admin\UserController@changeStatus')->name('users.update.status');
+
+    Route::prefix('Data')->name('Data-')->group(function () {
+        //
     });
     Route::prefix('piutang')->name('piutang-')->group(function () {
         Route::prefix('transaksi')->name('transaksi-')->group(function () {
