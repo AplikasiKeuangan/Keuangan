@@ -30,9 +30,15 @@
   <!-- DataTables -->
   <link rel="stylesheet" href="{{ asset('template/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css')}}">
   <link rel="stylesheet" href="{{ asset('plugins/datatables-responsive/css/responsive.bootstrap4.min.css')}}">
+  
   <!-- Sweet Alert-->
 
   <link href="{{ asset('assets/plugins/select2/select2.min.css') }}" rel="stylesheet" />
+
+  <!--toggle-->
+
+  
+  
     <style>
         .select2-container--default .select2-selection--multiple .select2-selection__choice {
             color: black;
@@ -110,9 +116,31 @@
 <script src="{{ asset ('template/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js')}}"></script>
 <script src="{{ asset ('template/plugins/datatables-responsive/js/dataTables.responsive.min.js')}}"></script>
 <script src="{{ asset ('template/plugins/datatables-responsive/js/responsive.bootstrap4.min.js')}}"></script>
+<script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css"  />
+  <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
+  
 <!--SweetAlert-->
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 @if(session('success'))
+<script>
+  $(function() {
+    $('.toggle-class').change(function() {
+        var status = $(this).prop('checked') == true ? 1 : 0; 
+        var user_id = $(this).data('id'); 
+         
+        $.ajax({
+            type: "GET",
+            dataType: "json",
+            url: '/changeStatus',
+            data: {'status': status, 'user_id': user_id},
+            success: function(data){
+              console.log(data.success)
+            }
+        });
+    })
+  })
+</script>
 <script>
   swal({
     title: "{{ session('success') }}",

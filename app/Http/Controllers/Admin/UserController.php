@@ -43,6 +43,7 @@ class UserController extends Controller
         $user->email = $request->email;
         $user->password = Hash::make($request->password);
         $user->role = $request->role;
+        $user->status = 1;
         $user->save();
         return back()->with('success','Pengguna Berhasil Didaftarkan!');
 
@@ -67,7 +68,8 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        //
+        $user = User::findOrfail($id);
+        return view('Admin.Users.edit',compact('user'));
     }
 
     /**
@@ -79,7 +81,37 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        
+        $update_user=User::findOrFail($id);
+        $this->validate($request,[
+            'name'=> 'required|max:255',
+            
+        ]);
+
+        if ($update_user == false) {
+            alert()->error('Pengguna Gagal Diupdate!');
+        }else{
+        
+            $update_user->name = $request->name;
+            $update_user->email = $request->email;
+            $update_user->password = Hash::make($request->password);
+            $update_user->role = $request->role;
+            
+
+        $update_user->update();
+        alert()->success('Pengguna Berhasil Diupdate!');
+        return redirect('admin/Data/users/');
+        
+        }
+    }
+
+    public function changeStatus(Request $request)
+    {
+        $user = User::findOrFail($request->user_id);
+        $user->status = $request->status;
+        $user->save();
+    
+        return response()->json(['message' => 'User status updated successfully.']);
     }
 
     /**
