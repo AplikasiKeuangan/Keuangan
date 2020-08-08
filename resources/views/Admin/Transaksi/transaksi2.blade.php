@@ -24,11 +24,6 @@
         text-align: left;
     }
     
-    .invoice-box button {
-        width: 100%;
-        text-align: center;
-    }
-    
     .invoice-box table td {
         padding: 5px;
         vertical-align: top;
@@ -155,7 +150,7 @@
                             
                             <td>
 								{{$pembayaran->id_pembayaran}}<br>
-                                {{$pembayaran->created_at->format('d, F Y')}}<br>
+                                {{$pembayaran->created_at->format('d, M Y')}}<br>
                                 {{$pembayaran->siswa->nis}}<br>
                                 {{$pembayaran->siswa->nama_lengkap}} <br>
                             </td>
@@ -198,14 +193,16 @@
                 
                 <td>
 				<p align="center">
-                {{ 'Guguak, '.Carbon\Carbon::now()->format('d F Y') }}
+				@php
+				$tgl=date('d M Y');
+				echo  'Guguak, ',$tgl;
+				@endphp
 				</p><br><br><br>
 				<p align="center"> (.................)</p>
                 </td>
 				
             </tr>
         </table>
-        <button class="btn btn-light" onclick="window.print()">Print</button>
     </div>
 
 	<script>

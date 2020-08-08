@@ -87,7 +87,7 @@ class TransaksiController extends Controller
     }
     public function store(Request $request)
     {
-        // try {
+        try {
             $pembayaran = new Pembayaran;
             $pembayaran->id_tagihan = $request->id_tagihan;
             $pembayaran->id_siswa = $request->id_siswa;
@@ -106,10 +106,10 @@ class TransaksiController extends Controller
                 alert()->success('Berhasil memasukkan data!');
             }
             return redirect()->route('admin-piutang-transaksi-index');
-        // } catch (\Throwable $th) {
-        //     alert()->warning('Gagal memasukkan data!');
-        //     return back();
-        // }
+        } catch (\Throwable $th) {
+            alert()->warning('Gagal memasukkan data!');
+            return back();
+        }
     }
 
     public function lihat($id){
@@ -126,7 +126,7 @@ class TransaksiController extends Controller
     }
     public function cetak($id){
         $pembayaran = Pembayaran::findOrfail($id);
-        $pdf = PDF::loadview('Admin.Transaksi.transaksi',compact('pembayaran'));
+        $pdf = PDF::loadview('Admin.Transaksi.transaksi2',compact('pembayaran'));
         
     	return $pdf->download('kwitansi.pdf');
     }

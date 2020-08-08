@@ -78,22 +78,6 @@
                                             <input type="password" id="hf-password"  name="password" placeholder="Buat Password" required="" autocomplete="new-password" class="form-control @error('password') is-invalid @enderror">
                                             </div>
                                     </div>
-                                    <div class="row form-group">
-                                            <div class="col col-md-3">
-                                            <label for="hf-role" class=" form-control-label">Role</label>
-                                            </div>
-                                            <div class="col-12 col-md-9">
-                                            <div class="custom-control custom-radio">
-                                            <input name="role" value="1" {{ $user->role == '1' ? 'checked' : '' }} class="custom-control-input" type="radio" id="customRadio2" name="customRadio">
-                                            <label for="customRadio2" class="custom-control-label">Admin</label>
-                                            </div>
-                                            <div class="custom-control custom-radio">
-                                            <input name="role" value="0" {{ $user->role == '0' ? 'checked' : ''}} class="custom-control-input" type="radio" id="customRadio1" name="customRadio">
-                                            <label for="customRadio1" class="custom-control-label">Siswa</label>
-                                            </div>
-                                            </div>
-                                            
-                                    </div>
                                     <div class="modal-footer">
                                     <button type="submit" class="btn btn-primary btn-sm">
                                        <i class="fa fa-dot-circle-o"></i> Update

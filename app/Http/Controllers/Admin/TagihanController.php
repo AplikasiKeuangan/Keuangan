@@ -53,7 +53,7 @@ class TagihanController extends Controller
                     return '';
                 })
                 ->addColumn('action', function($tagihan){
-                    return '<a class="btn btn-light" href="/admin/piutang/tagihan/'.$tagihan->id_tagihan.'/transaksi"><i class="fa fa-cog"></i></a> <a data-admin="/admin/piutang/tagihan/'.$tagihan->id_tagihan.'/hapus" class="btn btn-danger admin-remove" onclick="adminDelete()" href="#"><i class="fa fa-eraser"></i> Delete</a>';
+                    return '<a data-admin="/admin/piutang/tagihan/'.$tagihan->id_tagihan.'/hapus" class="btn btn-danger admin-remove" onclick="adminDelete()" href="#"><i class="fa fa-eraser"></i> Delete</a>';
                 })
                 ->make(true);
         }else{

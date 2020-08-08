@@ -29,6 +29,7 @@ class SiswaController extends Controller
         $id_tahun_ajaran = Kelas::whereIn('id',$id_nama_kelas)->pluck('tahun_ajaran_id');
         $tagihan = Tagihan::whereIn('id_tahun_ajaran',$id_tahun_ajaran)->orderBy('created_at','DESC')->get();
         // dd($tagihan->count());
-        return view('Siswa.keuangan', compact('data_siswa','tagihan'));
+        $pembayaran = Pembayaran::where([['id_siswa',Auth::guard('siswa')->id()]]);
+        return view('Siswa.keuangan', compact('data_siswa','tagihan','pembayaran'));
     }
 }

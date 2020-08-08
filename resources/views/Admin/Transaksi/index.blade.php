@@ -121,6 +121,7 @@
          <table id="datatables-pembayaran" class="table table-bordered table-hover">
             <thead>
                <tr>
+                  <th>No. Pembayaran</th>
                   <th>Judul Tagihan</th>
                   <th>Jenis Tagihan</th>
                   <th>NIS Siswa</th>
@@ -133,6 +134,7 @@
             <tbody></tbody>
             <tfoot>
                <tr>
+                  <th>No. Pembayaran</th>
                   <th>Judul Tagihan</th>
                   <th>Jenis Tagihan</th>
                   <th>NIS Siswa</th>
@@ -232,6 +234,7 @@
          serverSide: true,
          ajax: '{!! route('admin-piutang-transaksi-data') !!}',
          columns: [
+                  { data: 'id_pembayaran', name: 'id_pembayaran' },
                   { data: 'judul_tagihan', name: 'judul_tagihan' },
                   { data: 'jenis', name: 'jenis' },
                   { data: 'nis', name: 'nis' },

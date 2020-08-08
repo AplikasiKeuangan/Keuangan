@@ -140,6 +140,22 @@
 </div>
 <!-- ./wrapper -->
 
+<script>
+     
+     $('.logout-confirm').on('click', function (event) {
+         event.preventDefault();
+         const url = $(this).attr('href');
+         swal({
+             title: 'Anda Yakin Ingin Keluar?',
+             icon: 'warning',
+             buttons: ["Batal", "Ya!"],
+         }).then(function(value) {
+             if (value) {
+              document.getElementById('logout-form').submit();
+             }
+         });
+     });
+</script>
 @yield('script')
 <!-- jQuery -->
 <!-- <script src="{{ asset ('template/plugins/jquery/jquery.min.js')}}"></script> -->

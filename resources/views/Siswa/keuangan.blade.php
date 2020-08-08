@@ -38,7 +38,17 @@
                           <dt class="col-sm-12" style="text-align: center">Tidak ditemukannya hutang!</dt>
                           @endif
                            @foreach($tagihan as $data)
-                           <dt class="col-sm-12" style="text-align: center">Tahun Ajaran - {{ $data->tahun_ajaran->nama }}</dt>
+                           <dt class="col-sm-12" style="text-align: center">Tagihan - {{ $data->judul_tagihan }}</dt>
+                           <dt class="col-sm-4">Tahun Ajaran</dt>
+                           <dd class="col-sm-8">{{ $data->judul_tagihan }}</dd>
+                           <dt class="col-sm-4">Total Bayar</dt>
+                           <dd class="col-sm-8">Rp {{ number_format(App\Pembayaran::where([['id_tagihan',$data->id_tagihan],['id_siswa',Auth::guard('siswa')->id()]])->get()->sum('jumlah_pembayaran'),2) }}</dd>
+                           <dt class="col-sm-4">Sisa Hutang</dt>
+                           @if($data->jenis == 'SPP')
+                           <dd class="col-sm-8">Rp {{ number_format($data->jumlah * 12 - App\Pembayaran::where([['id_tagihan',$data->id_tagihan],['id_siswa',Auth::guard('siswa')->id()]])->get()->sum('jumlah_pembayaran'),2) }}</dd>
+                           @else
+                           <dd class="col-sm-8">Rp {{ number_format($data->jumlah - App\Pembayaran::where([['id_tagihan',$data->id_tagihan],['id_siswa',Auth::guard('siswa')->id()]])->get()->sum('jumlah_pembayaran'),2) }}</dd>
+                           @endif
                            @endforeach
                         </dl>
                       </div>

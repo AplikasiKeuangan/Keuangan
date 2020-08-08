@@ -22,6 +22,8 @@ class DatabaseSeeder extends Seeder
             'name' => Str::random(10),
             'email' => 'admin@gmail.com',
             'password' => bcrypt('secret123'),
+            'created_at' => Carbon\Carbon::now,
+            'updated_at' => Carbon\Carbon::now,
         ]);
     }
 }

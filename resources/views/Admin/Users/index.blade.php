@@ -84,12 +84,8 @@
                                           </div>
                                           <div class="col-12 col-md-9">
                                           <div class="custom-control custom-radio">
-                                             <input name="role" value="1" class="custom-control-input" type="radio" id="customRadio2" name="customRadio">
+                                             <input name="role" value="1" class="custom-control-input" type="radio" id="customRadio2" name="customRadio" checked>
                                              <label for="customRadio2" class="custom-control-label">Admin</label>
-                                          </div>
-                                          <div class="custom-control custom-radio">
-                                             <input name="role" value="0" class="custom-control-input" type="radio" id="customRadio1" name="customRadio">
-                                             <label for="customRadio1" class="custom-control-label">Siswa</label>
                                           </div>
                                           </div>
                                     </div>

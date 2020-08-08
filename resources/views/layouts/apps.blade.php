@@ -70,6 +70,7 @@
       </div>
     </footer>
 </div>
+@yield('script')
 <!-- ./wrapper -->
 <!-- jQuery -->
 <!-- <script src="{{ asset ('template/plugins/jquery/jquery.min.js')}}"></script> -->
