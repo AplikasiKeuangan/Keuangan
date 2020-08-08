@@ -122,6 +122,15 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $user = User::findOrfail($id);
+        $user->delete();
+        if ($user) {
+            alert()->success('Pengguna Telah Dihappus!');
+            return back();
+        }else{
+            alert()->error('Jurusan Gagal Dihapus!');
+        }
+        
+        
     }
 }

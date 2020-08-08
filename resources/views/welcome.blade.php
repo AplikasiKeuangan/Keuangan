@@ -463,7 +463,7 @@
 <script type="text/javascript">
     (function () {
         var options = {
-            whatsapp: "+6282268916913", // WhatsApp number
+            whatsapp: "+6282387078324", // WhatsApp number
             text:"Assalau'alaikum..",
             call_to_action: "Hubungi Kami", // Call to action
             position: "right", // Position may be 'right' or 'left'

@@ -122,7 +122,6 @@
               <th>Tanggal Buat</th>
               <th>Nama Pengguna</th>
               <th>Role</th>
-              <th>Status</th>
               <th>Tindakan</th>
             </tr>
             </thead>
@@ -148,7 +147,7 @@
                            <span>Siswa</span>
                         @endif
                     </td>
-                    <td>   <input data-id="{{$user->id}}" class="toggle-class" type="checkbox" data-onstyle="success" data-offstyle="danger" data-toggle="toggle" data-on="Active" data-off="InActive" {{ $user->status ? 'checked' : '' }}></td>
+                   
                     <td align="center"><a href="/admin/Data/users/{{$user->id}}/edit" class="btn btn-primary"><i class="fa fa-edit"></i></a>
                           {{-- <a href="javascript:" rel="{{$user->id}}" rel1="delete-kategori" class="btn btn-danger deleteRecord"><i class="fa fa-eraser"></i> Delete</a></td> --}}
                           <a href="/admin/Data/users/{{$user->id}}/hapus"class="button delete-confirm btn btn-danger"><i class="fa fa-eraser"></i></a></td>
@@ -162,7 +161,6 @@
               <th>Tanggal Buat</th>
               <th>Nama Pengguna</th>
               <th>Role</th>
-              <th>Status</th>
               <th>Tindakan</th>
             </tr>
             </tfoot>

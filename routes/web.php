@@ -94,6 +94,7 @@ Route::prefix('admin')->name('admin-')->middleware(['checkLoginStatus'])->group(
             Route::get('/{id}/edit', 'Admin\UserController@edit')->name('edit');
             Route::post('/{id}/update', 'Admin\UserController@update')->name('update');
             Route::get('/{id}/hapus', 'Admin\UserController@destroy')->name('hapus');
+          
         });
     });
     Route::get('/changeStatus', 'Admin\UserController@changeStatus')->name('users.update.status');
@@ -109,7 +110,10 @@ Route::prefix('admin')->name('admin-')->middleware(['checkLoginStatus'])->group(
             Route::post('/get-hutang', 'Admin\TransaksiController@hutang')->name('hutang');
             Route::post('/store', 'Admin\TransaksiController@store')->name('store');
             Route::get('/{id_transaksi}/hapus', 'Admin\TransaksiController@destroy')->name('hapus');
+            Route::get('/{id}/lihat', 'Admin\TransaksiController@lihat')->name('lihat');
+            Route::get('/{id}/cetak', 'Admin\TransaksiController@cetak')->name('cetak');
         });
+        
         Route::prefix('tagihan')->name('tagihan-')->group(function () {
             Route::get('/', 'Admin\TagihanController@index')->name('index');
             Route::get('/get-data', 'Admin\TagihanController@data')->name('data');

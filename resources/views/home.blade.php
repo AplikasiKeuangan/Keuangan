@@ -96,7 +96,6 @@
         </div>
       </div>
     </div>
-      
     <!-- /.row -->
     <!-- Main row -->
     <div class="row">
