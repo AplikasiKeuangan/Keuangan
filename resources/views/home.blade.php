@@ -97,18 +97,6 @@
       </div>
       <div class="col-lg-12 col-12">
         <!-- small box -->
-        <div class="small-box bg-info">
-          <div class="inner">
-            <h3>Rp {{ $jumlah_siswa }}<sup style="font-size: 20px"></sup></h3>
-
-            <p>Uang Yang Diterima</p>
-          </div>
-          <div class="icon">
-            <i class="ion arrow-down-circle-outline"></i>
-          </div>
-          <a href="{{ route('admin-Data-keuangan-index') }}" class="small-box-footer">Info lebih lanjut <i
-              class="fas fa-arrow-circle-right"></i></a>
-        </div>
       </div>
       
     <!-- /.row -->

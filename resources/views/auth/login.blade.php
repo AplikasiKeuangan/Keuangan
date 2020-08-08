@@ -252,107 +252,7 @@
 
             <!-- Main Navigation -->
             <ul class="nav navbar-nav flex-nowrap">
-                <li class="nav-item dropup">
-                    <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Catalog</a>
-                    <div class="dropdown-menu">
-                        <a class="dropdown-item" href="index.html">Home page</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="library.html">Library</a>
-                        <a class="dropdown-item" href="library-featured.html">Featured</a>
-                        <a class="dropdown-item" href="library-development.html">Development</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="library-filters.html">Explore</a>
-                        <a class="dropdown-item" href="library-filters-list.html">Explore List</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="paths.html">Learning Paths</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="course.html">Course Details</a>
-                        <a class="dropdown-item" href="lesson.html">Lesson Details</a>
-                        <a class="dropdown-item" href="path.html">Path Details</a>
-                    </div>
-                </li>
-                <li class="nav-item dropup">
-                    <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Student</a>
-                    <div class="dropdown-menu">
-                        <a class="dropdown-item" href="student-dashboard.html">Dashboard</a>
-                        <a class="dropdown-item" href="student-my-courses.html">My Courses</a>
-                        <a class="dropdown-item" href="student-take-course.html">Take Course</a>
-                        <a class="dropdown-item" href="student-take-lesson.html">Take Lesson</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="student-take-quiz.html">Take Quiz</a>
-                        <a class="dropdown-item" href="student-quiz-result-details.html">Quiz Result</a>
-                        <a class="dropdown-item" href="student-quiz-results.html">My Quizzes</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="student-path-assessment.html">Skill Assessment</a>
-                        <a class="dropdown-item" href="student-path-assessment-result.html">Skill Result</a>
-                    </div>
-                </li>
-                <li class="nav-item dropup">
-                    <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Instructor</a>
-                    <div class="dropdown-menu">
-                        <a class="dropdown-item" href="instructor-dashboard.html">Dashboard</a>
-                        <a class="dropdown-item" href="instructor-courses.html">Courses</a>
-                        <a class="dropdown-item" href="instructor-quizzes.html">Quizzes</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="instructor-edit-course.html">Edit Course</a>
-                        <a class="dropdown-item" href="instructor-edit-quiz.html">Edit Quiz</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="instructor-earnings.html">Earnings</a>
-                        <a class="dropdown-item" href="instructor-statement.html">Statement</a>
-                    </div>
-                </li>
-                <li class="nav-item dropup">
-                    <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Community</a>
-                    <div class="dropdown-menu">
-                        <a class="dropdown-item" href="student-discussions.html">Discussions</a>
-                        <a class="dropdown-item" href="student-discussion.html">Discussion Details</a>
-                        <a class="dropdown-item" href="student-discussions-ask.html">Ask Question</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="student-profile.html">Student Profile</a>
-                        <a class="dropdown-item" href="instructor-profile.html">Instructor Profile</a>
-                    </div>
-                </li>
-                <li class="nav-item dropup active">
-                    <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Account</a>
-                    <div class="dropdown-menu dropdown-menu-right">
-                        <a class="dropdown-item" href="pricing.html">Pricing</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item active" href="login.html">Login</a>
-                        <a class="dropdown-item" href="signup.html">Signup</a>
-                        <a class="dropdown-item" href="signup-payment.html">Payment</a>
-                        <a class="dropdown-item" href="reset-password.html">Reset Password</a>
-                        <a class="dropdown-item" href="change-password.html">Change Password</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="student-edit-account.html">Edit Account</a>
-                        <a class="dropdown-item" href="student-edit-account-profile.html">Profile &amp; Privacy</a>
-                        <a class="dropdown-item" href="student-edit-account-notifications.html">Email Notifications</a>
-                        <a class="dropdown-item" href="student-edit-account-password.html">Account Password</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="student-billing.html">Subscription</a>
-                        <a class="dropdown-item" href="student-billing-upgrade.html">Upgrade Account</a>
-                        <a class="dropdown-item" href="student-billing-payment.html">Payment Information</a>
-                        <a class="dropdown-item" href="student-billing-history.html">Payment History</a>
-                        <a class="dropdown-item" href="student-billing-invoice.html">Invoice</a>
-                    </div>
-                </li>
-                <li class="nav-item dropup">
-                    <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Components</a>
-                    <div class="dropdown-menu dropdown-menu-right">
-                        <a class="dropdown-item" href="ui-buttons.html">Buttons</a>
-                        <a class="dropdown-item" href="ui-charts.html">Charts</a>
-                        <a class="dropdown-item" href="ui-avatars.html">Avatars</a>
-                        <a class="dropdown-item" href="ui-forms.html">Forms</a>
-                        <a class="dropdown-item" href="ui-loaders.html">Loaders</a>
-                        <a class="dropdown-item" href="ui-tables.html">Tables</a>
-                        <a class="dropdown-item" href="ui-cards.html">Cards</a>
-                        <a class="dropdown-item" href="ui-icons.html">Icons</a>
-                        <a class="dropdown-item" href="ui-tabs.html">Tabs</a>
-                        <a class="dropdown-item" href="ui-alerts.html">Alerts</a>
-                        <a class="dropdown-item" href="ui-badges.html">Badges</a>
-                        <a class="dropdown-item" href="ui-progress.html">Progress</a>
-                        <a class="dropdown-item" href="ui-pagination.html">Pagination</a>
-                    </div>
-                </li>
+                
             </ul>
             <!-- // END Main Navigation -->
 
@@ -379,243 +279,29 @@
 
                 </div>
 
+                
+                
                 <ul class="sidebar-menu">
-                    <li class="sidebar-menu-item">
-                        <a class="sidebar-menu-button" href="index.html">Home Page</a>
+                <li class="sidebar-menu-item active">
+                        <a class="sidebar-menu-button" href="/">Beranda</a>
                     </li>
-                    <li class="sidebar-menu-item">
+                    <li class="sidebar-menu-item active open">
                         <a class="sidebar-menu-button" data-toggle="collapse" href="#catalog_menu">
-                            Catalog
+                            Kesiswaan
                             <span class="ml-auto sidebar-menu-toggle-icon"></span>
                         </a>
-                        <ul class="sidebar-submenu collapse sm-indent" id="catalog_menu">
+                        <ul class="sidebar-submenu collapse show sm-indent" id="catalog_menu">
                             <li class="sidebar-menu-item">
-                                <a class="sidebar-menu-button" href="library.html">Library</a>
+                                <a class="sidebar-menu-button" href="library.html">Dashboard</a>
                             </li>
                             <li class="sidebar-menu-item">
                                 <a class="sidebar-menu-button" href="library-featured.html">Featured</a>
                             </li>
-                            <li class="sidebar-menu-item">
-                                <a class="sidebar-menu-button" href="library-development.html">Development</a>
-                            </li>
-                            <li class="sidebar-menu-item">
-                                <a class="sidebar-menu-button" href="library-filters.html">Explore</a>
-                            </li>
-                            <li class="sidebar-menu-item">
-                                <a class="sidebar-menu-button" href="library-filters-list.html">Explore List</a>
-                            </li>
-                            <li class="sidebar-menu-item">
-                                <a class="sidebar-menu-button" href="paths.html">Learning Paths</a>
-                            </li>
-                            <li class="sidebar-menu-item">
-                                <a class="sidebar-menu-button" href="course.html">Course Details</a>
-                            </li>
-                            <li class="sidebar-menu-item">
-                                <a class="sidebar-menu-button" href="lesson.html">Lesson Details</a>
-                            </li>
-                            <li class="sidebar-menu-item">
-                                <a class="sidebar-menu-button" href="path.html">Path Details</a>
-                            </li>
                         </ul>
                     </li>
                 </ul>
 
-                <div class="sidebar-heading">Pages</div>
-                <ul class="sidebar-menu">
-                    <li class="sidebar-menu-item">
-                        <a class="sidebar-menu-button" data-toggle="collapse" href="#student_menu">
-                            Student
-                            <span class="ml-auto sidebar-menu-toggle-icon"></span>
-                        </a>
-                        <ul class="sidebar-submenu collapse sm-indent" id="student_menu">
-                            <li class="sidebar-menu-item">
-                                <a class="sidebar-menu-button" href="student-dashboard.html">Dashboard</a>
-                            </li>
-                            <li class="sidebar-menu-item">
-                                <a class="sidebar-menu-button" href="student-my-courses.html">My Courses</a>
-                            </li>
-                            <li class="sidebar-menu-item">
-                                <a class="sidebar-menu-button" href="student-quiz-results.html">My Quizzes</a>
-                            </li>
-                            <li class="sidebar-menu-item">
-                                <a class="sidebar-menu-button" href="student-take-course.html">Take Course</a>
-                            </li>
-                            <li class="sidebar-menu-item">
-                                <a class="sidebar-menu-button" href="student-take-lesson.html">Take Lesson</a>
-                            </li>
-                            <li class="sidebar-menu-item">
-                                <a class="sidebar-menu-button" href="student-take-quiz.html">Take Quiz</a>
-                            </li>
-                            <li class="sidebar-menu-item">
-                                <a class="sidebar-menu-button" href="student-quiz-result-details.html">Quiz Result</a>
-                            </li>
-                            <li class="sidebar-menu-item">
-                                <a class="sidebar-menu-button" href="student-path-assessment.html">Skill Assessment</a>
-                            </li>
-                            <li class="sidebar-menu-item">
-                                <a class="sidebar-menu-button" href="student-path-assessment-result.html">Skill Result</a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="sidebar-menu-item">
-                        <a class="sidebar-menu-button" data-toggle="collapse" href="#instructor_menu">
-                            Instructor
-                            <span class="ml-auto sidebar-menu-toggle-icon"></span>
-                        </a>
-                        <ul class="sidebar-submenu collapse sm-indent" id="instructor_menu">
-                            <li class="sidebar-menu-item">
-                                <a class="sidebar-menu-button" href="instructor-dashboard.html">Dashboard</a>
-                            </li>
-                            <li class="sidebar-menu-item">
-                                <a class="sidebar-menu-button" href="instructor-courses.html">Manage Courses</a>
-                            </li>
-                            <li class="sidebar-menu-item">
-                                <a class="sidebar-menu-button" href="instructor-quizzes.html">Manage Quizzes</a>
-                            </li>
-                            <li class="sidebar-menu-item">
-                                <a class="sidebar-menu-button" href="instructor-edit-course.html">Edit Course</a>
-                            </li>
-                            <li class="sidebar-menu-item">
-                                <a class="sidebar-menu-button" href="instructor-edit-quiz.html">Edit Quiz</a>
-                            </li>
-                            <li class="sidebar-menu-item">
-                                <a class="sidebar-menu-button" href="instructor-earnings.html">Earnings</a>
-                            </li>
-                            <li class="sidebar-menu-item">
-                                <a class="sidebar-menu-button" href="instructor-statement.html">Statement</a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="sidebar-menu-item active open">
-                        <a class="sidebar-menu-button" data-toggle="collapse" href="#account_menu">
-                            Account
-                            <span class="sidebar-menu-badge badge badge-primary badge-notifications ml-auto">2</span>
-                            <span class="sidebar-menu-toggle-icon"></span>
-                        </a>
-                        <ul class="sidebar-submenu collapse show sm-indent" id="account_menu">
-                            <li class="sidebar-menu-item">
-                                <a class="sidebar-menu-button" href="pricing.html">Pricing</a>
-                            </li>
-                            <li class="sidebar-menu-item active">
-                                <a class="sidebar-menu-button" href="login.html">Login</a>
-                            </li>
-                            <li class="sidebar-menu-item">
-                                <a class="sidebar-menu-button" href="signup.html">Signup</a>
-                            </li>
-                            <li class="sidebar-menu-item">
-                                <a class="sidebar-menu-button" href="signup-payment.html">Payment</a>
-                            </li>
-                            <li class="sidebar-menu-item">
-                                <a class="sidebar-menu-button" href="reset-password.html">Reset Password</a>
-                            </li>
-                            <li class="sidebar-menu-item">
-                                <a class="sidebar-menu-button" href="change-password.html">Change Password</a>
-                            </li>
-                            <li class="sidebar-menu-item">
-                                <a class="sidebar-menu-button" href="student-edit-account.html">Edit Account</a>
-                            </li>
-                            <li class="sidebar-menu-item">
-                                <a class="sidebar-menu-button" href="student-edit-account-profile.html">Profile &amp; Privacy</a>
-                            </li>
-                            <li class="sidebar-menu-item">
-                                <a class="sidebar-menu-button" href="student-edit-account-notifications.html">Email Notifications</a>
-                            </li>
-                            <li class="sidebar-menu-item">
-                                <a class="sidebar-menu-button" href="student-edit-account-password.html">Account Password</a>
-                            </li>
-                            <li class="sidebar-menu-item">
-                                <a class="sidebar-menu-button" href="student-billing.html">Subscription</a>
-                            </li>
-                            <li class="sidebar-menu-item">
-                                <a class="sidebar-menu-button" href="student-billing-upgrade.html">Upgrade Account</a>
-                            </li>
-                            <li class="sidebar-menu-item">
-                                <a class="sidebar-menu-button" href="student-billing-payment.html">Payment Information</a>
-                            </li>
-                            <li class="sidebar-menu-item">
-                                <a class="sidebar-menu-button" href="student-billing-history.html">Payment History</a>
-                            </li>
-                            <li class="sidebar-menu-item">
-                                <a class="sidebar-menu-button" href="student-billing-invoice.html">Invoice</a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="sidebar-menu-item">
-                        <a class="sidebar-menu-button" data-toggle="collapse" href="#community_menu">
-                            Community
-                            <span class="ml-auto sidebar-menu-toggle-icon"></span>
-                        </a>
-                        <ul class="sidebar-submenu collapse sm-indent" id="community_menu">
-                            <li class="sidebar-menu-item">
-                                <a class="sidebar-menu-button" href="student-discussions.html">Discussions</a>
-                            </li>
-                            <li class="sidebar-menu-item">
-                                <a class="sidebar-menu-button" href="student-discussion.html">Discussion Details</a>
-                            </li>
-                            <li class="sidebar-menu-item">
-                                <a class="sidebar-menu-button" href="student-discussions-ask.html">Ask Question</a>
-                            </li>
-                            <li class="sidebar-menu-item">
-                                <a class="sidebar-menu-button" href="student-profile.html">Student Profile</a>
-                            </li>
-                            <li class="sidebar-menu-item">
-                                <a class="sidebar-menu-button" href="instructor-profile.html">Instructor Profile</a>
-                            </li>
-                        </ul>
-                    </li>
-                </ul>
-
-                <div class="sidebar-heading">Components</div>
-                <ul class="sidebar-menu">
-                    <li class="sidebar-menu-item">
-                        <a class="sidebar-menu-button" data-toggle="collapse" href="#components_menu">
-                            Components
-                            <span class="ml-auto sidebar-menu-toggle-icon"></span>
-                        </a>
-                        <ul class="sidebar-submenu collapse sm-indent" id="components_menu">
-                            <li class="sidebar-menu-item">
-                                <a class="sidebar-menu-button" href="ui-buttons.html">Buttons</a>
-                            </li>
-                            <li class="sidebar-menu-item">
-                                <a class="sidebar-menu-button" href="ui-charts.html">Charts</a>
-                            </li>
-                            <li class="sidebar-menu-item">
-                                <a class="sidebar-menu-button" href="ui-avatars.html">Avatars</a>
-                            </li>
-                            <li class="sidebar-menu-item">
-                                <a class="sidebar-menu-button" href="ui-forms.html">Forms</a>
-                            </li>
-                            <li class="sidebar-menu-item">
-                                <a class="sidebar-menu-button" href="ui-loaders.html">Loaders</a>
-                            </li>
-                            <li class="sidebar-menu-item">
-                                <a class="sidebar-menu-button" href="ui-tables.html">Tables</a>
-                            </li>
-                            <li class="sidebar-menu-item">
-                                <a class="sidebar-menu-button" href="ui-cards.html">Cards</a>
-                            </li>
-                            <li class="sidebar-menu-item">
-                                <a class="sidebar-menu-button" href="ui-icons.html">Icons</a>
-                            </li>
-                            <li class="sidebar-menu-item">
-                                <a class="sidebar-menu-button" href="ui-tabs.html">Tabs</a>
-                            </li>
-                            <li class="sidebar-menu-item">
-                                <a class="sidebar-menu-button" href="ui-alerts.html">Alerts</a>
-                            </li>
-                            <li class="sidebar-menu-item">
-                                <a class="sidebar-menu-button" href="ui-badges.html">Badges</a>
-                            </li>
-                            <li class="sidebar-menu-item">
-                                <a class="sidebar-menu-button" href="ui-progress.html">Progress</a>
-                            </li>
-                            <li class="sidebar-menu-item">
-                                <a class="sidebar-menu-button" href="ui-pagination.html">Pagination</a>
-                            </li>
-                        </ul>
-                    </li>
-                </ul>
-
+               
             </div>
         </div>
     </div>

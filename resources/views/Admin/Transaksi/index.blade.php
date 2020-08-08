@@ -162,7 +162,24 @@
    <script src="{{ asset('plugins/select2/js/select2.full.min.js')}}"></script>
    <!-- Bootstrap4 Duallistbox -->
    <script src="{{ asset('plugins/bootstrap4-duallistbox/jquery.bootstrap-duallistbox.min.js') }}"></script>
+   <script>
+        require(['jquery'], function ($) {
+            $(document).ready(function () {
 
+            $('#cetak').hide()
+            $('.page-title').hide()
+            $('#tambah').hide()
+            $('.hapus').hide()
+            $('#histori').toggle()
+            
+            window.print()
+
+            window.onafterprint = function(){
+                    window.close()
+            }
+        });
+        });
+    </script>
    <script>
       $(document).ready(function () {
          $(".select2").select2();

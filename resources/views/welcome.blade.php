@@ -462,20 +462,8 @@
                     </li>
                 </ul>
 
-                <div class="sidebar-heading">Ekstra</div>
-                <ul class="sidebar-menu">
-                    <li class="sidebar-menu-item">
-                        <a class="sidebar-menu-button" data-toggle="collapse" href="#student_menu">
-                            Tentang Developer
-                            <span class="ml-auto sidebar-menu-toggle-icon"></span>
-                        </a>
-                        <ul class="sidebar-submenu collapse sm-indent" id="student_menu">
-                            <li class="sidebar-menu-item">
-                                <a class="sidebar-menu-button" href="student-dashboard.html">Biodata</a>
-                            </li>
-                        </ul>
-                    </li>
-                </ul>
+               
+                
 
                 
 
@@ -557,7 +545,7 @@
 <script type="text/javascript">
     (function () {
         var options = {
-            whatsapp: "+6282268916913", // WhatsApp number
+            whatsapp: "+6282387078324", // WhatsApp number
             text:"Assalau'alaikum..",
             call_to_action: "Hubungi Kami", // Call to action
             position: "right", // Position may be 'right' or 'left'

@@ -11,6 +11,8 @@ use App\Kelas;
 use App\Nama_Kelas;
 use App\RelasiNamaKelasSiswa;
 use App\Siswa;
+use Carbon\Carbon;
+use PDF;
 use DataTables;
 
 class TransaksiController extends Controller
@@ -76,7 +78,7 @@ class TransaksiController extends Controller
                     return "Rp ".number_format($pembayaran->jumlah_pembayaran,2);
                 })
                 ->addColumn('action', function($pembayaran){
-                    return '<a data-admin="/admin/piutang/transaksi/'.$pembayaran->id_pembayaran.'/hapus" class="btn btn-danger admin-remove" onclick="adminDelete()" href="#"><i class="fa fa-eraser"></i> Delete</a>';
+                    return '<a data-admin="/admin/piutang/transaksi/'.$pembayaran->id_pembayaran.'/hapus" class="btn btn-danger admin-remove" onclick="adminDelete()" href="#"><i class="fa fa-eraser"></i> Delete</a>  <a href="/admin/piutang/transaksi/'.$pembayaran->id_pembayaran.'/lihat" class="btn btn-light"><i class="fa fa-eye"></i>Detail</a>';
                 })
                 ->make(true);
         }else{
@@ -108,6 +110,25 @@ class TransaksiController extends Controller
         //     alert()->warning('Gagal memasukkan data!');
         //     return back();
         // }
+    }
+
+    public function lihat($id){
+        $pembayaran = Pembayaran::findOrfail($id);
+        $data = Tagihan::findOrfail($pembayaran->id_tagihan);
+        $total_pembayaran = Pembayaran::where([['id_tagihan',$data->id_tagihan],['id_siswa',$pembayaran->id_siswa]])->where('created_at','<=',$pembayaran->created_at)->get();
+        if($data->jenis == "SPP"){
+            $sisa = $data->jumlah * 12 - $total_pembayaran->sum('jumlah_pembayaran');
+        }else{
+            $sisa = $data->jumlah - $total_pembayaran->sum('jumlah_pembayaran');
+        }
+        $output = 'Sisa Hutang: Rp '.number_format($sisa,2);
+    	return view('Admin.Transaksi.transaksi',compact('pembayaran','sisa','output'));
+    }
+    public function cetak($id){
+        $pembayaran = Pembayaran::findOrfail($id);
+        $pdf = PDF::loadview('Admin.Transaksi.transaksi',compact('pembayaran'));
+        
+    	return $pdf->download('kwitansi.pdf');
     }
     public function destroy($id)
     {

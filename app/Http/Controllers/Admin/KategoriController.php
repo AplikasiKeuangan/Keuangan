@@ -135,6 +135,7 @@ class KategoriController extends Controller
             $keuangan = Keuangan::where('kategori_id');
             $keuangan->delete();
         }else{
+            
             alert()->error('Jurusan Gagal Dihapus!');
         }
     }
