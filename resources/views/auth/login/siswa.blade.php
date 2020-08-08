@@ -34,9 +34,47 @@
     <!-- App CSS -->
     <link type="text/css" href="{{ asset ('home/assets/css/app.css')}}" rel="stylesheet">
     <link type="text/css" href="{{ asset ('home/assets/css/app.rtl.css')}}" rel="stylesheet">
+
+
+
+
+
 </head>
 
 <body class="layout-navbar-mini-fixed-bottom">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     <div class="preloader">
         <div class="sk-double-bounce">
             <div class="sk-child sk-double-bounce1"></div>
@@ -113,14 +151,14 @@
             </div>
             <div class=" pt-32pt pt-sm-64pt pb-32pt">
                 <div class="container page__container">
-                    <form method="POST" action="{{ route('login') }}" class="col-md-5 p-0 mx-auto">
+                    <form method="POST" action="{{ route('siswa-login') }}" class="col-md-5 p-0 mx-auto">
                         @csrf
                         <div class="form-group">
-                            <label for="email">Email:</label>
-                            <input id="email" type="text" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus placeholder="Alamat Email...">
+                            <label for="nis">NIS:</label>
+                            <input id="nis" type="text" class="form-control @error('nis') is-invalid @enderror" name="nis" value="{{ old('nis') }}" required autocomplete="email" autofocus placeholder="Alamat NIS...">
                             
 
-                            @error('email')
+                            @error('nis')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
@@ -186,8 +224,7 @@
             <div class="bg-footer page-section py-lg-32pt">
                 <div class="container">
                     <div class="row">
-                        <div class="col-md-2 col-sm-4 mb-24pt mb-md-0">
-                        </div>
+                        <div class="col-md-2 col-sm-4 mb-24pt mb-md-0"></div>
                         <div class="col-md-6 col-sm-4 mb-24pt mb-md-0 d-flex align-items-center">
                             
                         </div>
@@ -204,6 +241,7 @@
 
     </div>
     <!-- // END Header Layout -->
+
     <!-- jQuery -->
     <script src="{{ asset('home/assets/vendor/jquery.min.js')}}"></script>
 

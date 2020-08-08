@@ -14,20 +14,25 @@
 Route::get('/', function () {
     return view('welcome');
 })->name('welcome');
-
+Auth::routes([
+    'register' => false, // Registration Routes...
+    'reset' => false, // Password Reset Routes...
+    'verify' => false, // Email Verification Routes...
+  ]);
+Route::prefix('siswa')->namespace('Auth')->group(function() {
+    Route::get('login', 'SiswaController@showLoginForm')->name('siswa-login');
+    Route::post('login', 'SiswaController@login')->name('siswa-login');
+    Route::post('logout', 'SiswaController@logout')->name('siswa-logout');
+});
 Auth::routes();
-Route::get('/recovery-password', 'ChangePasswordController@index')->name('password-update');
-Route::post('/password_update', 'ChangePasswordController@store');
-
-Route::get('/admin', 'HomeController@index')->name('home');
-Route::get('/admin/profile', 'HomeController@profile')->name('admin-profile');
-Route::get('/admin/profile/edit', 'HomeController@profile_edit')->name('admin-profile-edit');
-Route::post('/admin/profile/update', 'HomeController@profile_update')->name('admin-profile-update');
-Route::get('/test', 'HomeController@test')->name('test');
-
-Route::get('/admin/penerimaan/SPP','SPP@index')->name('index_SPP');
+Route::get('/recovery-password', 'ChangePasswordController@index')->name('password-update')->middleware(['checkLoginStatus']);
+Route::post('/password_update', 'ChangePasswordController@store')->middleware(['checkLoginStatus']);
 
 Route::prefix('admin')->name('admin-')->middleware(['checkLoginStatus'])->group(function () {
+    Route::get('', 'HomeController@index')->name('home');
+    Route::get('/profile', 'HomeController@profile')->name('profile');
+    Route::get('/profile/edit', 'HomeController@profile_edit')->name('profile-edit');
+    Route::post('/profile/update', 'HomeController@profile_update')->name('profile-update');
     //siswa
     Route::prefix('siswa')->name('siswa-')->group(function () {
         Route::get('/', 'Admin\SiswaController@index')->name('index');
@@ -151,4 +156,8 @@ Route::prefix('admin')->name('admin-')->middleware(['checkLoginStatus'])->group(
             });
         });
     });
+});
+Route::prefix('siswa')->name('siswa-')->namespace('Siswa')->middleware(['auth:siswa'])->group(function () {
+    Route::get('/', 'SiswaController@index')->name('home');
+    Route::get('/keuangan', 'SiswaController@keuangan')->name('keuangan');
 });

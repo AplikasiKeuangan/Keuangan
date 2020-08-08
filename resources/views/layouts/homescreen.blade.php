@@ -7,7 +7,8 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>An-Nahl</title>
+	<link rel="shortcut icon" type="image/x-icon" href="{{ asset('template/dist/img/logo1.png')}}" />
+    <title>SMP IT AN NAHL</title>
 
     <!-- Prevent the demo from appearing in search engines -->
     <meta name="robots" content="noindex">
@@ -144,7 +145,7 @@
                     <!-- Navbar Brand -->
                     <a href="/" class="navbar-brand">
                     <img class="navbar-brand-icon mr-0 mr-md-8pt" src="{{asset('home/assets/images/logo/logo1.png')}}" width="30">
-                        <span class="d-none d-md-block">SMP IT An-Nahl</span>
+                        <span class="d-none d-md-block">SMP IT AN NAHL</span>
                     </a>
 
                    
@@ -166,7 +167,7 @@
                                     </a>
                                 @endauth
                             </div>
-                        @endif
+                            @endif
                             
                         </li>
                         

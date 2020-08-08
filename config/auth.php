@@ -46,6 +46,11 @@ return [
             'provider' => 'users',
             'hash' => false,
         ],
+        'siswa' => [
+            'redirectTo' => 'siswa.home',
+          'driver' => 'session',
+          'provider' => 'siswa',
+        ],
     ],
 
     /*
@@ -69,6 +74,10 @@ return [
         'users' => [
             'driver' => 'eloquent',
             'model' => App\User::class,
+        ],
+        'siswa' => [
+            'driver' => 'eloquent',
+            'model' => App\Siswa::class,
         ],
 
         // 'users' => [

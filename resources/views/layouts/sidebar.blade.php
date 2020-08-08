@@ -4,16 +4,13 @@
   <a href="{{ route('welcome') }}" class="brand-link">
     <img src="{{ asset ('template/dist/img/logo1.png')}}" alt="AdminLTE Logo"
       class="brand-image img-circle elevation-3" style="opacity: .8">
-    <span class="brand-text font-weight-light">An-Nahl </span>
+    <span class="brand-text font-weight-light">SMP IT AN NAHL </span>
   </a>
 
   <!-- Sidebar -->
   <div class="sidebar">
     <!-- Sidebar user panel (optional) -->
     <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-      <div class="image">
-        <img src="{{ asset ('template/dist/img/user2-160x160.jpg')}}" class="img-circle elevation-2" alt="User Image">
-      </div>
       <div class="info">
       <a href="#" class="d-block">{{Auth::user()->name}}</a>
       </div>
@@ -26,7 +23,7 @@
         <!-- Add icons to the links using the .nav-icon class
                  with font-awesome or any other icon font library -->
         <li class="nav-item has-treeview">
-          <a href="{{ route('home') }}" class="nav-link {{ Route::currentRouteName() == 'home' ? 'active':'' }}">
+          <a href="{{ route('admin-home') }}" class="nav-link {{ Route::currentRouteName() == 'admin-home' ? 'active':'' }}">
             <i class="nav-icon fas fa-tachometer-alt"></i>
             <p>
               Dashboard

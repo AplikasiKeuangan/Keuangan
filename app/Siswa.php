@@ -2,13 +2,25 @@
 
 namespace App;
 
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Foundation\Auth\User as Model;
 
 class Siswa extends Model
 {
-    public $timestamps = false;
     protected $table ='siswas';
     protected $primaryKey = 'nis';
+
+    /**
+     * The attributes that should be hidden for arrays.
+     *
+     * @var array
+     */
+    protected $hidden = [
+        'password', 'remember_token',
+    ];
+    public function getAuthPassword()
+    {
+     return $this->password;
+    }
 
     public function siswa(){
         return $this->hasMany('App\Nama_Kelas','nama_kode_id','id');

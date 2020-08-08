@@ -7,6 +7,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<link rel="shortcut icon" type="image/x-icon" href="{{ asset('template/dist/img/logo1.png')}}" />
     <title>SMP IT AN NAHL</title>
 
     <!-- Prevent the demo from appearing in search engines -->
@@ -114,34 +115,6 @@
     <div class="mdk-header-layout js-mdk-header-layout">
 
         <!-- Header -->
-
-        <div class="navbar navbar-expand-sm navbar-mini navbar-dark fixed-bottom bg-dark d-none d-md-flex p-0" id="demo-navbar">
-            <div class="container-fluid">
-    
-                <!-- Main Navigation -->
-                <ul class="nav navbar-nav flex-nowrap">
-                    <li class="nav-item dropup active">
-                        <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Kesiswaan</a>
-                        <div class="dropdown-menu">
-                            <a class="dropdown-item active" href="/">Dashboard</a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="library.html">Library</a>
-                            
-                        </div>
-                    </li>
-                    <li class="nav-item dropup">
-                        <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Tentang Developer</a>
-                        <div class="dropdown-menu">
-                            <a class="dropdown-item" href="student-dashboard.html">Biodata</a>
-                            
-                        </div>
-                    </li>
-                    
-                </ul>
-                <!-- // END Main Navigation -->
-    
-            </div>
-        </div>
         <div id="header" class="mdk-header bg-dark js-mdk-header mb-0" data-effects="waterfall blend-background" data-fixed data-condenses>
             <div class="mdk-header__content">
 
@@ -168,14 +141,48 @@
 
                             @if (Route::has('login'))
                             <div class="top-right links">
-                                @auth
-                                    <a href="{{ url('/admin') }}">Home</a>
+                                @if(Auth::guard('siswa')->check())
+                                    <a href="{{ url('/siswa') }}" style="float: left">
+                                        <i class="material-icons">home</i>
+                                        Home
+                                    </a>
+                                    <a href="{{ route('logout') }}"
+                                       onclick="event.preventDefault();
+                                                     document.getElementById('logout-form-siswa').submit();" style="float: left">
+                                        <i class="material-icons">lock</i>
+                                        {{ __('Logout') }}
+                                    </a>
+
+                                    <form id="logout-form-siswa" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                        @csrf
+                                    </form>
+                                @elseif(Auth::guard(null)->check())
+                                    <a href="{{ url('/admin') }}" style="float: left">
+                                        <i class="material-icons">home</i>
+                                        Home
+                                    </a>
+                                    <a href="{{ route('logout') }}"
+                                       onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();" style="float: left">
+                                        <i class="material-icons">lock</i>
+                                        {{ __('Logout') }}
+                                    </a>
+
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                        @csrf
+                                    </form>
                                 @else
-                                    <a href="{{route('login')}}" class="nav-link">
+                                    <a href="{{route('login')}}" class="nav-link" style="float: left">
                                         <i class="material-icons">lock_open</i>
                                         <span class="sr-only">Login</span>
+                                        Petugas
                                     </a>
-                                @endauth
+                                    <a href="{{route('siswa-login')}}" class="nav-link" style="float: left">
+                                        <i class="material-icons">lock_open</i>
+                                        <span class="sr-only">Login</span>
+                                        Siswa
+                                    </a>
+                                @endif
                             </div>
                         @endif
                             
@@ -402,13 +409,7 @@
             <div class="bg-footer page-section py-lg-32pt">
                 <div class="container">
                     <div class="row">
-                        <div class="col-md-2 col-sm-4 mb-24pt mb-md-0">
-                            <p class="text-white-70 mb-8pt"><strong>Follow us</strong></p>
-                            <nav class="nav nav-links nav--flush">
-                                <a href="#" class="nav-link mr-8pt"><img src="{{ asset('home/assets/images/icon/footer/facebook-square%402x.png')}}" width="24" height="24" alt="Facebook"></a>
-                                
-                            </nav>
-                        </div>
+                        <div class="col-md-2 col-sm-4 mb-24pt mb-md-0"></div>
                         <div class="col-md-6 col-sm-4 mb-24pt mb-md-0 d-flex align-items-center">
                             
                         </div>
@@ -425,101 +426,6 @@
 
     </div>
     <!-- // END Header Layout -->
-
-    <!-- drawer -->
-    <div class="mdk-drawer js-mdk-drawer" id="default-drawer">
-        <div class="mdk-drawer__content">
-            <div class="sidebar sidebar-dark sidebar-left" data-perfect-scrollbar>
-                <div class="sidebar-p-a sidebar-b-b sidebar-m-b pt-0">
-
-                    <!-- Brand -->
-                    <a href="/" class="sidebar-brand">
-                        <img class="sidebar-brand-icon" src="{{ asset('home/assets/images/logo/logo1.png')}}" width="30" alt="SMP IT An-Nahl">
-                        <span>SMP IT An-Nahl</span>
-                    </a>
-                    <!-- // END Brand -->
-
-            
-                </div>
-
-                <ul class="sidebar-menu">
-                    <li class="sidebar-menu-item active">
-                        <a class="sidebar-menu-button" href="/">Beranda</a>
-                    </li>
-                    <li class="sidebar-menu-item active open">
-                        <a class="sidebar-menu-button" data-toggle="collapse" href="#catalog_menu">
-                            Kesiswaan
-                            <span class="ml-auto sidebar-menu-toggle-icon"></span>
-                        </a>
-                        <ul class="sidebar-submenu collapse show sm-indent" id="catalog_menu">
-                            <li class="sidebar-menu-item">
-                                <a class="sidebar-menu-button" href="library.html">Dashboard</a>
-                            </li>
-                            <li class="sidebar-menu-item">
-                                <a class="sidebar-menu-button" href="library-featured.html">Featured</a>
-                            </li>
-                        </ul>
-                    </li>
-                </ul>
-
-                <div class="sidebar-heading">Ekstra</div>
-                <ul class="sidebar-menu">
-                    <li class="sidebar-menu-item">
-                        <a class="sidebar-menu-button" data-toggle="collapse" href="#student_menu">
-                            Tentang Developer
-                            <span class="ml-auto sidebar-menu-toggle-icon"></span>
-                        </a>
-                        <ul class="sidebar-submenu collapse sm-indent" id="student_menu">
-                            <li class="sidebar-menu-item">
-                                <a class="sidebar-menu-button" href="student-dashboard.html">Biodata</a>
-                            </li>
-                        </ul>
-                    </li>
-                </ul>
-
-                
-
-            </div>
-        </div>
-    </div>
-    <!-- // END drawer -->
-    
-    <!-- Modal -->
-    <div class="modal courses-modal" id="courses" tabindex="-1" role="dialog">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-body">
-                    <div class="row">
-                        <div class="col-md-4 col-sm-6 col-i8-plus bg-body pr-0">
-                            <div class="py-16pt pl-16pt menu">
-                                <ul class="nav flex-column">
-                                    <li class="nav-item">
-                                        <a class="nav-link active" href="#courses-development" data-toggle="tab">Development</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="#courses-design" data-toggle="tab">Design</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="#courses-photography" data-toggle="tab">Photography</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="#courses-marketing" data-toggle="tab">Marketing</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="#courses-business" data-toggle="tab">Business</a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                        
-                    </div>
-                    <button type="button" class="close" data-dismiss="modal">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-            </div>
-        </div>
-    </div>
 
     <!-- jQuery -->
     <script src="{{ asset('home/assets/vendor/jquery.min.js')}}"></script>

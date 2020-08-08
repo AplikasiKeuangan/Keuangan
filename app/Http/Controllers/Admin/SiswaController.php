@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 use App\Http\Controllers\Controller;
 use App\Siswa;
 use App\Kelas;
@@ -24,7 +25,7 @@ class SiswaController extends Controller
     public function data(Request $request)
     {
         if ($request->ajax()) {
-            $siswa  = Siswa::orderBy('nis', 'DESC')->get();
+            $siswa  = Siswa::orderBy('nis', 'desc')->get();
             return DataTables::of($siswa)
                 ->addColumn('action', function($siswa){
                     return '<a href="./siswa/'.$siswa->nis.'/'.$siswa->nama_lengkap.'/detail" class="btn btn-light"><i class="fa fa-pencil-square-o"></i> Detail</a> <a href="./siswa/'.$siswa->nis.'/'.$siswa->nama_lengkap.'/edit" class="btn btn-primary"><i class="fa fa-pencil-square-o"></i> Edit</a> <a data-admin="admin/'.$siswa->nis.'/'.$siswa->nama_lengkap.'/hapus" class="btn btn-danger admin-remove" href="./siswa/'.$siswa->nis.'/'.$siswa->nama_lengkap.'/destroy" onclick="adminDelete()"><i class="fa fa-trash"></i></a>';
@@ -71,6 +72,9 @@ class SiswaController extends Controller
             if($validatedData == true){
                 $siswa = new Siswa();
                 $siswa->nis = $last_nis+1;
+                $password = Str::random(8);
+                $siswa->password = bcrypt($password);
+                $siswa->password2 = $password;
                 $siswa->nama_lengkap = $request->nama_lengkap;
                 $siswa->nama_panggilan = $request->nama_panggilan;
                 $siswa->jenis_kelamin = $request->jenis_kelamin;
@@ -113,6 +117,7 @@ class SiswaController extends Controller
     public function update(Request $request, $nis, $nama_lengkap){
         try{
             $validatedData = $request->validate([
+                'password' => 'required|max:45',
                 'nama_lengkap' => 'required|max:45',
                 'nama_panggilan' => 'required|max:30',
                 'jenis_kelamin' => 'required|max:10',
@@ -133,6 +138,8 @@ class SiswaController extends Controller
                 return redirect()->back()->with('danger', 'Gagal diupdate!');
             }else{
                 $siswa = Siswa::where([['nis',$nis]])->first();
+                $siswa->password = bcrypt($request->password);
+                $siswa->password2 = $request->password;
                 $siswa->nama_lengkap = $request->nama_lengkap;
                 $siswa->nama_panggilan = $request->nama_panggilan;
                 $siswa->jenis_kelamin = $request->jenis_kelamin;

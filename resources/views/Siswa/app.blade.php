@@ -51,10 +51,78 @@
 <body class="hold-transition sidebar-mini layout-fixed">
 
 <div class="wrapper">
+   <!-- Navbar -->
+   <nav class="main-header navbar navbar-expand navbar-white navbar-light">
+      <!-- Left navbar links -->
+      <ul class="navbar-nav">
+         <li class="nav-item">
+            <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+         </li>
+         
+      </ul>
 
-    @include('layouts/navbar')
+   
 
-    @include('layouts/sidebar')
+      <!-- Right navbar links -->
+      <ul class="navbar-nav ml-auto">
+         
+         <!--Power Menu -->
+         <li class="nav-item dropdown">
+            <a class="nav-link logout-confirm" href="{{ route('logout') }}" onclick="event.preventDefault();">
+               <i class="fas fa-power-off"></i>
+               <span class="badge badge-danger navbar-badge"></span>
+            </a>
+            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+            @csrf
+            </form>
+         </li>
+      </ul>
+   </nav>
+   <!-- /.navbar -->
+   <!-- Main Sidebar Container -->
+   <aside class="main-sidebar sidebar-dark-primary elevation-4">
+   <!-- Brand Logo -->
+   <a href="{{ route('welcome') }}" class="brand-link">
+      <img src="{{ asset ('template/dist/img/logo1.png')}}" alt="AdminLTE Logo"
+         class="brand-image img-circle elevation-3" style="opacity: .8">
+      <span class="brand-text font-weight-light">SMP IT AN NAHL </span>
+   </a>
+
+   <!-- Sidebar -->
+   <div class="sidebar">
+      <!-- Sidebar user panel (optional) -->
+      <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+         <div class="info">
+         <a href="#" class="d-block">{{Auth::guard('siswa')->id()}}</a>
+         </div>
+      </div>
+
+
+      <!-- Sidebar Menu -->
+      <nav class="mt-2">
+         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+         <li class="nav-item has-treeview">
+            <a href="{{ route('siswa-home') }}" class="nav-link {{ Route::currentRouteName() == 'siswa-home' ? 'active':'' }}">
+               <i class="nav-icon fas fa-user"></i>
+               <p>
+               Profile
+               </p>
+            </a>
+         </li>
+         <li class="nav-item has-treeview">
+            <a href="{{ route('siswa-keuangan') }}" class="nav-link {{ Route::currentRouteName() == 'siswa-keuangan' ? 'active':'' }}">
+               <i class="nav-icon fas fa-cog"></i>
+               <p>
+               Keuangan
+               </p>
+            </a>
+         </li>
+         </ul>
+      </nav>
+      <!-- /.sidebar-menu -->
+   </div>
+   <!-- /.sidebar -->
+   </aside>
   
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
@@ -63,7 +131,7 @@
     <!-- /.content-wrapper -->
     
     <footer class="main-footer">
-      <strong>Copyright &copy; 2020 <a href="{{ route('welcome') }}">SMP IT AN NAHL</a>.</strong>
+      <strong>Copyright &copy; 2020 <a href="{{ route('welcome') }}">SMP IT An-Nahl</a>.</strong>
       All rights reserved.
       <div class="float-right d-none d-sm-inline-block">
         <b>Version</b> 0.8.1
@@ -115,139 +183,9 @@
 <script src="{{ asset ('template/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js')}}"></script>
 <script src="{{ asset ('template/plugins/datatables-responsive/js/dataTables.responsive.min.js')}}"></script>
 <script src="{{ asset ('template/plugins/datatables-responsive/js/responsive.bootstrap4.min.js')}}"></script>
-
   
 <!--SweetAlert-->
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-@if(session('success'))
-<script>
-  $(function() {
-    $('.toggle-class').change(function() {
-        var status = $(this).prop('checked') == true ? 1 : 0; 
-        var user_id = $(this).data('id'); 
-         
-        $.ajax({
-            type: "GET",
-            dataType: "json",
-            url: '/changeStatus',
-            data: {'status': status, 'user_id': user_id},
-            success: function(data){
-              console.log(data.success)
-            }
-        });
-    })
-  })
-</script>
-<script>
-  swal({
-    title: "{{ session('success') }}",
-    icon: "success",
-    button: "Ya!",
-  });
-</script>
-@endif
-@if(session('danger'))
-<script>
-  swal({
-    title: "{{ session('danger') }}",
-    icon: "warning",
-    button: "Ya!",
-  });
-</script>
-@endif
-<script>
-  $(function () {
-    $("#example1").DataTable({
-      "responsive": true,
-      "autoWidth": false,
-    });
-    $('#example2').DataTable({
-      "paging": true,
-      "lengthChange": false,
-      "searching": false,
-      "ordering": true,
-      "info": true,
-      "autoWidth": false,
-      "responsive": true,
-    });
-  });
-</script>
-<script>
-     
-     $('.delete-confirm').on('click', function (event) {
-         event.preventDefault();
-         const url = $(this).attr('href');
-         swal({
-             title: 'Apa Anda Yakin?',
-             text: 'Data yang dihapus tidak bisa dipulihkan!',
-             icon: 'warning',
-             buttons: ["Batal", "Ya!"],
-         }).then(function(value) {
-             if (value) {
-                 window.location.href = url;
-             }
-         });
-     });
-</script>
-<script>
-     
-     $('.save-confirm').on('click', function (event) {
-         event.preventDefault();
-         const url = $(this).attr('href');
-         swal({
-             title: 'Apa Anda Yakin?',
-             text: 'Data yang dihapus tidak bisa dipulihkan!',
-             icon: 'success',
-             buttons: ["Batal", "Ya!"],
-         }).then(function(value) {
-             if (value) {
-                 window.location.href = url;
-             }
-         });
-     });
-</script>
-<script>
-  //Initialize Select2 Elements
-  $('.select2').select2()
-
-//Initialize Select2 Elements
-$('.select2bs4').select2({
-  theme: 'bootstrap4'
-})
-</script>
-<script>
-     
-     $('.logout-confirm').on('click', function (event) {
-         event.preventDefault();
-         const url = $(this).attr('href');
-         swal({
-             title: 'Anda Yakin Ingin Keluar?',
-             icon: 'warning',
-             buttons: ["Batal", "Ya!"],
-         }).then(function(value) {
-             if (value) {
-              document.getElementById('logout-form').submit();
-             }
-         });
-     });
-</script>
-<script type="text/javascript">
-  $(function () {
-      $('#dt').datetimepicker({
-        autoclose: true,
-            format: 'YYYY/MM/DD'
-      });
-  });
-</script>
-<script type="text/javascript">
-  $(function () {
-      $('#dte').datetimepicker({
-        autoclose: true,
-            format: 'YYYY/MM/DD'
-      });
-  });
-</script>
-
 @include('sweetalert::alert')
 </body>
 </html>

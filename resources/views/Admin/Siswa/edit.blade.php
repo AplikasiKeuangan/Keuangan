@@ -65,6 +65,14 @@
                                     </div> -->
                                     <div class="row form-group">
                                           <div class="col col-md-3">
+                                             <label for="hf-password" class=" form-control-label">Password</label>
+                                          </div>
+                                          <div class="col-12 col-md-9">
+                                             <input type="text" id="hf-password" name="password" placeholder="Password" required="" class="form-control" value="{{ $data_siswa->password2 }}">
+                                          </div>
+                                    </div>
+                                    <div class="row form-group">
+                                          <div class="col col-md-3">
                                              <label for="hf-nama-lengkap" class=" form-control-label">Nama Lengkap</label>
                                           </div>
                                           <div class="col-12 col-md-9">

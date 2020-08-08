@@ -237,6 +237,7 @@
                         <thead>
                            <tr>
                               <th>NIS</th>
+                              <th>Password</th>
                               <th>Nama Lengkap</th>
                               <th>Nama Panggilan</th>
                               <th>Jenis Kelamin</th>
@@ -262,6 +263,7 @@
                         <tfoot>
                            <tr>
                               <th>NIS</th>
+                              <th>Password</th>
                               <th>Nama Lengkap</th>
                               <th>Nama Panggilan</th>
                               <th>Jenis Kelamin</th>
@@ -314,6 +316,7 @@
                   { data: 'nis', name: 'nis', render:function(data, type, row){
                      return "<a href='./siswa/"+ row.nis +"/"+ row.nama_lengkap +"/detail'>" + row.nis + "</a>"
                   }},
+                  { data: 'password2', name: 'password2' },
                   { data: 'nama_lengkap', name: 'nama_lengkap' },
                   { data: 'nama_panggilan', name: 'nama_panggilan' },
                   { data: 'jenis_kelamin', name: 'jenis_kelamin' },
