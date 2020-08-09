@@ -19,11 +19,12 @@ class DatabaseSeeder extends Seeder
             'kredit' => '0',
         ]);
         DB::table('users')->insert([
-            'name' => Str::random(10),
-            'email' => 'admin@gmail.com',
+            'name' => 'Nocen',
+            'email' => 'email@admin.com',
             'password' => bcrypt('secret123'),
-            'created_at' => Carbon\Carbon::now,
-            'updated_at' => Carbon\Carbon::now,
+            'role' => 1,
+            'created_at' => Carbon\Carbon::now(),
+            'updated_at' => Carbon\Carbon::now(),
         ]);
     }
 }

@@ -64,7 +64,7 @@
                         <!-- Main Navigation -->
                         <ul class="nav navbar-nav ml-auto d-none d-sm-flex">
                             <li class="nav-item">
-                                <a href="/" class="nav-link"><i class="fa fa-home"> Beranda</i></a>
+                                <a href="{{ URL::to('/') }}" class="nav-link"><i class="fa fa-home"> Beranda</i></a>
                             </li>
                         </ul>
                         <!-- // END Main Navigation -->

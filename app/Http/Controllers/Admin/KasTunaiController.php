@@ -17,7 +17,7 @@ class KasTunaiController extends Controller
         $totalkredit = $kasTunai->sum('kredit');
         
         $totalsaldo = $kasTunai->sum('debit') - $kasTunai->sum('kredit');
-        return view('admin.kas.tunai.index', compact('totaldebit','totalkredit','totalsaldo'));
+        return view('Admin.Kas.Tunai.index', compact('totaldebit','totalkredit','totalsaldo'));
     }
     public function data(Request $request)
     {

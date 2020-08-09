@@ -126,7 +126,7 @@
                     </button>
 
                     <!-- Navbar Brand -->
-                    <a href="/" class="navbar-brand">
+                    <a href="" class="navbar-brand">
                     <img class="navbar-brand-icon mr-0 mr-md-8pt" src="{{asset('home/assets/images/logo/logo1.png')}}" width="30">
                         <span class="d-none d-md-block">SMP IT AN NAHL</span>
                     </a>

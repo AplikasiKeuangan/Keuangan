@@ -42,6 +42,6 @@ class KasController extends Controller
         $jumlah_debit_bank_per_haris = $chart_kas_bank['jumlah_debit_per_haris'];
         $jumlah_kredit_bank_per_haris = $chart_kas_bank['jumlah_kredit_per_haris'];
     
-        return view('admin.kas.index', compact('haris','nama_bulans','jumlah_debit_per_bulans','jumlah_kredit_per_bulans','jumlah_debit_per_haris','jumlah_kredit_per_haris','jumlah_debit_bank_per_bulans','jumlah_kredit_bank_per_bulans','jumlah_debit_bank_per_haris','jumlah_kredit_bank_per_haris','saldoAkhirBank','saldoAkhirTunai'));
+        return view('Admin.Kas.index', compact('haris','nama_bulans','jumlah_debit_per_bulans','jumlah_kredit_per_bulans','jumlah_debit_per_haris','jumlah_kredit_per_haris','jumlah_debit_bank_per_bulans','jumlah_kredit_bank_per_bulans','jumlah_debit_bank_per_haris','jumlah_kredit_bank_per_haris','saldoAkhirBank','saldoAkhirTunai'));
     }
 }

@@ -16,7 +16,7 @@ class KasBankController extends Controller
         $totalkredit = $kasBank->sum('kredit');
         
         $totalsaldo = $kasBank->sum('debit') - $kasBank->sum('kredit');
-        return view('admin.kas.bank.index', compact('totaldebit','totalkredit','totalsaldo'));
+        return view('Admin.Kas.Bank.index', compact('totaldebit','totalkredit','totalsaldo'));
     }
     public function data(Request $request)
     {
